@@ -5,62 +5,16 @@
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/profile/profile.css);
-
-.elements {
-  margin: 36px 0 0;
-}
-
-.elements__container {
-  width: 282px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-@media (min-width: 1024px) {
-  .elements__container {
-    width: 882px;
-    display: grid;
-    grid-template-columns: repeat(3, 282px);
-    grid-column-gap: 18px;
-    grid-row-gap: 20px;
-  }
-}
-
-.element {
-  width: 282px;
-  margin: 0 auto 20px;
-  background: #FFFFFF;
-  border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-}
-@media (min-width: 1024px) {
-  .element {
-    margin: 0;
-  }
-}
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/element/element.css);
 
 
-.element__img {
-  border-radius: 10px 10px 0px 0px;
-  height: 282px;
-  width: 282px;
-}
 
-.element__name {
-  font-weight: 900;
-  font-size: 24px;
-  color: #000000;
-  margin: 25px 0 31px 18px;
-}
 
-.element__like {
-  position: absolute;
-  bottom: 34px;
-  right: 22px; 
-}
+
+
+
+
+
 
 

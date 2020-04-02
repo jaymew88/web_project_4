@@ -1,0 +1,19 @@
+@import url(../element/__img/element__img.css);
+@import url(../element/__name/element__name.css);
+@import url(../element/__like/element__like.css);
+
+.element {
+  width: 282px;
+  margin: 0 auto 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .element {
+    margin: 0;
+  }
+}
