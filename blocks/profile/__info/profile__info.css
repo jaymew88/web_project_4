@@ -1,0 +1,14 @@
+.profile__info {
+  margin: 10px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .profile__info {
+    width: 430px;
+    margin: 0 0 0 40px;
+  }
+}
