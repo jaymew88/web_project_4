@@ -15,76 +15,77 @@
       <hr class="header__line">
     </header>
 
-    <main class="content">
+  <main class="content">
 
-      <!-- Profile Section -->
-      <section class="profile">
-        <div class="profile__pic"></div>
-        <div class="profile__info">
-          <h2 class="profile__title">Jacques Cousteau</h2>
-          <a href="#" class="button">
-            <img class="profile__edit-btn" src="./images/edit-btn.svg" alt="edit button">
-          </a>
-          <p class="profile__subtitle">Explorer</p>
-        </div> 
-      <a href="#" class="button"> 
-        <img class="profile__add-btn" src="./images/add-btn.svg" alt="add button">
-      </a>
-      </section>
-
-      <!-- Elements Section -->
-      <section class="elements">
-        <ul class="elements__container">
-          <li class="element">
-            <img class="element__img" src="./images/yosemitevalley.jpg" alt="Yosemite Valley">
-            <h3 class="element__name">Yosemite Valley</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
-          </li> 
-          <li class="element">
-            <img class="element__img" src="./images/lakelouise.jpg" alt="Lake Louise">
-            <h3 class="element__name">Lake Louise</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/baldmountains.jpg" alt="Bald Mountains">
-            <h3 class="element__name">Bald Mountains</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/latemar.jpg" alt="Latemar">
-            <h3 class="element__name">Latemar</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/vanoisnational.jpg" alt="Vanois National">
-            <h3 class="element__name">Vanois National...</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/lagodibraies.jpg" alt="Lago di Braies">
-            <h3 class="element__name">Lago di Braies</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
-          </li>
-        </ul>
-      </section>
-
-      <!-- Modal Section -->
-      <section class="popup popup_opened">
-        <div class="popup__container">
-          <div class="popup__close"></div>
-          <h3 class="popup__title">Edit Profile</h3>
-          <form action="">
-            <input class="popup__name-field" type="text" placeholder="Name">
-            <input class="popup__about-field" type="text" placeholder="About Me">
-            <button class="popup__save">Save</button>
-          </form>
-        </div> <!-- End popup-container div-->
+    <!-- Profile Section -->
+    <section class="profile">
+      <div class="profile__pic"></div>
+      <div class="profile__info">
+        <h2 class="profile__title">Jacques Cousteau</h2>
+        <a href="#" class="button">
+          <img class="profile__edit-btn" src="./images/edit-btn.svg" alt="edit button">
+        </a>
+        <p class="profile__subtitle">Explorer</p>
+      </div> 
+    <a href="#" class="button"> 
+      <img class="profile__add-btn" src="./images/add-btn.svg" alt="add button">
+    </a>
     </section>
-      
-    </main>
+
+    <!-- Elements Section -->
+    <section class="elements">
+      <ul class="elements__container">
+        <li class="element">
+          <img class="element__img" src="./images/yosemitevalley.jpg" alt="Yosemite Valley">
+          <h3 class="element__name">Yosemite Valley</h3>
+          <img class="element__like" src="./images/heart.svg" alt="like heart">
+        </li> 
+        <li class="element">
+          <img class="element__img" src="./images/lakelouise.jpg" alt="Lake Louise">
+          <h3 class="element__name">Lake Louise</h3>
+          <img class="element__like" src="./images/heart.svg" alt="like heart">
+        </li>
+        <li class="element">
+          <img class="element__img" src="./images/baldmountains.jpg" alt="Bald Mountains">
+          <h3 class="element__name">Bald Mountains</h3>
+          <img class="element__like" src="./images/heart.svg" alt="like heart">
+        </li>
+        <li class="element">
+          <img class="element__img" src="./images/latemar.jpg" alt="Latemar">
+          <h3 class="element__name">Latemar</h3>
+          <img class="element__like" src="./images/heart.svg" alt="like heart">
+        </li>
+        <li class="element">
+          <img class="element__img" src="./images/vanoisnational.jpg" alt="Vanois National">
+          <h3 class="element__name">Vanois National...</h3>
+          <img class="element__like" src="./images/heart.svg" alt="like heart">
+        </li>
+        <li class="element">
+          <img class="element__img" src="./images/lagodibraies.jpg" alt="Lago di Braies">
+          <h3 class="element__name">Lago di Braies</h3>
+          <img class="element__like" src="./images/heart.svg" alt="like heart">
+        </li>
+      </ul>
+    </section>
+
+    <!-- Modal Section -->
+    <section class="popup popup_opened">
+      <div class="popup__container">
+        <img class="popup__close" src="./images/closeicon.svg">
+        <h3 class="popup__title">Edit Profile</h3>
+        <form class="popup__form" action="">
+          <input class="popup__field" id="popup__name-field" type="text" placeholder="Name">
+          <input class="popup__field" id="popup__about-field" type="text" placeholder="About Me">
+          <button class="popup__save">Save</button>
+        </form>
+      </div> <!-- End popup-container div-->
+    </section>
+  </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
   </footer>
   </div>
+
+  <script src="script.js"></script>
 </body>
