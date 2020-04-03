@@ -14,17 +14,25 @@
       <img class="logo" src="./images/logo.svg" alt="logo"></img>
       <hr class="header__line">
     </header>
+
     <main class="content">
+
+      <!-- Profile Section -->
       <section class="profile">
         <div class="profile__pic"></div>
         <div class="profile__info">
           <h2 class="profile__title">Jacques Cousteau</h2>
-          <img class="profile__edit-btn" src="./images/edit-btn.svg" alt="edit button">
+          <a href="#" class="button">
+            <img class="profile__edit-btn" src="./images/edit-btn.svg" alt="edit button">
+          </a>
           <p class="profile__subtitle">Explorer</p>
         </div> 
-      <img class="profile__add-btn" src="./images/add-btn.svg" alt="add button">
+      <a href="#" class="button"> 
+        <img class="profile__add-btn" src="./images/add-btn.svg" alt="add button">
+      </a>
       </section>
 
+      <!-- Elements Section -->
       <section class="elements">
         <ul class="elements__container">
           <li class="element">
@@ -59,6 +67,20 @@
           </li>
         </ul>
       </section>
+
+      <!-- Modal Section -->
+      <section class="popup popup_opened">
+        <div class="popup__container">
+          <div class="popup__close"></div>
+          <h3 class="popup__title">Edit Profile</h3>
+          <form action="">
+            <input class="popup__name-field" type="text" placeholder="Name">
+            <input class="popup__about-field" type="text" placeholder="About Me">
+            <button class="popup__save">Save</button>
+          </form>
+        </div> <!-- End popup-container div-->
+    </section>
+      
     </main>
 
   <footer class="footer">
