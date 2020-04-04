@@ -1,0 +1,22 @@
+.button__edit {
+  border: 1px solid #FFFFFF;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: 20px;
+  right: 8px;
+}
+
+.button__edit:hover {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+@media (min-width: 1024px) {
+  .button__edit {
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: 19px;
+    right: 0;
+  }
+}

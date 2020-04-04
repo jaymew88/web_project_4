@@ -1,3 +1,9 @@
+@import url(../button/__icon/button__icon.css);
+@import url(../button/__add/button__add.css);
+@import url(.//__close/button__close.css);
+@import url(../button/__edit/button__edit.css);
+@import url(../button/__save/button__save.css);
+
 .button {
   background-color: black;
   padding: 0;
@@ -7,87 +13,3 @@
   cursor: pointer;
 }
 
-.button__icon {
-  display: block;
-  margin: auto;
-}
-
-.button:hover .button__icon path {
-  fill: rgba(255, 255, 255, 0.6);
-}
-
-.button__add {
-  width: 282px;
-  height: 50px;
-  margin: 36px auto 0;
-  border: 2px solid #FFFFFF;
-  border-radius: 2px;
-}
-
-.button__add:hover {
-  border: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-@media (min-width: 1024px) {
-  .button__add {
-    width: 150px;
-    margin: 0 0 0 154px;
-  }
-}
-.button__edit {
-  border: 1px solid #FFFFFF;
-  height: 18px;
-  width: 18px;
-  position: absolute;
-  top: 20px;
-  right: 8px;
-}
-
-.button__edit:hover {
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-@media (min-width: 1024px) {
-  .button__edit {
-    height: 24px;
-    width: 24px;
-    position: absolute;
-    top: 19px;
-    right: 0;
-  }
-}
-
-.button__save {
-  background: #000000;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-  width: 100%;
-  color: #ffffff;
-  font-weight: normal;
-  font-size: 18px;
-  padding: 15px 0 15px;
-}
-
-.button__save:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-
-.button__close {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: -44px;
-  right: -38px;
-  border: none;
-  display: flex;
-  justify-content: center;
-}
-
-.button__icon_close {
-  
-}
-
-.button__icon_close:hover path {
-  fill: rgba(255, 255, 255, 0.6);
-}

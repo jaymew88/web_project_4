@@ -1,0 +1,8 @@
+.button__icon {
+  display: block;
+  margin: auto;
+}
+
+.button:hover .button__icon path {
+  fill: rgba(255, 255, 255, 0.6);
+}

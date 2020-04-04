@@ -1,0 +1,18 @@
+.button__add {
+  width: 282px;
+  height: 50px;
+  margin: 36px auto 0;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+}
+
+.button__add:hover {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+@media (min-width: 1024px) {
+  .button__add {
+    width: 150px;
+    margin: 0 0 0 154px;
+  }
+}

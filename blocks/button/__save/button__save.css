@@ -1,0 +1,15 @@
+
+.button__save {
+  background: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  width: 100%;
+  color: #ffffff;
+  font-weight: normal;
+  font-size: 18px;
+  padding: 15px 0 15px;
+}
+
+.button__save:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
