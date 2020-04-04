@@ -1,3 +1,6 @@
+@import url(../__field/_about/popup__field_about.css);
+@import url(../__field/_name/popup__field_name.css);
+
 .popup__field {
   display: block;
   font-weight: normal;
@@ -9,10 +12,4 @@
 }
 
 
-#popup__name-field {
-  margin-bottom: 30px;
-}
 
-#popup__about-field {
-  margin-bottom: 44px;
-}
