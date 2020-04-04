@@ -1,4 +1,4 @@
-document.querySelector('.profile__edit-btn').addEventListener("click", function() {
+document.querySelector('.button__edit').addEventListener("click", function() {
 	document.querySelector('.popup').classList.add('popup__opened');
 });
 

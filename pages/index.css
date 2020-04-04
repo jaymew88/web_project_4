@@ -8,9 +8,7 @@
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/footer/footer.css);
-
-
-
+@import url(../blocks/button/button.css);
 
 .popup  {
   background-color: rgba(0, 0, 0, 0.5);
@@ -74,16 +72,13 @@
   margin-bottom: 44px;
 }
 
-.popup__save {
-  background: #000000;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-  width: 100%;
-  color: #ffffff;
-  font-weight: normal;
-  font-size: 18px;
-  padding: 15px 0 15px;
-}
+
+
+
+
+
+
+
 
 
 
