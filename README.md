@@ -1,16 +1,28 @@
 # Project 4: Around The U.S.
 
-### Overview
-
+## Overview
+* Intro
 * Figma
-* Images
+* Description
+* Technologies
 
-**Figma**
+### Intro
 
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+This is a project called "Around The U.S.". It is an interactive page where users can add, remove, or like photos.
 
-**Images**
+### Figma
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+* [Link to the project on Figma](https://www.figma.com/file/lNsn9aE1Be6bvg9FeAzRXT/Sprint-3-From-Portland-to-Portland-desktop-mobile?node-id=0%3A1)
 
-Have fun with JavaScript!
+### Description
+
+This is a single page responsive website using CSS, HTML and JavaScript, following the BEM methodology. This was a project from a brief, and uses a BEM CSS nested file structure.
+
+### Technologies
+
+* HTML
+* CSS
+* [BEM](https://en.bem.info/) 
+* JavaScript
+
+
