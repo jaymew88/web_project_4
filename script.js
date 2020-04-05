@@ -5,8 +5,9 @@ let close = document.querySelector('.button__close');
 
 // Uses variables to open Popup Modal when Edit Button is clicked
 buttonEdit.addEventListener("click", function() {
-  open.classList.add('popup_opened') 
-  document.querySelector('.profile__title').value = document.querySelector('.popup__field_name').value;
+  open.classList.add('popup_opened'); 
+  document.querySelector('.popup__field_name').value = document.querySelector('.profile__title').innerHTML;
+  document.querySelector('.popup__field_job').value = document.querySelector('.profile__job').innerHTML;
 });
   
 
@@ -30,15 +31,16 @@ function formSubmitHandler (evt) {
     let jobInput = document.querySelector('.popup__field_about');  
 
     // Get the values of each field from the corresponding value property
-    let nameValue = document.querySelector('.profile__title').value;
-    let jobValue = document.querySelector('.profile__job').value;
+    let nameValue = nameInput.value;
+    let jobValue = jobInput.value;
 
     // Select elements where the field values will be entered
-    
+    //let NameResult = 
+    //let jobResult = 
 
     // Insert new values using the textContent property of the querySelector() method
-    document.querySelector(nameValue).textContent= nameInput;
-    document.querySelector(jobValue).textContent= jobInput;
+    noIdea.textContent = document.querySelector('.profile__title');
+    lnoIdea.textContent = document.querySelector('.profile__job');
 }
 
 // Connect the handler to the form
