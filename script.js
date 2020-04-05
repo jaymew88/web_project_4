@@ -10,7 +10,6 @@ buttonEdit.addEventListener("click", function() {
   document.querySelector('.popup__field_job').value = document.querySelector('.profile__job').innerHTML;
 });
   
-
 // Closes Popup Modal when Close button is clicked
 close.addEventListener("click", function() {
 	open.classList.remove('popup_opened');
@@ -28,10 +27,10 @@ function formSubmitHandler (evt) {
 
     // Let's find the form fields in the DOM
     let nameInput = document.querySelector('.popup__field_name');  
-    let jobInput = document.querySelector('.popup__field_job');  // Works
+    let jobInput = document.querySelector('.popup__field_job'); 
 
     // Get the values of each field from the corresponding value property
-    let nameVal = nameInput.value; // WORKS
+    let nameVal = nameInput.value; 
     let jobVal = jobInput.value;
 
     // Select elements where the field values will be entered
