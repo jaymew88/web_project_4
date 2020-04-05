@@ -1,7 +1,8 @@
-// Calls all elemnts from document an dstores them as variables
+// Calls all elemnts from document and stores them as variables
 let buttonEdit = document.querySelector('.button__edit');
 let open = document.querySelector('.popup');
 let close = document.querySelector('.button__close');
+let closeSave = document.querySelector('.button__save');
 
 // Open Popup Modal with prefilled fields 
 buttonEdit.addEventListener("click", function() {
@@ -10,10 +11,14 @@ buttonEdit.addEventListener("click", function() {
   document.querySelector('.popup__field_job').value = document.querySelector('.profile__job').innerHTML;
 });
   
-// Closes Popup Modal when Close button is clicked
+// Closes Popup Modal when Close button, save or enter is clicked
 close.addEventListener("click", function() {
 	open.classList.remove('popup_opened');
 });
+closeSave.addEventListener("click", function() {
+	open.classList.remove('popup_opened');
+});
+
 
 // Let's find the form in the DOM
 let formElement = document.querySelector('.popup__form'); // Use the querySelector() method
