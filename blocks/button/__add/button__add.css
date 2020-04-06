@@ -6,6 +6,7 @@
   border-radius: 2px;
 }
 
+/* I have this here because this boarder is 2px, not 1px as the other border is */
 .button__add:hover {
   border: 2px solid rgba(255, 255, 255, 0.6);
 }

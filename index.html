@@ -11,7 +11,7 @@
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="logo" src="./images/logo.svg" alt="logo"></img>
+      <img class="logo" src="./images/logo.svg" alt="logo">
       <hr class="header__line">
     </header>
 
@@ -41,33 +41,45 @@
       <ul class="elements__container">
         <li class="element">
           <img class="element__img" src="./images/yosemitevalley.jpg" alt="Yosemite Valley">
-          <h3 class="element__name">Yosemite Valley</h3>
-          <img class="element__like" src="./images/heart.svg" alt="like heart">
+          <div class="element__wrapper">
+            <h3 class="element__name">Yosemite Valley</h3>
+            <img class="element__like" src="./images/heart.svg" alt="like heart">
+          </div>
         </li> 
         <li class="element">
           <img class="element__img" src="./images/lakelouise.jpg" alt="Lake Louise">
-          <h3 class="element__name">Lake Louise</h3>
-          <img class="element__like" src="./images/heart.svg" alt="like heart">
+          <div class="element__wrapper">
+            <h3 class="element__name">Lake Louise</h3>
+            <img class="element__like" src="./images/heart.svg" alt="like heart">
+          </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/baldmountains.jpg" alt="Bald Mountains">
-          <h3 class="element__name">Bald Mountains</h3>
-          <img class="element__like" src="./images/heart.svg" alt="like heart">
+          <div class="element__wrapper">
+            <h3 class="element__name">Bald Mountains</h3>
+           <img class="element__like" src="./images/heart.svg" alt="like heart">
+          </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/latemar.jpg" alt="Latemar">
-          <h3 class="element__name">Latemar</h3>
-          <img class="element__like" src="./images/heart.svg" alt="like heart">
+          <div class="element__wrapper">
+            <h3 class="element__name">Latemar</h3>
+            <img class="element__like" src="./images/heart.svg" alt="like heart">
+          </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/vanoisnational.jpg" alt="Vanois National">
-          <h3 class="element__name">Vanois National Park</h3>
-          <img class="element__like" src="./images/heart.svg" alt="like heart">
+          <div class="element__wrapper">
+           <h3 class="element__name">Vanois National Park</h3>
+           <img class="element__like" src="./images/heart.svg" alt="like heart">
+          </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/lagodibraies.jpg" alt="Lago di Braies">
-          <h3 class="element__name">Lago di Braies</h3>
-          <img class="element__like" src="./images/heart.svg" alt="like heart">
+          <div class="element__wrapper">
+           <h3 class="element__name">Lago di Braies</h3>
+           <img class="element__like" src="./images/heart.svg" alt="like heart">
+          </div>
         </li>
       </ul>
     </section>
@@ -81,11 +93,11 @@
             <path d="M44.7661 41.5683L31.9759 28.778L44.7661 15.9878L41.5686 12.7902L28.7783 25.5805L15.9881 12.7902L12.7905 15.9878L25.5808 28.778L12.7905 41.5683L15.9881 44.7658L28.7783 31.9756L41.5686 44.7658L44.7661 41.5683Z" fill="white"/>
             </svg>
         </button>
-        <h3 class="popup__title">Edit Profile</h3>
-        <form class="popup__form" action="">
+        <h2 class="popup__title">Edit Profile</h2>
+        <form class="popup__form" action="#">
           <input class="popup__field popup__field_name" id="name__input" type="text" placeholder="Name">
           <input class="popup__field popup__field_job" id="job__input" type="text" placeholder="About Me">
-          <button class="button button__save">Save</button>
+          <button class="button button_role_save" type="submit">Save</button>
         </form>
       </div> <!-- End popup-container div-->
     </section>
@@ -96,5 +108,5 @@
   </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
