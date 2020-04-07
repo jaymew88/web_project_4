@@ -12,28 +12,19 @@
   <div class="page">
     <header class="header">
       <img class="logo" src="./images/logo.svg" alt="logo">
-      <hr class="header__line">
     </header>
 
   <main class="content">
 
     <!-- Profile Section -->
     <section class="profile">
-      <div class="profile__pic"></div>
+      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
       <div class="profile__info">
         <h2 class="profile__title">Jacques Cousteau</h2>
-        <button class="button button__edit">
-          <svg class="button__icon" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.75 1.2462L2.20283 6.82495L1.21226 5.81452L6.74528 0.25L7.75 1.2462ZM0.25 7.75L1.7217 7.30882L0.688679 6.31262L0.25 7.75Z" fill="white"/>
-            </svg>
-      </button>
+        <button class="button button_edit"></button>
         <p class="profile__job">Explorer</p>
       </div> 
-      <button class="button button__add">
-        <svg class="button__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 7.11111H8.88889V0H7.11111V7.11111H0V8.88889H7.11111V16H8.88889V8.88889H16V7.11111Z" fill="white"/>
-        </svg>
-      </button>
+      <button class="button button_add"></button>
     </section>
 
     <!-- Elements Section -->
@@ -43,42 +34,42 @@
           <img class="element__img" src="./images/yosemitevalley.jpg" alt="Yosemite Valley">
           <div class="element__wrapper">
             <h3 class="element__name">Yosemite Valley</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
+            <div class="button button_like"></div>
           </div>
         </li> 
         <li class="element">
           <img class="element__img" src="./images/lakelouise.jpg" alt="Lake Louise">
           <div class="element__wrapper">
             <h3 class="element__name">Lake Louise</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
+            <div class="button button_like"></div>
           </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/baldmountains.jpg" alt="Bald Mountains">
           <div class="element__wrapper">
             <h3 class="element__name">Bald Mountains</h3>
-           <img class="element__like" src="./images/heart.svg" alt="like heart">
+            <div class="button button_like"></div>
           </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/latemar.jpg" alt="Latemar">
           <div class="element__wrapper">
             <h3 class="element__name">Latemar</h3>
-            <img class="element__like" src="./images/heart.svg" alt="like heart">
+            <div class="button button_like"></div>
           </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/vanoisnational.jpg" alt="Vanois National">
           <div class="element__wrapper">
            <h3 class="element__name">Vanois National Park</h3>
-           <img class="element__like" src="./images/heart.svg" alt="like heart">
+           <div class="button button_like"></div>
           </div>
         </li>
         <li class="element">
           <img class="element__img" src="./images/lagodibraies.jpg" alt="Lago di Braies">
           <div class="element__wrapper">
            <h3 class="element__name">Lago di Braies</h3>
-           <img class="element__like" src="./images/heart.svg" alt="like heart">
+           <div class="button button_like"></div>
           </div>
         </li>
       </ul>
@@ -87,12 +78,7 @@
     <!-- Modal Section -->
     <section class="popup">
       <div class="popup__container">
-        <button class="button button__close">
-          <!--<img class="button__icon button__icon_close" src="./images/closeicon.svg" alt="close button">-->
-          <svg class="button__icon" width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M44.7661 41.5683L31.9759 28.778L44.7661 15.9878L41.5686 12.7902L28.7783 25.5805L15.9881 12.7902L12.7905 15.9878L25.5808 28.778L12.7905 41.5683L15.9881 44.7658L28.7783 31.9756L41.5686 44.7658L44.7661 41.5683Z" fill="white"/>
-            </svg>
-        </button>
+        <button class="button button_close"></button>
         <h2 class="popup__title">Edit Profile</h2>
         <form class="popup__form" action="#">
           <input class="popup__field popup__field_name" id="name__input" type="text" placeholder="Name">

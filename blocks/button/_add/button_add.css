@@ -1,4 +1,6 @@
-.button__add {
+.button_add {
+  background: url(../../../images/add-btn.svg) no-repeat;
+  background-position: auto auto;
   width: 282px;
   height: 50px;
   margin: 36px auto 0;
@@ -6,13 +8,8 @@
   border-radius: 2px;
 }
 
-/* I have this here because this boarder is 2px, not 1px as the other border is */
-.button__add:hover {
-  border: 2px solid rgba(255, 255, 255, 0.6);
-}
-
 @media (min-width: 1024px) {
-  .button__add {
+  .button_add {
     width: 150px;
     margin: 0 0 0 154px;
   }

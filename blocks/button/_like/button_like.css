@@ -1,0 +1,6 @@
+.button_like {
+  background: url(../../../images/heart.svg) no-repeat;
+  background-position: bottom;
+  width: 22px;
+  background-color: #ffffff;
+}

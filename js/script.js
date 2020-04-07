@@ -1,7 +1,7 @@
 // Calls all elemnts from document and stores them as variables
-let buttonEdit = document.querySelector('.button__edit');
+const buttonEdit = document.querySelector('.button_edit');
 const open = document.querySelector('.popup');
-const close = document.querySelector('.button__close');
+const close = document.querySelector('.button_close');
 const closeSave = document.querySelector('.button_role_save');
 const formElement = document.querySelector('.popup__form');
 const nameNew = document.querySelector('.profile__title');

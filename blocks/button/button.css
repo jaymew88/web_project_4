@@ -1,18 +1,16 @@
-@import url(../button/__icon/button__icon.css);
-@import url(../button/__add/button__add.css);
-@import url(.//__close/button__close.css);
-@import url(../button/__edit/button__edit.css);
-@import url(../button/__save/button__save.css);
+@import url(../button/_icon/button_icon.css);
+@import url(../button/_add/button_add.css);
+@import url(../button/_close/button_close.css);
+@import url(../button/_edit/button_edit.css);
+@import url(../button/_save/button_save.css);
 
 .button {
   background-color: black;
   padding: 0;
+  background-position: center;
 }
 
 .button:hover {
   cursor: pointer;
-}
-
-.button:hover .button__icon path {
-  fill: rgba(255, 255, 255, 0.6);
+  opacity: .6;
 }
