@@ -3,24 +3,22 @@
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-row-gap: 20px;
+  grid-column-gap: 18px;
 }
 
 @media (min-width: 768px) {
   .elements__container {
     width: 582px;
-    display: grid;
     grid-template-columns: repeat(2, 282px);
-    grid-column-gap: 18px;
-    grid-row-gap: 20px;
+   
   }
 }
 
 @media (min-width: 1024px) {
   .elements__container {
     width: 882px;
-    display: grid;
     grid-template-columns: repeat(3, 282px);
   }
 }

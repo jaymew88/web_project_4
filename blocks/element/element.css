@@ -4,15 +4,12 @@
 
 .element {
   width: 282px;
-  margin: 0 auto 20px;
+  margin: 0 auto;
   background: #FFFFFF;
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
-}
-.element:last-of-type {
-  margin-bottom: 0;
 }
 
 @media (min-width: 768px) {

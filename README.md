@@ -5,6 +5,7 @@
 * Figma
 * Description
 * Technologies
+* Github Link
 
 ### Intro
 
@@ -25,4 +26,7 @@ This is a single page responsive website using CSS, HTML and JavaScript, followi
 * [BEM](https://en.bem.info/) 
 * JavaScript
 
+### Github Link
+
+(https://jaymew88.github.io/web_project_4/index.html)
 
