@@ -1,5 +1,5 @@
-@import url(../__field/_job/popup__field_job.css);
-@import url(../__field/_name/popup__field_name.css);
+@import url(../__field/_content/popup__field_content_job.css);
+@import url(../__field/_content/popup__field_content_name.css);
 
 .popup__field {
   display: block;

@@ -1,6 +1,5 @@
-.button_add {
+.button_role_add {
   background: url(../../../images/add-btn.svg) no-repeat;
-  background-position: auto auto;
   width: 282px;
   height: 50px;
   margin: 36px auto 0;
@@ -9,7 +8,7 @@
 }
 
 @media (min-width: 1024px) {
-  .button_add {
+  .button_role_add {
     width: 150px;
     margin: 0 0 0 154px;
   }
