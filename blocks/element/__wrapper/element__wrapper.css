@@ -4,3 +4,10 @@
   width: 246px;
   margin: 25px auto 31px;
 }
+
+.card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 246px;
+  margin: 25px auto 31px;
+}

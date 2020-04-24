@@ -1,3 +1,77 @@
+// Sets the Initial Cards to be loaded 
+const initialCards = [
+  {
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+      name: "Vanois National Park",
+      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+  },
+  {
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+
+// References Image and Name classes and createElements for template 
+const cards = document.querySelector('.cards');
+const imageValue = document.querySelector('.card__img');
+const nameValue = document.querySelector('.card__name');
+const cardsContainer = document.createElement('ul');
+const card = document.createElement('li');
+const cardImage = document.createElement('div'); //??? img?
+const cardWrapper = document.createElement('div');
+const cardName = document.createElement('h3');
+const cardButton = document.createElement('button');
+
+// Function to load Iniital Cards and Title on website load
+window.addEventListener ('DOMContentLoaded', function () {
+  const cardTemplate = document.querySelector('#cards-template').content;
+  const cardsElement = cardTemplate.cloneNode(true);
+
+  cardsContainer.append(cardsElement);
+ 
+  cardsContainer.classList.add('cards__container');
+  card.classList.add('.card');
+  cardImage.classList.add('.card__img');
+  cardImage.textcontent = imageValue;
+  cardWrapper.classList.add('.card__wrapper');
+  cardName.classList.add('.card__name');
+  cardName.textContent = nameValue;
+  cardButton.classList.add('.button_role_like');
+
+  cards.append(cardsContainer);
+
+  initialCards.forEach((name, link) => {
+    const cardsLink = 
+    initialCards[link]
+    initialCards[name]
+    // card.appendChild(cardsContainer);
+    //cardsElement.querySelector('.card__img').textContent = imageValue;
+   // cardsElement.querySelector('.card__name').textContent = nameValue;
+    
+  })
+});
+
+
+
+
+
+
+
 // Calls all elemnts from document and stores them as variables
 const buttonEdit = document.querySelector('.button_role_edit');
 const open = document.querySelector('.popup');
@@ -43,3 +117,6 @@ function formSubmitHandler (evt) {
 // Connect the handler to the form
 // it will watch the submit event
 formElement.addEventListener('submit', formSubmitHandler);
+
+
+
