@@ -28,19 +28,20 @@ const initialCards = [
 
 // References Image and Name classes and createElements for template 
 const cards = document.querySelector('.cards');
-const imageValue = document.querySelector('.card__img');
-const nameValue = document.querySelector('.card__name');
 const cardsContainer = document.createElement('ul');
 const card = document.createElement('li');
-const cardImage = document.createElement('div'); //??? img?
+const cardImage = document.createElement('img'); 
 const cardWrapper = document.createElement('div');
 const cardName = document.createElement('h3');
 const cardButton = document.createElement('button');
 
-// Function to load Iniital Cards and Title on website load
-window.addEventListener ('DOMContentLoaded', function () {
+// Function to load template
+function addTemplate(imageValue, nameValue) {
   const cardTemplate = document.querySelector('#cards-template').content;
   const cardsElement = cardTemplate.cloneNode(true);
+
+  cardsElement.querySelector('.card__img').textContent = imageValue;
+  cardsElement.querySelector('.card__name').textContent = nameValue;
 
   cardsContainer.append(cardsElement);
  
@@ -54,17 +55,25 @@ window.addEventListener ('DOMContentLoaded', function () {
   cardButton.classList.add('.button_role_like');
 
   cards.append(cardsContainer);
+};  
 
-  initialCards.forEach((name, link) => {
-    const cardsLink = 
-    initialCards[link]
-    initialCards[name]
-    // card.appendChild(cardsContainer);
-    //cardsElement.querySelector('.card__img').textContent = imageValue;
-   // cardsElement.querySelector('.card__name').textContent = nameValue;
-    
-  })
+initialCards.forEach(item => {
+  const text = document.createTextNode(item.name);
+  cardName.append(text);
+  document.querySelector('.card__name').append(cardName);
 });
+
+window.addEventListener('load', function() {
+  addTemplate();
+});
+
+  //initialCards.forEach(element => {
+   // console.log(element.name);
+   // console.log(element.link);
+   // cardImage.append(imageValue);
+   // cardName.append(nameValue);   
+ // });
+
 
 
 
