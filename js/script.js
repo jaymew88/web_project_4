@@ -2,7 +2,7 @@
 const initialCards = [
   {
       name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+      link: "./images/yosemitevalley.jpg"
   },
   {
       name: "Lake Louise",
@@ -26,56 +26,52 @@ const initialCards = [
   }
 ];
 
-// References Image and Name classes and createElements for template 
-const cards = document.querySelector('.cards');
-const cardsContainer = document.createElement('ul');
-const card = document.createElement('li');
-const cardImage = document.createElement('img'); 
-const cardWrapper = document.createElement('div');
-const cardName = document.createElement('h3');
-const cardButton = document.createElement('button');
-const name = document.querySelector(".card__name");
+// Card Variables
+const templateCard = document.querySelector('.template-card').content.querySelector('.card');
+const cardsList = document.querySelector('.cards__list');
 
-// Function to load Card Template
-function addTemplate(imageValue, nameValue) {
-  const cardsElement = initialCards.map(card => {
-    const cardTemplate = document.querySelector('#cards-template').content;
-    const cardsElement = cardTemplate.cloneNode(true);
-
-    cardsElement.querySelector('.card__img').textContent = imageValue;
-    cardsElement.querySelector('.card__name').textContent = nameValue;
-
-    cardsContainer.append(cardsElement);
-
-  cardsContainer.classList.add('cards__container');
-  card.classList.add('.card');
-  cardImage.classList.add('.card__img');
-  cardImage.textcontent = imageValue;
-  cardWrapper.classList.add('.card__wrapper');
-  cardName.classList.add('.card__name');
-  cardName.textContent = nameValue;
-  cardButton.classList.add('.button_role_like');
-
-  cards.append(cardsContainer);
-  });
-  cardsContainer.append(...cardsElement);
-};  
-
-// Runs Add Card Template on load
-window.addEventListener('load', function() {
-  addTemplate();
+// Loops through the initialCards array and renders a card for each item in array
+initialCards.forEach((card) => {
+  renderCard(card);
 });
 
-// DOES NOT WOrK!!!!!!!
-//const nameElements = initialCards.map(item => {
- // cardName.textContent = item.name;
- // return cardName;
-//});
-//cardName.append(...nameElements);
+// Takes the card that was created in createCard function and 
+// adds it to the list of cards in the HTML
+function renderCard(card) {
+  cardsList.prepend(createCard(card));
+}
+
+// Creates a card by cloning the template and acessing the array name and img link and 
+// returns a card. Has EventListeners for buttons and open image
+function createCard(card) {
+  const cardElement = templateCard.cloneNode(true);
+  const elementImage = cardElement.querySelector('.card__img');
+  const elementName = cardElement.querySelector('.card__name');
+  const elementLikeButton = cardElement.querySelector('.button_role_like');
+  const elementDeleteButton = cardElement.querySelector('.button_role_delete');
+
+  elementImage.style.backgroundImage = `url(${card.link})`;
+  elementName.textContent = card.name;
+
+  elementLikeButton.addEventListener ('click', () => {
+    // clickLikeButtonHandler()
+  })
+
+  elementDeleteButton.addEventListener ('click', () => {
+     clickDeleteButtonHandler()
+  })
+
+  elementImage.addEventListener ('click', () => {
+    //OpenModal image
+  })
+
+  return cardElement;
+}
 
 
 
-// Calls all elemnts from document and stores them as variables
+
+// Popup Variables
 const buttonEdit = document.querySelector('.button_role_edit');
 const open = document.querySelector('.popup');
 const close = document.querySelector('.button_role_close');
