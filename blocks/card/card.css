@@ -1,0 +1,19 @@
+@import url(../card/__img/card__img.css);
+@import url(../card/__name/card__name.css);
+@import url(../card/__wrapper/card__wrapper.css);
+
+.card {
+  width: 282px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin: 0;
+  }
+}

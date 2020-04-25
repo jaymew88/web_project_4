@@ -1,87 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="pages/index.css">
-	<title>Around The USA</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Around The USA</title>
+  </head>
 
-<body class="body">
-  <div class="page">
+  <body class="body">
     <header class="header">
       <img class="logo" src="./images/logo.svg" alt="logo">
     </header>
 
-  <main class="content">
+    <main class="content">
 
-    <!-- Profile Section -->
-    <section class="profile">
-      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
-      <div class="profile__info">
-        <h2 class="profile__title">Jacques Cousteau</h2>
-        <button class="button button_role_edit"></button>
-        <p class="profile__job">Explorer</p>
-      </div> 
-      <button class="button button_role_add"></button>
-    </section>
+      <!-- Profile Section -->
+      <section class="profile">
+        <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+        <div class="profile__info">
+          <h2 class="profile__title">Jacques Cousteau</h2>
+          <button class="button button_role_edit"></button>
+          <p class="profile__job">Explorer</p>
+        </div> 
+        <button class="button button_role_add"></button>
+      </section>
 
-    <!-- Cards Section with Template -->
-    <section class="cards">
-      
-    </section>
+      <!-- Cards Section with Template -->
+      <section class="cards"></section>
+    </main>
 
-    <!-- Elements Section -->
-    <section class="elements">
-      <ul class="elements__container">
-        <li class="element">
-          <img class="element__img" src="./images/yosemitevalley.jpg" alt="Yosemite Valley">
-          <div class="element__wrapper">
-            <h3 class="element__name">Yosemite Valley</h3>
-            <div class="button button_role_like"></div>
-          </div>
-        </li> 
-        <li class="element">
-          <img class="element__img" src="./images/lakelouise.jpg" alt="Lake Louise">
-          <div class="element__wrapper">
-            <h3 class="element__name">Lake Louise</h3>
-            <div class="button button_role_like"></div>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__img" src="./images/baldmountains.jpg" alt="Bald Mountains">
-          <div class="element__wrapper">
-            <h3 class="element__name">Bald Mountains</h3>
-            <div class="button button_role_like"></div>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__img" src="./images/latemar.jpg" alt="Latemar">
-          <div class="element__wrapper">
-            <h3 class="element__name">Latemar</h3>
-            <div class="button button_role_like"></div>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__img" src="./images/vanoisnational.jpg" alt="Vanois National">
-          <div class="element__wrapper">
-           <h3 class="element__name">Vanois National Park</h3>
-           <div class="button button_role_like"></div>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__img" src="./images/lagodibraies.jpg" alt="Lago di Braies">
-          <div class="element__wrapper">
-           <h3 class="element__name">Lago di Braies</h3>
-           <div class="button button_role_like"></div>
-          </div>
-        </li>
-      </ul>
-    </section>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
+    </footer>
 
-    <!-- Modal Section -->
-    <section class="popup">
+    <!-- Edit Modal Section -->
+    <div class="popup">
       <div class="popup__container">
         <button class="button button_role_close"></button>
         <h2 class="popup__title">Edit Profile</h2>
@@ -90,27 +44,34 @@
           <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
           <button class="button button_role_save" type="submit">Save</button>
         </form>
-      </div> <!-- End popup-container div-->
-    </section>
-  </main>
+      </div> 
+    </div>
 
-  <footer class="footer">
-    <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
-  </footer>
-  </div>
+    <!-- Add Modal Section -->
+    <div class="popup">
+      <div class="popup__container">
+        <button class="button button_role_close"></button>
+        <h2 class="popup__title">Edit Profile</h2>
+        <form class="popup__form" action="#">
+          <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Name">
+          <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
+          <button class="button button_role_save" type="submit">Save</button>
+        </form>
+      </div> 
+    </div>
 
-  <!-- Cards Template -->
-  <template id="cards-template">
-    <ul class="cards__container">
+    <script src="js/script.js"></script>
+
+    <!-- Cards Template -->
+    <template id="template-card">
       <li class="card">
         <img class="card__img">
+        <button type="button" class="button_role_delete"></button>
         <div class="card__wrapper">
           <h3 class="card__name"></h3>
-          <div class="button button_role_like"></div>
+          <div type="button" class="button button_role_like"></div>
         </div>
       </li>
-    </ul>
-  </template>
-
-  <script src="js/script.js"></script>
-</body>
+    </template>
+  </body>
+</html>

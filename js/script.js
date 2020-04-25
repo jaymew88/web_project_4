@@ -34,17 +34,19 @@ const cardImage = document.createElement('img');
 const cardWrapper = document.createElement('div');
 const cardName = document.createElement('h3');
 const cardButton = document.createElement('button');
+const name = document.querySelector(".card__name");
 
-// Function to load template
+// Function to load Card Template
 function addTemplate(imageValue, nameValue) {
-  const cardTemplate = document.querySelector('#cards-template').content;
-  const cardsElement = cardTemplate.cloneNode(true);
+  const cardsElement = initialCards.map(card => {
+    const cardTemplate = document.querySelector('#cards-template').content;
+    const cardsElement = cardTemplate.cloneNode(true);
 
-  cardsElement.querySelector('.card__img').textContent = imageValue;
-  cardsElement.querySelector('.card__name').textContent = nameValue;
+    cardsElement.querySelector('.card__img').textContent = imageValue;
+    cardsElement.querySelector('.card__name').textContent = nameValue;
 
-  cardsContainer.append(cardsElement);
- 
+    cardsContainer.append(cardsElement);
+
   cardsContainer.classList.add('cards__container');
   card.classList.add('.card');
   cardImage.classList.add('.card__img');
@@ -55,29 +57,21 @@ function addTemplate(imageValue, nameValue) {
   cardButton.classList.add('.button_role_like');
 
   cards.append(cardsContainer);
+  });
+  cardsContainer.append(...cardsElement);
 };  
 
-initialCards.forEach(item => {
-  const text = document.createTextNode(item.name);
-  cardName.append(text);
-  document.querySelector('.card__name').append(cardName);
-});
-
+// Runs Add Card Template on load
 window.addEventListener('load', function() {
   addTemplate();
 });
 
-  //initialCards.forEach(element => {
-   // console.log(element.name);
-   // console.log(element.link);
-   // cardImage.append(imageValue);
-   // cardName.append(nameValue);   
- // });
-
-
-
-
-
+// DOES NOT WOrK!!!!!!!
+//const nameElements = initialCards.map(item => {
+ // cardName.textContent = item.name;
+ // return cardName;
+//});
+//cardName.append(...nameElements);
 
 
 
