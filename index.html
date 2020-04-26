@@ -40,27 +40,27 @@
     </footer>
 
     <!-- Popup for Edit Profile Section -->
-    <div class="popup">
+    <div class="popup popup_type_edit">
       <div class="popup__container">
-        <button class="button button_role_close"></button>
+        <button class="button popup__button popup__button_role_close"></button>
         <h2 class="popup__title">Edit Profile</h2>
         <form class="popup__form" action="#" name="profile-edit">
-          <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Name">
-          <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
-          <button class="button button_role_save" type="submit">Save</button>
+          <input class="popup__field popup__field_content_name" name="name__input" type="text" placeholder="Name">
+          <input class="popup__field popup__field_content_job" name="job__input" type="text" placeholder="About Me">
+          <button class="button popup__button popup__button_role_save" type="submit">Save</button>
         </form>
       </div> 
     </div>
 
     <!-- Popup for Add Image Section -->
-    <div class="popup">
+    <div class="popup popup_type_add-place">
       <div class="popup__container">
-        <button class="button popup__button-close"></button>
+        <button class="button popup__button popup__button_role_close"></button>
         <h2 class="popup__title">New Place</h2>
         <form class="popup__form" action="#" name="add-place">
-          <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Title">
-          <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="Image Link">
-          <button class="button popup__button-save" type="submit">Create</button>
+          <input class="popup__field popup__field_place_name" name="place-name" type="text" placeholder="Title">
+          <input class="popup__field popup__field_place_image" name="place-image" type="text" placeholder="Image Link">
+          <button class="button popup__button popup__button_role_save" type="submit">Create</button>
         </form>
       </div> 
     </div>

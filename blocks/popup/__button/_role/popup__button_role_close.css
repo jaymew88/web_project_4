@@ -1,0 +1,9 @@
+.popup__button_role_close {
+  background: url(../../../../images/closeicon.svg) no-repeat;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -34px;
+  right: -40px;
+  border: none;
+}

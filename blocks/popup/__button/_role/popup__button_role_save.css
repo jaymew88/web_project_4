@@ -1,4 +1,4 @@
-.popup__button-save {
+.popup__button_role_save {
   background: #000000;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 2px;
@@ -11,6 +11,6 @@
   text-align: center;
 }
 
-.popup__button-save:hover {
+.popup__button_role_save:hover {
   background: rgba(0, 0, 0, 0.8);
 }

@@ -1,14 +1,16 @@
-@import url(../__field/_content/popup__field_content_job.css);
-@import url(../__field/_content/popup__field_content_name.css);
-
 .popup__field {
   display: block;
   font-weight: normal;
   font-size: 14px;
   width: 100%;
   padding-bottom: 12px;
+  margin-bottom: 30px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.popup__field:last-of-type {
+  margin-bottom: 44px;
 }
 
 

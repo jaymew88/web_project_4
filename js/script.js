@@ -30,15 +30,6 @@ const initialCards = [
 const templateCard = document.querySelector('.template-card').content.querySelector('.card');
 const cardsList = document.querySelector('.cards__list');
 
-// Popup Global Variables
-const buttonEdit = document.querySelector('.profile__button_role_edit');
-const closeButton = document.querySelector('.button_role_close');
-const open = document.querySelector('.popup');
-const closeSave = document.querySelector('.button_role_save');
-const formElement = document.querySelector('.popup__form');
-const nameNew = document.querySelector('.profile__title');
-const jobNew = document.querySelector('.profile__job');
-
 
 // Loops through the initialCards array and renders a card for each item in array
 initialCards.forEach((card) => {
@@ -78,19 +69,49 @@ function createCard(card) {
   return cardElement;
 }
 
-// Open Popup Modal with prefilled fields 
+
+
+
+
+//Popup Wrappers
+const editPopupWindow = document.querySelector('.popup_type_edit');
+const editForm = editPopupWindow.querySelector('.popup__form');
+const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
+const addForm = addPlacePopupWindow.querySelector('.popup__form');
+
+// Buttons and other Global Variables
+const buttonEdit = document.querySelector('.profile__button_role_edit');
+const buttonAdd = document.querySelector('.profile__button_role_add');
+const closeButton = document.querySelector('.popup__button_role_close');
+const closeSave = document.querySelector('.popup__button_role_save');
+const profileName = document.querySelector('.profile__title');
+const jobName = document.querySelector('.profile__job');
+ 
+
+// Open Edit Proflie with prefilled fields & close/save
 buttonEdit.addEventListener("click", function() {
-  open.classList.add('popup_opened'); 
+  editPopupWindow.classList.add('popup_opened'); 
   document.querySelector('.popup__field_content_name').value = document.querySelector('.profile__title').innerHTML;
   document.querySelector('.popup__field_content_job').value = document.querySelector('.profile__job').innerHTML;
 });
-  
-// Closes Popup Modal when Close button, save or enter is clicked
+
 closeButton.addEventListener("click", function() {
-	open.classList.remove('popup_opened');
+	editPopupWindow.classList.remove('popup_opened');
 });
 closeSave.addEventListener("click", function() {
-	open.classList.remove('popup_opened');
+	editPopupWindow.classList.remove('popup_opened');
+});
+
+// Open Add Place Popup & close/save 
+buttonAdd.addEventListener("click", function() {
+  addPlacePopupWindow.classList.add('popup_opened'); 
+});
+  
+closeButton.addEventListener("click", function() {
+	addPlacePopupWindow.classList.remove('popup_opened');
+});
+closeSave.addEventListener("click", function() {
+	addPlacePopupWindow.classList.remove('popup_opened');
 });
 
 // Next is the form submit handler, though
@@ -101,7 +122,7 @@ function formSubmitHandler (evt) {
                                                 // We'll explain it in more detail later.
                                                 
     let nameInput = document.querySelector('.popup__field_content_name');  
-    let jobInput = document.querySelector('.popup__field_content_job');  
+    let jobInput = document.querySelector('.popup__field_content_job');
     
     let nameVal = nameInput.value; 
     let jobVal = jobInput.value;
@@ -111,7 +132,4 @@ function formSubmitHandler (evt) {
 }
 
 // Connect the handler to the form it will watch the submit event
-formElement.addEventListener('submit', formSubmitHandler);
-
-
-
+editForm.addEventListener('submit', formSubmitHandler);
