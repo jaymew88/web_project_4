@@ -1,4 +1,4 @@
-.button_role_like {
+.card__like-button {
   background: url(../../../images/heart.svg) no-repeat;
   background-position: bottom;
   width: 22px;
@@ -6,3 +6,5 @@
   background-color: #ffffff;
   border: none;
 }
+
+

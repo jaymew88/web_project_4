@@ -39,6 +39,7 @@ const formElement = document.querySelector('.popup__form');
 const nameNew = document.querySelector('.profile__title');
 const jobNew = document.querySelector('.profile__job');
 
+
 // Loops through the initialCards array and renders a card for each item in array
 initialCards.forEach((card) => {
   renderCard(card);
@@ -56,23 +57,22 @@ function createCard(card) {
   const cardElement = templateCard.cloneNode(true);
   const elementImage = cardElement.querySelector('.card__img');
   const elementName = cardElement.querySelector('.card__name');
-  const elementLikeButton = cardElement.querySelector('.button_role_like');
-  const elementDeleteButton = cardElement.querySelector('.button_role_delete');
+  const elementLikeButton = cardElement.querySelector('.card__like-button');
+  const elementDeleteButton = cardElement.querySelector('.card__delete-button');
 
   elementImage.style.backgroundImage = `url(${card.link})`;
   elementName.textContent = card.name;
 
-  elementLikeButton.addEventListener ('click', () => {
-    // clickLikeButtonHandler()
-  })
-
+  elementLikeButton.addEventListener ('click', (evt) => {
+    evt.target.classList.toggle('.card__like-button_active'); // Add class, but not image
+  });
   elementDeleteButton.addEventListener('click', () => {
      cardsList.removeChild(cardElement);
-  })
+  });
 
   elementImage.addEventListener ('click', () => {
     //OpenModal image
-  })
+  });
 
   return cardElement;
 }

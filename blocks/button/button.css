@@ -1,7 +1,6 @@
 @import url(../button/_role/button_role_add.css);
 @import url(../button/_role/button_role_close.css);
 @import url(../button/_role/button_role_edit.css);
-@import url(../button/_role/button_role_delete.css);
 
 .button {
   padding: 0;
