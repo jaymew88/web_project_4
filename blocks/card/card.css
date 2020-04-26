@@ -9,7 +9,6 @@
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
 }
 
 @media (min-width: 768px) {

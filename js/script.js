@@ -2,7 +2,7 @@
 const initialCards = [
   {
       name: "Yosemite Valley",
-      link: "./images/yosemitevalley.jpg"
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
   },
   {
       name: "Lake Louise",
@@ -38,7 +38,7 @@ initialCards.forEach((card) => {
 // Takes the card that was created in createCard function and 
 // adds it to the list of cards in the HTML
 function renderCard(card) {
-  cardsList.prepend(createCard(card));
+  cardsList.append(createCard(card));
 }
 
 // Creates a card by cloning the template and acessing the array name and img link and 
@@ -58,7 +58,7 @@ function createCard(card) {
   })
 
   elementDeleteButton.addEventListener ('click', () => {
-     clickDeleteButtonHandler()
+    // clickDeleteButtonHandler()
   })
 
   elementImage.addEventListener ('click', () => {
@@ -67,8 +67,6 @@ function createCard(card) {
 
   return cardElement;
 }
-
-
 
 
 // Popup Variables
@@ -113,8 +111,7 @@ function formSubmitHandler (evt) {
     jobNew.textContent = jobVal;
 }
 
-// Connect the handler to the form
-// it will watch the submit event
+// Connect the handler to the form it will watch the submit event
 formElement.addEventListener('submit', formSubmitHandler);
 
 

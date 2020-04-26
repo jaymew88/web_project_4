@@ -1,0 +1,8 @@
+.button_role_delete {
+  background: url(../../../images/delete-btn.svg) no-repeat;
+  width: 18px;
+  height: 24px;
+  border: none;
+  margin: 18px 0 0 250px;
+
+}

@@ -8,74 +8,78 @@
   <title>Around The USA</title>
 </head>
 
-<body class="body">
-  <header class="header">
-    <img class="logo" src="./images/logo.svg" alt="logo">
-  </header>
+<body>
+  <div class="page">
+    <header class="header">
+      <img class="logo" src="./images/logo.svg" alt="logo">
+    </header>
 
-  <main class="content">
+    <main class="content">
 
-    <!-- Profile Section -->
-    <section class="profile">
-      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
-      <div class="profile__info">
-        <h2 class="profile__title">Jacques Cousteau</h2>
-        <button class="button button_role_edit"></button>
-        <p class="profile__job">Explorer</p>
+      <!-- Profile Section -->
+      <section class="profile">
+        <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+        <div class="profile__info">
+          <h2 class="profile__title">Jacques Cousteau</h2>
+          <button class="button button_role_edit"></button>
+          <p class="profile__job">Explorer</p>
+        </div> 
+        <button class="button button_role_add"></button>
+      </section>
+
+      <!-- Cards Section with Template -->
+      <section class="cards">
+        <ul class="cards__list">
+
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
+    </footer>
+
+    <!-- Edit Modal Section -->
+    <div class="popup">
+      <div class="popup__container">
+        <button class="button button_role_close"></button>
+        <h2 class="popup__title">Edit Profile</h2>
+        <form class="popup__form" action="#">
+          <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Name">
+          <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
+          <button class="button button_role_save" type="submit">Save</button>
+        </form>
       </div> 
-      <button class="button button_role_add"></button>
-    </section>
+    </div>
 
-    <!-- Cards Section with Template -->
-    <section class="cards">
-      <ul class="cards__list">
+    <!-- Add Modal Section -->
+    <div class="popup">
+      <div class="popup__container">
+        <button class="button button_role_close"></button>
+        <h2 class="popup__title">Edit Profile</h2>
+        <form class="popup__form" action="#">
+          <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Name">
+          <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
+          <button class="button button_role_save" type="submit">Save</button>
+        </form>
+      </div> 
+    </div>
 
-      </ul>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
-  </footer>
-
-  <!-- Edit Modal Section -->
-  <div class="popup">
-    <div class="popup__container">
-      <button class="button button_role_close"></button>
-      <h2 class="popup__title">Edit Profile</h2>
-      <form class="popup__form" action="#">
-        <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Name">
-        <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
-        <button class="button button_role_save" type="submit">Save</button>
-      </form>
-    </div> 
+    <!-- Cards Template -->
+    <template class="template-card">
+      <li class="card">
+        <div class="card__img">
+          <button type="button" class="button button_role_delete"></button>
+        </div> 
+        <div class="card__wrapper">
+          <h3 class="card__name"></h3>
+          <button type="button" class="button button_role_like"></button>
+        </div>
+      </li>
+    </template>
   </div>
 
-  <!-- Add Modal Section -->
-  <div class="popup">
-    <div class="popup__container">
-      <button class="button button_role_close"></button>
-      <h2 class="popup__title">Edit Profile</h2>
-      <form class="popup__form" action="#">
-        <input class="popup__field popup__field_content_name" id="name__input" type="text" placeholder="Name">
-        <input class="popup__field popup__field_content_job" id="job__input" type="text" placeholder="About Me">
-        <button class="button button_role_save" type="submit">Save</button>
-      </form>
-    </div> 
-  </div>
-
-  <script src="js/script.js"></script>
-
-  <!-- Cards Template -->
-  <template class="template-card">
-    <li class="card">
-      <div class="card__img"></div>
-      <button type="button" class="button button_role_delete"></button>
-      <div class="card__wrapper">
-        <h3 class="card__name"></h3>
-        <button type="button" class="button button_role_like"></button>
-      </div>
-    </li>
-  </template>
+    <script src="js/script.js"></script>
+  
 </body>
 </html>
