@@ -2,27 +2,27 @@
 const initialCards = [
   {
       name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+      link: "./images/yosemitevalley.jpg"
   },
   {
       name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+      link: "./images/lakelouise.jpg"
   },
   {
       name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+      link: "./images/baldmountains.jpg"
   },
   {
       name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+      link: "./images/latemar.jpg"
   },
   {
       name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+      link: "./images/vanoisnational.jpg"
   },
   {
       name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+      link: "./images/lagodibraies.jpg"
   }
 ];
 
@@ -31,7 +31,7 @@ const templateCard = document.querySelector('.template-card').content.querySelec
 const cardsList = document.querySelector('.cards__list');
 
 // Popup Global Variables
-const buttonEdit = document.querySelector('.button_role_edit');
+const buttonEdit = document.querySelector('.profile__button_role_edit');
 const closeButton = document.querySelector('.button_role_close');
 const open = document.querySelector('.popup');
 const closeSave = document.querySelector('.button_role_save');
@@ -64,8 +64,9 @@ function createCard(card) {
   elementName.textContent = card.name;
 
   elementLikeButton.addEventListener ('click', (evt) => {
-    evt.target.classList.toggle('.card__like-button_active'); // Add class, but not image
-  });
+    evt.target.classList.toggle('.card__like-button_active'); 
+  }); // Adds class, but not image
+
   elementDeleteButton.addEventListener('click', () => {
      cardsList.removeChild(cardElement);
   });
