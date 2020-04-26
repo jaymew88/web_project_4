@@ -26,9 +26,18 @@ const initialCards = [
   }
 ];
 
-// Card Variables
+// Card Global Variables
 const templateCard = document.querySelector('.template-card').content.querySelector('.card');
 const cardsList = document.querySelector('.cards__list');
+
+// Popup Global Variables
+const buttonEdit = document.querySelector('.button_role_edit');
+const closeButton = document.querySelector('.button_role_close');
+const open = document.querySelector('.popup');
+const closeSave = document.querySelector('.button_role_save');
+const formElement = document.querySelector('.popup__form');
+const nameNew = document.querySelector('.profile__title');
+const jobNew = document.querySelector('.profile__job');
 
 // Loops through the initialCards array and renders a card for each item in array
 initialCards.forEach((card) => {
@@ -41,8 +50,8 @@ function renderCard(card) {
   cardsList.append(createCard(card));
 }
 
-// Creates a card by cloning the template and acessing the array name and img link and 
-// returns a card. Has EventListeners for buttons and open image
+// Creates a card by cloning the template and acessing the array name and
+// img link and returns a card. EventListeners for buttons and open image
 function createCard(card) {
   const cardElement = templateCard.cloneNode(true);
   const elementImage = cardElement.querySelector('.card__img');
@@ -57,8 +66,8 @@ function createCard(card) {
     // clickLikeButtonHandler()
   })
 
-  elementDeleteButton.addEventListener ('click', () => {
-    // clickDeleteButtonHandler()
+  elementDeleteButton.addEventListener('click', () => {
+     cardsList.removeChild(cardElement);
   })
 
   elementImage.addEventListener ('click', () => {
@@ -68,16 +77,6 @@ function createCard(card) {
   return cardElement;
 }
 
-
-// Popup Variables
-const buttonEdit = document.querySelector('.button_role_edit');
-const open = document.querySelector('.popup');
-const close = document.querySelector('.button_role_close');
-const closeSave = document.querySelector('.button_role_save');
-const formElement = document.querySelector('.popup__form');
-const nameNew = document.querySelector('.profile__title');
-const jobNew = document.querySelector('.profile__job');
-
 // Open Popup Modal with prefilled fields 
 buttonEdit.addEventListener("click", function() {
   open.classList.add('popup_opened'); 
@@ -86,13 +85,12 @@ buttonEdit.addEventListener("click", function() {
 });
   
 // Closes Popup Modal when Close button, save or enter is clicked
-close.addEventListener("click", function() {
+closeButton.addEventListener("click", function() {
 	open.classList.remove('popup_opened');
 });
 closeSave.addEventListener("click", function() {
 	open.classList.remove('popup_opened');
 });
-
 
 // Next is the form submit handler, though
 // it won't submit anywhere just yet
