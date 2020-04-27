@@ -1,10 +1,14 @@
 .card__like-button {
   background: url(../../../images/heart.svg) no-repeat;
-  background-position: bottom;
-  width: 22px;
-  height: 27px;
+  background-size: contain;
+  width: 21px;
+  height: 18px;
   background-color: #ffffff;
   border: none;
+  padding: 0;
+  margin: auto 0 auto auto;
 }
 
-
+.card__like-button {
+  cursor: pointer;
+}

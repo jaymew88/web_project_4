@@ -54,8 +54,8 @@ function createCard(card) {
   elementImage.style.backgroundImage = `url(${card.link})`;
   elementName.textContent = card.name;
 
-  elementLikeButton.addEventListener ('click', (evt) => {
-    evt.target.classList.toggle('.card__like-button_active'); 
+  elementLikeButton.addEventListener ('click', (e) => {
+    e.target.classList.toggle('card__like-button_active'); 
   }); // Adds class, but not image
 
   elementDeleteButton.addEventListener('click', () => {
@@ -70,65 +70,44 @@ function createCard(card) {
 }
 
 
-
-
-
 //Popup Wrappers
-const editPopupWindow = document.querySelector('.popup_type_edit');
-const editForm = editPopupWindow.querySelector('.popup__form');
-const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
-const addForm = addPlacePopupWindow.querySelector('.popup__form');
+const editPopupWindow = document.querySelector('.popup');
+const editForm = document.querySelector('.popup__form');
+//const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
+//const addForm = addPlacePopupWindow.querySelector('.popup__form');
 
-// Buttons and other Global Variables
-const buttonEdit = document.querySelector('.profile__button_role_edit');
-const buttonAdd = document.querySelector('.profile__button_role_add');
-const closeButton = document.querySelector('.popup__button_role_close');
-const closeSave = document.querySelector('.popup__button_role_save');
-const profileName = document.querySelector('.profile__title');
-const jobName = document.querySelector('.profile__job');
+// Buttons
+const profileEditButton = document.querySelector('.profile__button_role_edit');
+const profileAddButton = document.querySelector('.profile__button_role_add');
+const popupCloseButton = document.querySelector('.popup__button_role_close');
+const popupSaveButton = document.querySelector('.popup__button_role_save');
+//Form Fields in the DOM
+const nameInput = document.querySelector('.popup__field_content_name');  
+const jobInput = document.querySelector('.popup__field_content_job');
+//Elements where the field values will be entered
+const nameNew = document.querySelector('.profile__title');
+const jobNew = document.querySelector('.profile__job');
  
 
-// Open Edit Proflie with prefilled fields & close/save
-buttonEdit.addEventListener("click", function() {
-  editPopupWindow.classList.add('popup_opened'); 
-  document.querySelector('.popup__field_content_name').value = document.querySelector('.profile__title').innerHTML;
-  document.querySelector('.popup__field_content_job').value = document.querySelector('.profile__job').innerHTML;
-});
+function togglePopup() {
+  editPopupWindow.classList.toggle('popup_opened');
+  nameInput.value = nameNew.textContent;
+  jobInput.value = jobNew.textContent;  
+} 
 
-closeButton.addEventListener("click", function() {
-	editPopupWindow.classList.remove('popup_opened');
-});
-closeSave.addEventListener("click", function() {
-	editPopupWindow.classList.remove('popup_opened');
-});
+profileEditButton.addEventListener('click', togglePopup);
+popupCloseButton.addEventListener('click', togglePopup);
 
-// Open Add Place Popup & close/save 
-buttonAdd.addEventListener("click", function() {
-  addPlacePopupWindow.classList.add('popup_opened'); 
-});
-  
-closeButton.addEventListener("click", function() {
-	addPlacePopupWindow.classList.remove('popup_opened');
-});
-closeSave.addEventListener("click", function() {
-	addPlacePopupWindow.classList.remove('popup_opened');
-});
-
-// Next is the form submit handler, though
-// it won't submit anywhere just yet
+// Form Submit Handler
 function formSubmitHandler (evt) {
-    evt.preventDefault(); // This line stops the browser from submitting the form in the default way.
-                                                // Having done so, we can define our own way of submitting the form.
-                                                // We'll explain it in more detail later.
-                                                
-    let nameInput = document.querySelector('.popup__field_content_name');  
-    let jobInput = document.querySelector('.popup__field_content_job');
-    
+    evt.preventDefault();
+                                    
     let nameVal = nameInput.value; 
     let jobVal = jobInput.value;
 
     nameNew.textContent = nameVal;
     jobNew.textContent = jobVal;
+    togglePopup(editPopupWindow);
 }
 
 // Connect the handler to the form it will watch the submit event
