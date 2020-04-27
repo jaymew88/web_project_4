@@ -1,28 +1,28 @@
 // Sets the Initial Cards to be loaded 
 const initialCards = [
   {
-      name: "Yosemite Valley",
-      link: "./images/yosemitevalley.jpg"
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg"
   },
   {
-      name: "Lake Louise",
-      link: "./images/lakelouise.jpg"
+    name: "Vanois National Park",
+    link: "https://code.s3.yandex.net/web-code/vanois.jpg"
   },
   {
-      name: "Bald Mountains",
-      link: "./images/baldmountains.jpg"
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
   },
   {
-      name: "Latemar",
-      link: "./images/latemar.jpg"
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
   },
   {
-      name: "Vanois National Park",
-      link: "./images/vanoisnational.jpg"
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
   },
   {
-      name: "Lago di Braies",
-      link: "./images/lagodibraies.jpg"
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
   }
 ];
 
@@ -60,14 +60,21 @@ const imageLinkInput = addPlacePopupWindow.querySelector('.popup__field_place_im
 const nameNew = document.querySelector('.profile__title');
 const jobNew = document.querySelector('.profile__job');
 
-// Loops through the initialCards array and renders a card for each item in array
+// Function to open/close Popup Wimdows
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
+  nameInput.value = nameNew.textContent;
+  jobInput.value = jobNew.textContent;
+} 
+
+// Loops initialCards array and renders a card for each item in array
 initialCards.forEach((card) => {
   renderCard(card);
 });
 
 // Takes createCard function and adds it to the list of cards in the HTML
 function renderCard(card) {
-  cardsList.append(createCard(card));
+  cardsList.prepend(createCard(card));
 }
 
 // Creates a card by cloning the template and acessing the array name and
@@ -82,32 +89,32 @@ function createCard(card) {
   elementImage.style.backgroundImage = `url(${card.link})`;
   elementName.textContent = card.name;
 
+  // Click change heart color
   elementLikeButton.addEventListener ('click', (e) => {
     e.target.classList.toggle('card__like-button_active'); 
-  }); 
-  elementDeleteButton.addEventListener('click', () => {
-     cardsList.removeChild(cardElement);
   });
+
+  // Removes card
+  elementDeleteButton.addEventListener('click', () => {
+    cardsList.removeChild(cardElement);
+  });
+
+  // Opens Image
   elementImage.addEventListener ('click', () => {
-    //OpenModal image
+    imagePopupWindow.querySelector('.popup__img').src = card.link;
+    imagePopupWindow.querySelector('.popup__img-title').textContent = card.name;
+    togglePopup(imagePopupWindow);
   });
 
   return cardElement;
 }
-
-// Function to open/close Popup Wimdows
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
-  nameInput.value = nameNew.textContent;
-  jobInput.value = jobNew.textContent;
-} 
 
 // Create New Place
 function addPlaceFormHandler (evt) {
   evt.preventDefault();
 
   renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
-
+  
   addForm.reset();
   togglePopup(addPlacePopupWindow);
 }
@@ -140,4 +147,7 @@ profileAddButton.addEventListener('click', () => {
 });
 addPlaceCloseButton.addEventListener('click', () => {
   togglePopup(addPlacePopupWindow);
+});
+imageCloseButton.addEventListener('click', () => {
+  togglePopup(imagePopupWindow);
 });

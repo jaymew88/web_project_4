@@ -3,6 +3,8 @@
 @import url(../popup/__form/popup__form.css);
 @import url(../popup/__field/popup__field.css);
 @import url(../popup/__button/popup__button.css);
+@import url(../popup/__img-title/popup__img-title.css);
+@import url(../popup/__img/popup__img.css);
 
 .popup {
   background-color: rgba(0, 0, 0, 0.5);
@@ -15,5 +17,9 @@
 	visibility: hidden;
 	justify-content: center;
 	align-items: center;
+	opacity: 0;
+	transition: opacity .5s linear;
 }
+
+
 
