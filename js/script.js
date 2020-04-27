@@ -26,18 +26,35 @@ const initialCards = [
   }
 ];
 
-// Card Global Variables
+// Card 
 const templateCard = document.querySelector('.template-card').content.querySelector('.card');
 const cardsList = document.querySelector('.cards__list');
-
+//Popup Wrappers & Form 
+const editPopupWindow = document.querySelector('.popup_type_edit');
+const editForm = editPopupWindow.querySelector('.popup__form');
+const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
+const addForm = addPlacePopupWindow.querySelector('.popup__form');
+const imagePopupWindow = document.querySelector('.popup_type_image');
+// Buttons
+const profileEditButton = document.querySelector('.profile__button_role_edit');
+const profileAddButton = document.querySelector('.profile__button_role_add');
+const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close');
+const editSaveButton = editPopupWindow.querySelector('.popup__button_role_save');
+const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
+const addPlaceSaveButton = addPlacePopupWindow.querySelector('.popup__button_role_save');
+//Form Fields in the DOM
+const nameInput = document.querySelector('.popup__field_content_name');  
+const jobInput = document.querySelector('.popup__field_content_job');
+//Elements where the field values will be entered
+const nameNew = document.querySelector('.profile__title');
+const jobNew = document.querySelector('.profile__job');
 
 // Loops through the initialCards array and renders a card for each item in array
 initialCards.forEach((card) => {
   renderCard(card);
 });
 
-// Takes the card that was created in createCard function and 
-// adds it to the list of cards in the HTML
+// Takes createCard function and adds it to the list of cards in the HTML
 function renderCard(card) {
   cardsList.append(createCard(card));
 }
@@ -56,7 +73,7 @@ function createCard(card) {
 
   elementLikeButton.addEventListener ('click', (e) => {
     e.target.classList.toggle('card__like-button_active'); 
-  }); // Adds class, but not image
+  }); 
 
   elementDeleteButton.addEventListener('click', () => {
      cardsList.removeChild(cardElement);
@@ -69,34 +86,13 @@ function createCard(card) {
   return cardElement;
 }
 
-
-//Popup Wrappers
-const editPopupWindow = document.querySelector('.popup');
-const editForm = document.querySelector('.popup__form');
-//const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
-//const addForm = addPlacePopupWindow.querySelector('.popup__form');
-
-// Buttons
-const profileEditButton = document.querySelector('.profile__button_role_edit');
-const profileAddButton = document.querySelector('.profile__button_role_add');
-const popupCloseButton = document.querySelector('.popup__button_role_close');
-const popupSaveButton = document.querySelector('.popup__button_role_save');
-//Form Fields in the DOM
-const nameInput = document.querySelector('.popup__field_content_name');  
-const jobInput = document.querySelector('.popup__field_content_job');
-//Elements where the field values will be entered
-const nameNew = document.querySelector('.profile__title');
-const jobNew = document.querySelector('.profile__job');
- 
-
-function togglePopup() {
-  editPopupWindow.classList.toggle('popup_opened');
+// Function to open/close Profile Edit
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
   nameInput.value = nameNew.textContent;
   jobInput.value = jobNew.textContent;  
 } 
 
-profileEditButton.addEventListener('click', togglePopup);
-popupCloseButton.addEventListener('click', togglePopup);
 
 // Form Submit Handler
 function formSubmitHandler (evt) {
@@ -112,3 +108,17 @@ function formSubmitHandler (evt) {
 
 // Connect the handler to the form it will watch the submit event
 editForm.addEventListener('submit', formSubmitHandler);
+
+//Click functions to call togglePopup function
+profileEditButton.addEventListener('click', () => {
+  togglePopup(editPopupWindow);
+});
+editCloseButton.addEventListener('click', () => {
+  togglePopup(editPopupWindow);
+});
+profileAddButton.addEventListener('click', () => {
+  togglePopup(addPlacePopupWindow);
+});
+addPlaceCloseButton.addEventListener('click', () => {
+  togglePopup(addPlacePopupWindow);
+});
