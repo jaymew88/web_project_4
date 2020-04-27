@@ -26,15 +26,21 @@ const initialCards = [
   }
 ];
 
-// Card 
+// Templates 
 const templateCard = document.querySelector('.template-card').content.querySelector('.card');
+
+//Wrappers 
 const cardsList = document.querySelector('.cards__list');
-//Popup Wrappers & Form 
+
+// Popups
 const editPopupWindow = document.querySelector('.popup_type_edit');
-const editForm = editPopupWindow.querySelector('.popup__form');
 const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
-const addForm = addPlacePopupWindow.querySelector('.popup__form');
 const imagePopupWindow = document.querySelector('.popup_type_image');
+
+// Popup Forms
+const addForm = addPlacePopupWindow.querySelector('.popup__form');
+const editForm = editPopupWindow.querySelector('.popup__form');
+
 // Buttons
 const profileEditButton = document.querySelector('.profile__button_role_edit');
 const profileAddButton = document.querySelector('.profile__button_role_add');
@@ -42,10 +48,15 @@ const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close
 const editSaveButton = editPopupWindow.querySelector('.popup__button_role_save');
 const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
 const addPlaceSaveButton = addPlacePopupWindow.querySelector('.popup__button_role_save');
-//Form Fields in the DOM
-const nameInput = document.querySelector('.popup__field_content_name');  
-const jobInput = document.querySelector('.popup__field_content_job');
-//Elements where the field values will be entered
+const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
+
+//Form Fields  
+const nameInput = editPopupWindow.querySelector('.popup__field_content_name');  
+const jobInput = editPopupWindow.querySelector('.popup__field_content_job');
+const imageTitleInput = addPlacePopupWindow.querySelector('.popup__field_place_name');  
+const imageLinkInput = addPlacePopupWindow.querySelector('.popup__field_place_image');
+
+//Profile Fields
 const nameNew = document.querySelector('.profile__title');
 const jobNew = document.querySelector('.profile__job');
 
@@ -74,11 +85,9 @@ function createCard(card) {
   elementLikeButton.addEventListener ('click', (e) => {
     e.target.classList.toggle('card__like-button_active'); 
   }); 
-
   elementDeleteButton.addEventListener('click', () => {
      cardsList.removeChild(cardElement);
   });
-
   elementImage.addEventListener ('click', () => {
     //OpenModal image
   });
@@ -86,28 +95,38 @@ function createCard(card) {
   return cardElement;
 }
 
-// Function to open/close Profile Edit
+// Function to open/close Popup Wimdows
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
   nameInput.value = nameNew.textContent;
-  jobInput.value = jobNew.textContent;  
+  jobInput.value = jobNew.textContent;
 } 
 
+// Create New Place
+function addPlaceFormHandler (evt) {
+  evt.preventDefault();
+
+  renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
+
+  addForm.reset();
+  togglePopup(addPlacePopupWindow);
+}
 
 // Form Submit Handler
-function formSubmitHandler (evt) {
-    evt.preventDefault();
-                                    
-    let nameVal = nameInput.value; 
-    let jobVal = jobInput.value;
+function editFormSubmitHandler (evt) {
+  evt.preventDefault();
 
-    nameNew.textContent = nameVal;
-    jobNew.textContent = jobVal;
-    togglePopup(editPopupWindow);
+  let nameVal = nameInput.value; 
+  let jobVal = jobInput.value;
+
+  nameNew.textContent = nameVal;
+  jobNew.textContent = jobVal;
+  togglePopup(editPopupWindow);
 }
 
 // Connect the handler to the form it will watch the submit event
-editForm.addEventListener('submit', formSubmitHandler);
+editForm.addEventListener('submit', editFormSubmitHandler);
+addForm.addEventListener('submit', addPlaceFormHandler);
 
 //Click functions to call togglePopup function
 profileEditButton.addEventListener('click', () => {
