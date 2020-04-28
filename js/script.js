@@ -95,14 +95,18 @@ function createCard(card) {
   });
 
   // Removes card
-  elementDeleteButton.addEventListener('click', () => {
-    cardsList.removeChild(cardElement);
+  //elementDeleteButton.addEventListener('click', () => {
+    //cardsList.removeChild(cardElement);
+  //});
+  elementDeleteButton.addEventListener('click', (e) => {
+    e.target.parentElement.remove();
   });
 
   // Opens Image
   elementImage.addEventListener ('click', () => {
     imagePopupWindow.querySelector('.popup__img').src = card.link;
     imagePopupWindow.querySelector('.popup__img-title').textContent = card.name;
+    imagePopupWindow.querySelector('.popup__img').alt = `${card.name}`;
     togglePopup(imagePopupWindow);
   });
 
