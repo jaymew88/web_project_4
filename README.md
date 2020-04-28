@@ -15,6 +15,8 @@ This is a project called "Around The U.S.". It is an interactive page where user
 
 * [Link to the project on Figma](https://www.figma.com/file/lNsn9aE1Be6bvg9FeAzRXT/Sprint-3-From-Portland-to-Portland-desktop-mobile?node-id=0%3A1)
 
+* [Link to second part Figma Design](https://www.figma.com/file/avLHzpJw2dmU2NaDATZ6CX/Sprint-5%3A-Around-The-U.S.-%2F-desktop-%2B-mobile?node-id=0%3A1)
+
 ### Description
 
 This is a single page responsive website using CSS, HTML and JavaScript, following the BEM methodology. This was a project from a brief, and uses a BEM CSS nested file structure.
@@ -28,5 +30,5 @@ This is a single page responsive website using CSS, HTML and JavaScript, followi
 
 ### Github Link
 
-(https://jaymew88.github.io/web_project_4/index.html)
+https://jaymew88.github.io/web_project_4/index.html
 
