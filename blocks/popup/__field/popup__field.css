@@ -1,16 +1,27 @@
 .popup__field {
   display: block;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 12px;
   width: 100%;
-  padding-bottom: 12px;
-  margin-bottom: 30px;
+  padding-bottom: 11px;
+  margin-bottom: 20px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .popup__field:last-of-type {
-  margin-bottom: 44px;
+  margin-bottom: 36px;
+}
+
+@media (min-width: 475px) {
+  .popup__field {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .popup__field:last-of-type {
+    margin-bottom: 46px;
+  }
 }
 
 

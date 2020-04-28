@@ -1,7 +1,14 @@
 .popup__container_form {
-  max-width: 430px;
-  width: calc(100% - 150px);
+  max-width: 240px;
+  width: calc(100% - 80px);
   background-color: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+}
+
+@media (min-width: 475px) {
+  .popup__container_form {
+    max-width: 430px;
+    width: calc(100% - 150px);
+  }
 }
