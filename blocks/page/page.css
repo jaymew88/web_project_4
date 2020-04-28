@@ -1,12 +1,8 @@
 .page {
   background-color: #000;
-  min-width: 300px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 0 36px 0;
-  font-family: Inter, Arial, Helvetica, sans-serif;
   color: #FFFFFF;
-  overflow: hidden;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  padding: 28px 0 36px 0;
   text-rendering: optimizeLegibility; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

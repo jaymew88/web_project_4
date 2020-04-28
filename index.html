@@ -8,85 +8,80 @@
   <title>Around The USA</title>
 </head>
 
-<body>
-  <div class="page">
-    <header class="header">
-      <img class="logo" src="./images/logo.svg" alt="logo">
-    </header>
+<body class="page">
+  <header class="header">
+    <img class="logo" src="./images/logo.svg" alt="logo">
+  </header>
 
-    <main class="content">
-
-      <!-- Profile Section -->
-      <section class="profile">
-        <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
-        <div class="profile__info">
-          <h2 class="profile__title">Jacques Cousteau</h2>
-          <button class="button profile__button profile__button_role_edit"></button>
-          <p class="profile__job">Explorer</p>
-        </div> 
-        <button class="button profile__button profile__button_role_add"></button>
-      </section>
-
-      <!-- Cards Section with Template -->
-      <section class="cards">
-        <ul class="cards__list">
-
-        </ul>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
-    </footer>
-
-    <!-- Popup for Edit Profile Section -->
-    <div class="popup popup_type_edit">
-      <div class="popup__container popup__container_form">
-        <button class="button popup__button popup__button_role_close"></button>
-        <h2 class="popup__title">Edit Profile</h2>
-        <form class="popup__form" action="#" name="profile-edit">
-          <input class="popup__field popup__field_content_name" name="name__input" type="text" placeholder="Name">
-          <input class="popup__field popup__field_content_job" name="job__input" type="text" placeholder="About Me">
-          <button class="button popup__button popup__button_role_save" type="submit">Save</button>
-        </form>
+  <main class="content">
+    <!-- Profile Section -->
+    <section class="profile">
+      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+      <div class="profile__info">
+        <h2 class="profile__title">Jacques Cousteau</h2>
+        <button class="button profile__button profile__button_role_edit"></button>
+        <p class="profile__job">Explorer</p>
       </div> 
-    </div>
+      <button class="button profile__button profile__button_role_add"></button>
+    </section>
 
-    <!-- Popup for Add Image Section -->
-    <div class="popup popup_type_add-place">
-      <div class="popup__container popup__container_form">
-        <button class="button popup__button popup__button_role_close"></button>
-        <h2 class="popup__title">New Place</h2>
-        <form class="popup__form" action="#" name="add-place">
-          <input class="popup__field popup__field_place_name" name="place-name" type="text" placeholder="Title">
-          <input class="popup__field popup__field_place_image" name="place-image" type="text" placeholder="Image Link">
-          <button class="button popup__button popup__button_role_save" type="submit">Create</button>
-        </form>
-      </div> 
+    <!-- Cards Section with Template -->
+    <section class="cards">
+      <ul class="cards__list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
+  </footer>
+
+  <!-- Popup for Edit Profile Section -->
+  <div class="popup popup_type_edit">
+    <div class="popup__container popup__container_form">
+      <button class="button popup__button popup__button_role_close"></button>
+      <h2 class="popup__title">Edit Profile</h2>
+      <form class="popup__form" action="#" name="profile-edit">
+        <input class="popup__field popup__field_content_name" name="name__input" type="text" placeholder="Name">
+        <input class="popup__field popup__field_content_job" name="job__input" type="text" placeholder="About Me">
+        <button class="button popup__button popup__button_role_save" type="submit">Save</button>
+      </form>
     </div> 
-
-     <!-- Popup for Image -->
-     <div class="popup popup_type_image">
-        <div class="popup__container">
-          <img class="popup__img" src="" alt="">
-          <p class="popup__img-title"></p>
-          <button class="button popup__button popup__button_role_close"></button>
-        </div> 
-      </div> 
-
-    <!-- Cards Template -->
-    <template class="template-card">
-      <li class="card">
-          <button type="button" class="button card__delete-button"></button>
-        <div class="card__img"></div> 
-        <div class="card__wrapper">
-          <h3 class="card__name"></h3>
-          <button type="button" class="button card__like-button"></button>
-        </div>
-      </li>
-    </template>
   </div>
 
+  <!-- Popup for Add Image Section -->
+  <div class="popup popup_type_add-place">
+    <div class="popup__container popup__container_form">
+      <button class="button popup__button popup__button_role_close"></button>
+      <h2 class="popup__title">New Place</h2>
+      <form class="popup__form" action="#" name="add-place">
+        <input class="popup__field popup__field_place_name" name="place-name" type="text" placeholder="Title">
+        <input class="popup__field popup__field_place_image" name="place-image" type="text" placeholder="Image Link">
+        <button class="button popup__button popup__button_role_save" type="submit">Create</button>
+      </form>
+    </div> 
+  </div> 
+
+  <!-- Popup for Image -->
+  <div class="popup popup_type_image">
+    <div class="popup__container">
+      <img class="popup__img" src="" alt="">
+      <p class="popup__img-title"></p>
+      <button class="button popup__button popup__button_role_close"></button>
+    </div> 
+  </div> 
+
+  <!-- Cards Template -->
+  <template class="template-card">
+    <li class="card">
+        <button type="button" class="button card__delete-button"></button>
+        <div class="card__img"></div> 
+        <div class="card__wrapper">
+        <h3 class="card__name"></h3>
+        <button type="button" class="button card__like-button"></button>
+      </div>
+    </li>
+  </template>
+    
   <script src="js/script.js"></script>
   
 </body>
