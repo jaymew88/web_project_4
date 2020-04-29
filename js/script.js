@@ -45,9 +45,7 @@ const editForm = editPopupWindow.querySelector('.popup__form');
 const profileEditButton = document.querySelector('.profile__button_role_edit');
 const profileAddButton = document.querySelector('.profile__button_role_add');
 const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close');
-const editSaveButton = editPopupWindow.querySelector('.popup__button_role_save');
 const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
-const addPlaceSaveButton = addPlacePopupWindow.querySelector('.popup__button_role_save');
 const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
 
 //Form Fields  
@@ -56,21 +54,22 @@ const jobInput = editPopupWindow.querySelector('.popup__field_content_job');
 const imageTitleInput = addPlacePopupWindow.querySelector('.popup__field_place_name');  
 const imageLinkInput = addPlacePopupWindow.querySelector('.popup__field_place_image');
 
+// Popup Image 
+const image = imagePopupWindow.querySelector('.popup__img'); 
+const imageTitle = imagePopupWindow.querySelector('.popup__img-title');
+
 //Profile Fields
 const nameNew = document.querySelector('.profile__title');
 const jobNew = document.querySelector('.profile__job');
 
 // Function to open/close Popup Wimdows
 function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
+  if (!popup.classList.contains('.popup_opened')) {
   nameInput.value = nameNew.textContent;
   jobInput.value = jobNew.textContent;
+  }
+  popup.classList.toggle('popup_opened');
 } 
-
-// Loops initialCards array and renders a card for each item in array
-initialCards.forEach((card) => {
-  renderCard(card);
-});
 
 // Takes createCard function and adds it to the list of cards in the HTML
 function renderCard(card) {
@@ -95,49 +94,39 @@ function createCard(card) {
   });
 
   // Removes card
-  //elementDeleteButton.addEventListener('click', () => {
-    //cardsList.removeChild(cardElement);
-  //});
   elementDeleteButton.addEventListener('click', (e) => {
     e.target.parentElement.remove();
   });
 
   // Opens Image
   elementImage.addEventListener ('click', () => {
-    imagePopupWindow.querySelector('.popup__img').src = card.link;
-    imagePopupWindow.querySelector('.popup__img-title').textContent = card.name;
-    imagePopupWindow.querySelector('.popup__img').alt = `${card.name}`;
+    image.src = card.link;
+    imageTitle.textContent = card.name;
+    image.alt = `${card.name}`;
     togglePopup(imagePopupWindow);
   });
 
   return cardElement;
 }
 
-// Create New Place
-function addPlaceFormHandler (evt) {
-  evt.preventDefault();
+// Create New Place Form Submit Handler
+addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
-  
-  addForm.reset();
-  togglePopup(addPlacePopupWindow);
-}
+    renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
+    
+    addForm.reset();
+    togglePopup(addPlacePopupWindow);
+});
 
 // Form Submit Handler
-function editFormSubmitHandler (evt) {
-  evt.preventDefault();
+editForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-  let nameVal = nameInput.value; 
-  let jobVal = jobInput.value;
-
-  nameNew.textContent = nameVal;
-  jobNew.textContent = jobVal;
+  nameNew.textContent = nameInput.value;
+  jobNew.textContent = jobInput.value
   togglePopup(editPopupWindow);
-}
-
-// Connect the handler to the form it will watch the submit event
-editForm.addEventListener('submit', editFormSubmitHandler);
-addForm.addEventListener('submit', addPlaceFormHandler);
+});
 
 //Click functions to call togglePopup function
 profileEditButton.addEventListener('click', () => {
@@ -154,4 +143,9 @@ addPlaceCloseButton.addEventListener('click', () => {
 });
 imageCloseButton.addEventListener('click', () => {
   togglePopup(imagePopupWindow);
+});
+
+// Loops initialCards array and renders a card for each item in array
+initialCards.forEach((card) => {
+  renderCard(card);
 });
