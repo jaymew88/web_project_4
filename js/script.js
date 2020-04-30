@@ -55,8 +55,8 @@ const imageTitleInput = addPlacePopupWindow.querySelector('.popup__field_place_n
 const imageLinkInput = addPlacePopupWindow.querySelector('.popup__field_place_image');
 
 // Popup Image 
-const image = imagePopupWindow.querySelector('.popup__img'); 
-const imageTitle = imagePopupWindow.querySelector('.popup__img-title');
+const imagePopup = imagePopupWindow.querySelector('.popup__img'); 
+const imageTitlePopup = imagePopupWindow.querySelector('.popup__img-title');
 
 //Profile Fields
 const nameNew = document.querySelector('.profile__title');
@@ -64,9 +64,10 @@ const jobNew = document.querySelector('.profile__job');
 
 // Function to open/close Popup Wimdows
 function togglePopup(popup) {
-  if (!popup.classList.contains('.popup_opened')) {
-  nameInput.value = nameNew.textContent;
-  jobInput.value = jobNew.textContent;
+  if (!popup.classList.contains('.popup_opened')) 
+  {
+      nameInput.value = nameNew.textContent;
+      jobInput.value = jobNew.textContent;
   }
   popup.classList.toggle('popup_opened');
 } 
@@ -100,9 +101,9 @@ function createCard(card) {
 
   // Opens Image
   elementImage.addEventListener ('click', () => {
-    image.src = card.link;
-    imageTitle.textContent = card.name;
-    image.alt = `${card.name}`;
+    imagePopup.src = card.link;
+    imageTitlePopup.textContent = card.name;
+    imagePopup.alt = `${card.name}`;
     togglePopup(imagePopupWindow);
   });
 
@@ -111,12 +112,12 @@ function createCard(card) {
 
 // Create New Place Form Submit Handler
 addForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
-    
-    addForm.reset();
-    togglePopup(addPlacePopupWindow);
+  renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
+  
+  addForm.reset();
+  togglePopup(addPlacePopupWindow);
 });
 
 // Form Submit Handler
