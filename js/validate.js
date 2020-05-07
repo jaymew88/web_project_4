@@ -1,5 +1,5 @@
 
-// Shoe Error Messages
+// Show Error Messages
 const showInputError = (popupForm, inputField, errorMessage) => {
   const errorElement = popupForm.querySelector(`#${inputField.id}-error`);
   inputField.classList.add("popup__field_type_error");
@@ -20,7 +20,7 @@ const checkInputValidity = (popupForm, inputField) => {
   if (!inputField.validity.valid) {
     showInputError(popupForm, inputField, inputField.validationMessage);
   } else {
-    hideInputError(popupForm, inputField);
+    hideInputError(popupForm, inputField, inputField.validationMessage);
   }
 };
 

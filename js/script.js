@@ -148,4 +148,8 @@ initialCards.forEach((card) => {
   renderCard(card);
 });
 
+// Enables submit button active upon page load
+nameInput.value = nameNew.textContent;
+jobInput.value = jobNew.textContent;
+
 
