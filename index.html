@@ -40,10 +40,22 @@
     <div class="popup__container popup__container_form">
       <button class="button popup__button popup__button_role_close"></button>
       <h2 class="popup__title">Edit Profile</h2>
-      <form class="popup__form" action="#" name="profile-edit">
-        <input class="popup__field popup__field_content_name" name="name__input" type="text" placeholder="Name">
-        <input class="popup__field popup__field_content_job" name="job__input" type="text" placeholder="About Me">
-       <button class="button popup__button popup__button_role_save" type="submit">Save</button>
+      <form class="popup__form" action="#" name="profile-edit" novalidate>
+        <label class="popup__label">
+          <input 
+            class="popup__field popup__field_content_name" 
+            id="name__input" 
+            type="text" 
+            placeholder="Name" 
+            pattern="[A-Za-z -]+"  
+            minlength="2" 
+            maxlength="40" 
+            required
+          />
+          <span class="popup__field_type_error" id="name__input-error"></span>
+        </label>
+        <input class="popup__field popup__field_content_job" name="job__input" type="text" placeholder="About Me" minlength="2" maxlength="200" required>
+        <button class="button popup__button popup__button_role_save" type="submit">Save</button>
       </form>
     </div> 
   </div>
@@ -82,7 +94,7 @@
     </li>
   </template>
     
-  <script src="js/script.js"></script>
+  <script src="js/script.js" src="js/validate.js"></script>
   
 </body>
 </html>

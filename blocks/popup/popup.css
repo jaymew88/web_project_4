@@ -5,6 +5,7 @@
 @import url(../popup/__button/popup__button.css);
 @import url(../popup/__img-title/popup__img-title.css);
 @import url(../popup/__img/popup__img.css);
+@import url(../popup/__form-set/popup__form-set.css);
 
 .popup {
 	background-color: rgba(0, 0, 0, 0.5);

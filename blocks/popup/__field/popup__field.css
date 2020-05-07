@@ -1,3 +1,5 @@
+@import url(../__field/_type/popup__field_type_error.css);
+
 .popup__field {
   display: block;
   font-weight: normal;
@@ -7,6 +9,10 @@
   margin-bottom: 20px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.popup__field:invalid {
+  border-bottom: 1px solid red;
 }
 
 .popup__field:last-of-type {

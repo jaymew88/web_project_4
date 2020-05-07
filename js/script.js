@@ -150,3 +150,5 @@ imageCloseButton.addEventListener('click', () => {
 initialCards.forEach((card) => {
   renderCard(card);
 });
+
+
