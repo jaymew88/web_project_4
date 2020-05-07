@@ -148,6 +148,24 @@ initialCards.forEach((card) => {
   renderCard(card);
 });
 
+//Closes popups with Esc key
+document.addEventListener('keydown', (e) => {
+  if (e.keyCode == 27) {
+    const popupOpen = document.querySelector('popup_opened');
+    if (popupOpen) {
+      togglePopup(popupOpen);
+    }
+  }
+});
+
+// closes popups with overlay click
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('popup')) {
+    togglePopup(e.target);
+    e.preventDefault();
+  }
+});
+
 // Enables submit button active upon page load
 nameInput.value = nameNew.textContent;
 jobInput.value = jobNew.textContent;

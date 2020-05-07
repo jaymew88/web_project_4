@@ -1,17 +1,26 @@
+// Settings Object
+const formSelectors = {
+  formSelector: ".popup__form", 
+  inputSelector: ".popup__field", 
+  submitButtonSelector: ".popup__button_role_save",
+  inactiveButtonClass: "popup__button_role_inactive",
+  inputErrorClass: "popup__field_type_error",
+  errorClass: "popup__field-error_active"
+}
 
 // Show Error Messages
 const showInputError = (popupForm, inputField, errorMessage) => {
   const errorElement = popupForm.querySelector(`#${inputField.id}-error`);
-  inputField.classList.add("popup__field_type_error");
+  inputField.classList.add(formSelectors.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("popup__field-error_active");
+  errorElement.classList.add(formSelectors.errorClass);
 };
 
 // Hide Error Message
 const hideInputError = (popupForm, inputField) => {
   const errorElement = popupForm.querySelector(`#${inputField.id}-error`);
-  inputField.classList.remove("popup__field_type_error");
-  errorElement.classList.remove("popup__field-error_active");
+  inputField.classList.remove(formSelectors.inputErrorClass);
+  errorElement.classList.remove(formSelectors.errorClass);
   errorElement.textContent = "";
 };
 
@@ -33,8 +42,8 @@ const hasInvalidInput = (inputList) => {
 
 // Sets event listeners
 const setEventListeners = (popupForm) => {
-  const inputList = Array.from(popupForm.querySelectorAll(".popup__field"));  
-  const submitButton = popupForm.querySelector(".popup__button_role_save"); 
+  const inputList = Array.from(popupForm.querySelectorAll(formSelectors.inputSelector));  
+  const submitButton = popupForm.querySelector(formSelectors.submitButtonSelector); 
 
   toggleButtonState(inputList, submitButton);
 
@@ -50,17 +59,17 @@ const setEventListeners = (popupForm) => {
 // Submit button inavtive if form has validation errors
 const toggleButtonState = (inputList, button) => {
   if (hasInvalidInput(inputList)) {
-    button.classList.add("popup__button_role_inactive");
+    button.classList.add(formSelectors.inactiveButtonClass);
     button.disabled = true;
   } else {
-    button.classList.remove("popup__button_role_inactive");
+    button.classList.remove(formSelectors.inactiveButtonClass);
     button.disabled = false;
   }
 };
 
 // Function to enable validation
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".popup__form")); 
+  const formList = Array.from(document.querySelectorAll(formSelectors.formSelector)); 
   formList.forEach((popupForm) => {
     popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
