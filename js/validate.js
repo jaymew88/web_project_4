@@ -31,17 +31,6 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-// Submit button inavtive if form has validation errors
-const toggleButtonState = (inputList, button) => {
-  if (hasInvalidInput(inputList)) {
-    button.classList.add("button_inactive");
-    button.disabled.true;
-  } else {
-    button.classList.remove("button_inactive");
-    button.diable.false;
-  }
-};
-
 // Sets event listeners
 const setEventListeners = (popupForm) => {
   const inputList = Array.from(popupForm.querySelectorAll(".popup__field"));  
@@ -50,11 +39,23 @@ const setEventListeners = (popupForm) => {
   toggleButtonState(inputList, submitButton);
 
   inputList.forEach((inputField) => {
+    checkInputValidity(popupForm, inputField);
     inputField.addEventListener("input", () => {
       checkInputValidity(popupForm, inputField);
-      toggleButtonState(inputList, sumbitButton);
+      toggleButtonState(inputList, submitButton);
     });
   });
+};
+
+// Submit button inavtive if form has validation errors
+const toggleButtonState = (inputList, button) => {
+  if (hasInvalidInput(inputList)) {
+    button.classList.add("popup__button_role_inactive");
+    button.disabled = true;
+  } else {
+    button.classList.remove("popup__button_role_inactive");
+    button.disabled = false;
+  }
 };
 
 // Function to enable validation

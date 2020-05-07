@@ -64,11 +64,6 @@ const jobNew = document.querySelector('.profile__job');
 
 // Function to open/close Popup Wimdows
 function togglePopup(popup) {
-  if (!popup.classList.contains('.popup_opened')) 
-  {
-      nameInput.value = nameNew.textContent;
-      jobInput.value = jobNew.textContent;
-  }
   popup.classList.toggle('popup_opened');
 } 
 
@@ -131,6 +126,8 @@ editForm.addEventListener('submit', (e) => {
 
 //Click functions to call togglePopup function
 profileEditButton.addEventListener('click', () => {
+  nameInput.value = nameNew.textContent;
+  jobInput.value = jobNew.textContent;
   togglePopup(editPopupWindow);
 });
 editCloseButton.addEventListener('click', () => {
