@@ -75,10 +75,29 @@
   <div class="popup popup_type_add-place">
     <div class="popup__container popup__container_form">
       <button class="button popup__button popup__button_role_close"></button>
-      <h2 class="popup__title">New Place</h2>
       <form class="popup__form" action="#" name="add-place">
-        <input class="popup__field popup__field_place_name" name="place-name" type="text" placeholder="Title">
-        <input class="popup__field popup__field_place_image" name="place-image" type="text" placeholder="Image Link">
+        <h2 class="popup__title">New Place</h2>
+        <label class="popup__label">
+          <input 
+            class="popup__field popup__field_place_name" 
+            id="place-input" 
+            type="text" 
+            placeholder="Title"
+            minlength="1" 
+            maxlength="30" 
+            required
+          />
+          <span class="popup__field-error" id="place-input-error"></span>
+        </label>
+        <label class="popup__label">
+          <input 
+            class="popup__field popup__field_place_image" 
+            id="image-input" 
+            type="url" 
+            placeholder="Image Link"
+          />
+          <span class="popup__field-error" id="image-input-error"></span>
+        </label>
         <button class="button popup__button popup__button_role_save" type="submit">Create</button>
       </form>
     </div> 
