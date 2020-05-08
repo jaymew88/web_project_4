@@ -2,11 +2,6 @@
 
 .popup__container {
   position: relative;
-  padding: 20px;
 }
 
-@media (min-width: 475px) {
-  .popup__container {
-    padding: 36px;
-  }
-}
+
