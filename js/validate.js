@@ -6,7 +6,7 @@ const formSelectors = {
   inactiveButtonClass: "popup__button_role_inactive",
   inputErrorClass: "popup__field_type_error", 
   errorClass: "popup__field-error_active" 
-}
+};
 
 // Show Error Messages
 const showInputError = (popupForm, inputField, errorMessage) => {

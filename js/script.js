@@ -54,7 +54,7 @@ const  documentSelectors = {
   cardLikeActiveClass: 'card__like-button_active',
   popupOpenClass: "popup_opened",
   popupClass: 'popup'
-};
+}
 
 // Templates
 const templateCard = document.
@@ -113,7 +113,6 @@ function createCard(card) {
   const elementLikeButton = cardElement.querySelector(documentSelectors.cardLikeButtonSelector);
   const elementDeleteButton = cardElement.querySelector(documentSelectors.cardDeleteButtonSelector);
 
-  //elementImage.style.backgroundImage = `url(${card.link})`;
   elementImage.src = card.link;
   elementImage.alt = card.name;
   elementName.textContent = card.name;
