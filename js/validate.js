@@ -4,8 +4,8 @@ const formSelectors = {
   inputSelector: ".popup__field", 
   submitButtonSelector: ".popup__button_role_save",
   inactiveButtonClass: "popup__button_role_inactive",
-  inputErrorClass: "popup__field_type_error",
-  errorClass: "popup__field-error_active"
+  inputErrorClass: "popup__field_type_error", 
+  errorClass: "popup__field-error_active" 
 }
 
 // Show Error Messages
@@ -59,7 +59,7 @@ const setEventListeners = (popupForm) => {
 // Submit button inavtive if form has validation errors
 const toggleButtonState = (inputList, button) => {
   if (hasInvalidInput(inputList)) {
-    button.classList.add(formSelectors.inactiveButtonClass);
+    button.classList.add(formSelectors.inactiveButtonClass); 
     button.disabled = true;
   } else {
     button.classList.remove(formSelectors.inactiveButtonClass);
