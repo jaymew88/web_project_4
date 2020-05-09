@@ -8,3 +8,9 @@
   background: white;
   opacity: 0.2; 
 }
+
+.popup__button_role_inactive:hover {
+  color: black;
+  background: white;
+  opacity: 0.2; 
+}

@@ -1,35 +1,25 @@
-// Settings Object
-const formSelectors = {
-  formSelector: ".popup__form", 
-  inputSelector: ".popup__field", 
-  submitButtonSelector: ".popup__button_role_save",
-  inactiveButtonClass: "popup__button_role_inactive",
-  inputErrorClass: "popup__field_type_error", 
-  errorClass: "popup__field-error_active" 
-};
-
 // Show Error Messages
-const showInputError = (popupForm, inputField, errorMessage) => {
+const showInputError = (popupForm, inputField, errorMessage, settings) => {
   const errorElement = popupForm.querySelector(`#${inputField.id}-error`);
-  inputField.classList.add(formSelectors.inputErrorClass);
+  inputField.classList.add(settings.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(formSelectors.errorClass);
+  errorElement.classList.add(settings.errorClass);
 };
 
 // Hide Error Message
-const hideInputError = (popupForm, inputField) => {
+const hideInputError = (popupForm, inputField, settings) => {
   const errorElement = popupForm.querySelector(`#${inputField.id}-error`);
-  inputField.classList.remove(formSelectors.inputErrorClass);
-  errorElement.classList.remove(formSelectors.errorClass);
+  inputField.classList.remove(settings.inputErrorClass);
+  errorElement.classList.remove(settings.errorClass);
   errorElement.textContent = "";
 };
 
 // Checks for validity in form
-const checkInputValidity = (popupForm, inputField) => {
+const checkInputValidity = (popupForm, inputField, settings) => {
   if (!inputField.validity.valid) {
-    showInputError(popupForm, inputField, inputField.validationMessage);
+    showInputError(popupForm, inputField, inputField.validationMessage, settings);
   } else {
-    hideInputError(popupForm, inputField, inputField.validationMessage);
+    hideInputError(popupForm, inputField, settings);
   }
 };
 
@@ -41,41 +31,48 @@ const hasInvalidInput = (inputList) => {
 };
 
 // Sets event listeners
-const setEventListeners = (popupForm) => {
-  const inputList = Array.from(popupForm.querySelectorAll(formSelectors.inputSelector));  
-  const submitButton = popupForm.querySelector(formSelectors.submitButtonSelector); 
+const setEventListeners = (popupForm, settings) => {
+  const inputList = Array.from(popupForm.querySelectorAll(settings.inputSelector));  
+  const submitButton = popupForm.querySelector(settings.submitButtonSelector); 
 
-  toggleButtonState(inputList, submitButton);
+  toggleButtonState(inputList, submitButton, settings);
 
   inputList.forEach((inputField) => {
-    checkInputValidity(popupForm, inputField);
+    checkInputValidity(popupForm, inputField, settings);
     inputField.addEventListener("input", () => {
-      checkInputValidity(popupForm, inputField);
-      toggleButtonState(inputList, submitButton);
-    });
+      checkInputValidity(popupForm, inputField, settings);
+      toggleButtonState(inputList, submitButton, settings);
+    })
   });
 };
 
 // Submit button inavtive if form has validation errors
-const toggleButtonState = (inputList, button) => {
+const toggleButtonState = (inputList, button, settings) => {
   if (hasInvalidInput(inputList)) {
-    button.classList.add(formSelectors.inactiveButtonClass); 
+    button.classList.add(settings.inactiveButtonClass); 
     button.disabled = true;
   } else {
-    button.classList.remove(formSelectors.inactiveButtonClass);
+    button.classList.remove(settings.inactiveButtonClass);
     button.disabled = false;
   }
 };
 
 // Function to enable validation
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(formSelectors.formSelector)); 
+const enableValidation = (settings) => {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector)); 
   formList.forEach((popupForm) => {
     popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    setEventListeners(popupForm);
+    setEventListeners(popupForm, settings);
   });
 };
 
-enableValidation();
+enableValidation({
+  formSelector: ".popup__form", 
+  inputSelector: ".popup__field", 
+  submitButtonSelector: ".popup__button_role_save",
+  inactiveButtonClass: "popup__button_role_inactive",
+  inputErrorClass: "popup__field_type_error", 
+  errorClass: "popup__field-error_active" 
+});
