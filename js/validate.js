@@ -1,4 +1,4 @@
-// Show Error Messages
+/// Show Error Messages
 const showInputError = (popupForm, inputField, errorMessage, settings) => {
   const errorElement = popupForm.querySelector(`#${inputField.id}-error`);
   inputField.classList.add(settings.inputErrorClass);
@@ -46,7 +46,7 @@ const setEventListeners = (popupForm, settings) => {
   });
 };
 
-// Submit button inavtive if form has validation errors
+// Submit button inactive if form has validation errors
 const toggleButtonState = (inputList, button, settings) => {
   if (hasInvalidInput(inputList)) {
     button.classList.add(settings.inactiveButtonClass); 
