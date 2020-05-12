@@ -153,14 +153,13 @@ initialCards.forEach((card) => {
 });
 
 //Closes popups with Esc key
-const popupCloseEsc = () => {
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode == 27) {
-      const popupOpen = document.querySelector('.popup_opened');
-      togglePopup(popupOpen);
-    }
-  })
-};
+document.addEventListener('keyup', (e) => {
+  if (e.keyCode == 27) {
+    const popupOpen = document.querySelector('.popup_opened');
+    togglePopup(popupOpen);
+  }
+});
+
 
 // closes popups with overlay click
 document.addEventListener('click', (e) => {
