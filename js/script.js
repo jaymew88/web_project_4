@@ -76,7 +76,8 @@ function togglePopup(popup) {
     }
   });
 }
- // Close using Esc key
+
+// Close using Esc key
 const escClosePopup = () => {
   window.addEventListener('keyup', (e) => {
     if (e.keyCode == 27) {
@@ -86,6 +87,7 @@ const escClosePopup = () => {
   });
 };
 
+// Event Listeners 
 // Profile 
 profileEditButton.addEventListener('click', () => {
   nameInput.value = nameNew.textContent;
