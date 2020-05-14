@@ -77,7 +77,7 @@ function togglePopup(popup) {
   });
 }
  // Close using Esc key
- const escClosePopup = () => {
+const escClosePopup = () => {
   window.addEventListener('keyup', (e) => {
     if (e.keyCode == 27) {
       const popupOpen = document.querySelector('.popup_opened');
