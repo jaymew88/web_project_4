@@ -67,7 +67,49 @@ const jobNew = document.querySelector('.profile__job');
 // Function to open/close Popup Wimdows
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
+
+  // Popups close with overlay click
+  popup.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup')) {
+      togglePopup(e.target);
+      e.preventDefault();
+    }
+  });
 }
+ // Close using Esc key
+ const escClosePopup = () => {
+  window.addEventListener('keyup', (e) => {
+    if (e.keyCode == 27) {
+      const popupOpen = document.querySelector('.popup_opened');
+      togglePopup(popupOpen);
+    }
+  });
+};
+
+// Profile 
+profileEditButton.addEventListener('click', () => {
+  nameInput.value = nameNew.textContent;
+  jobInput.value = jobNew.textContent;
+  escClosePopup();
+  togglePopup(editPopupWindow);
+});
+// CLose Button
+editCloseButton.addEventListener('click', () => {
+  togglePopup(editPopupWindow);
+});
+// Add Place Open Popup
+profileAddButton.addEventListener('click', () => {
+  escClosePopup();
+  togglePopup(addPlacePopupWindow);
+});
+// Add Place Close Popup
+addPlaceCloseButton.addEventListener('click', () => {
+  togglePopup(addPlacePopupWindow);
+});
+// Image Popup
+imageCloseButton.addEventListener('click', () => {
+  togglePopup(imagePopupWindow);
+});
 
 // Takes createCard function and adds it to the list of cards in the HTML
 function renderCard(card) {
@@ -126,25 +168,7 @@ editForm.addEventListener('submit', (e) => {
   nameNew.textContent = nameInput.value;
   jobNew.textContent = jobInput.value
   togglePopup(editPopupWindow);
-});
-
-//Click functions to call togglePopup function
-profileEditButton.addEventListener('click', () => {
-  nameInput.value = nameNew.textContent;
-  jobInput.value = jobNew.textContent;
-  togglePopup(editPopupWindow);
-});
-editCloseButton.addEventListener('click', () => {
-  togglePopup(editPopupWindow);
-});
-profileAddButton.addEventListener('click', () => {
-  togglePopup(addPlacePopupWindow);
-});
-addPlaceCloseButton.addEventListener('click', () => {
-  togglePopup(addPlacePopupWindow);
-});
-imageCloseButton.addEventListener('click', () => {
-  togglePopup(imagePopupWindow);
+  escClosePopup();
 });
 
 // Loops initialCards array and renders a card for each item in array
@@ -152,25 +176,6 @@ initialCards.forEach((card) => {
   renderCard(card);
 });
 
-//Closes popups with Esc key
-window.addEventListener('keyup', (e) => {
-  if (e.keyCode == 27) {
-    const popupOpen = document.querySelector('.popup_opened');
-    togglePopup(popupOpen);
-  }
-});
-
-
-// closes popups with overlay click
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('popup')) {
-    togglePopup(e.target);
-    e.preventDefault();
-  }
-});
-
 // Enables submit button active upon page load
 nameInput.value = nameNew.textContent;
 jobInput.value = jobNew.textContent;
-
-
