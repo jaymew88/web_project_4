@@ -153,7 +153,7 @@ initialCards.forEach((card) => {
 });
 
 //Closes popups with Esc key
-document.addEventListener('keyup', (e) => {
+window.addEventListener('keyup', (e) => {
   if (e.keyCode == 27) {
     const popupOpen = document.querySelector('.popup_opened');
     togglePopup(popupOpen);
