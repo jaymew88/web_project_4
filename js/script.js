@@ -80,9 +80,9 @@ function togglePopup(popup) {
     if (e.target.classList.contains('popup')) {
       togglePopup(e.target);
       e.preventDefault();
-     }
-    });
-  }
+    }
+ });
+}
 
 // Event Listeners 
 // Profile 
