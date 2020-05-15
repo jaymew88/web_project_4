@@ -67,32 +67,28 @@ const jobNew = document.querySelector('.profile__job');
 // Function to open/close Popup Wimdows
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
+ 
+  // Popup closes with Esc key
+  window.addEventListener('keyup', (e) => {
+    if (e.keyCode == 27) {
+     togglePopup(popup);
+    }
+  });
 
   // Popups close with overlay click
   popup.addEventListener('click', (e) => {
     if (e.target.classList.contains('popup')) {
       togglePopup(e.target);
       e.preventDefault();
-    }
-  });
-}
-
-// Close using Esc key
-const escClosePopup = () => {
-  window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 27) {
-      const popupOpen = document.querySelector('.popup_opened');
-      togglePopup(popupOpen);
-    }
-  });
-};
+     }
+    });
+  }
 
 // Event Listeners 
 // Profile 
 profileEditButton.addEventListener('click', () => {
   nameInput.value = nameNew.textContent;
   jobInput.value = jobNew.textContent;
-  escClosePopup();
   togglePopup(editPopupWindow);
 });
 // CLose Button
@@ -101,7 +97,6 @@ editCloseButton.addEventListener('click', () => {
 });
 // Add Place Open Popup
 profileAddButton.addEventListener('click', () => {
-  escClosePopup();
   togglePopup(addPlacePopupWindow);
 });
 // Add Place Close Popup
@@ -170,7 +165,6 @@ editForm.addEventListener('submit', (e) => {
   nameNew.textContent = nameInput.value;
   jobNew.textContent = jobInput.value
   togglePopup(editPopupWindow);
-  escClosePopup();
 });
 
 // Loops initialCards array and renders a card for each item in array
