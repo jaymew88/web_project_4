@@ -26,14 +26,6 @@ const initialCards = [
   }
 ];
 
-// Templates
-const templateCard = document.
-  querySelector('.template-card').
-  content.querySelector('.card');
-
-//Wrappers
-const cardsList = document.querySelector('.cards__list');
-
 // Popups
 const editPopupWindow = document.querySelector('.popup_type_edit');
 const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
@@ -107,45 +99,72 @@ imageCloseButton.addEventListener('click', () => {
   togglePopup(imagePopupWindow);
 });
 
-// Takes createCard function and adds it to the list of cards in the HTML
-function renderCard(card) {
-  cardsList.prepend(createCard(card));
-}
 
-// Creates a card by cloning the template and acessing the array name and
-// img link and returns a card. EventListeners for buttons and open image
-function createCard(card) {
-  const cardElement = templateCard.cloneNode(true);
-  const elementImage = cardElement.querySelector('.card__img');
-  const elementName = cardElement.querySelector('.card__name');
-  const elementLikeButton = cardElement.querySelector('.card__like-button');
-  const elementDeleteButton = cardElement.querySelector('.card__delete-button');
+class Card {
+  constructor(data, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._cardSelector = cardSelector;
+  }
 
-  //elementImage.style.backgroundImage = `url(${card.link})`;
-  elementImage.src = card.link;
-  elementImage.alt = card.name;
-  elementName.textContent = card.name;
+  // Clones Template Card
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._cardSelector)
+      .content
+      .querySelector('.card') 
+      .cloneNode(true);
 
-  // Click change heart color
-  elementLikeButton.addEventListener ('click', (e) => {
-    e.target.classList.toggle('card__like-button_active');
-  });
+      return cardElement;
+  }
 
-  // Removes card
-  elementDeleteButton.addEventListener('click', (e) => {
-    e.target.parentElement.remove();
-  });
+  // Creates a card from the template
+  createCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector('.card__img').src = this._link;
+    this._element.querySelector('.card__img').alt = this._name;
+    this._element.querySelector('.card__name').textContent = this._name;
+   
+    return this._element;
+  }
+
+  // Event Listeners
+  
 
   // Opens Image
-  elementImage.addEventListener ('click', () => {
-    imagePopup.src = card.link;
-    imageTitlePopup.textContent = card.name;
-    imagePopup.alt = `${card.name}`;
-    togglePopup(imagePopupWindow);
-  });
+  //elementImage.addEventListener ('click', () => {
+    //imagePopup.src = card.link;
+    //imageTitlePopup.textContent = card.name;
+    //imagePopup.alt = `${card.name}`;
+    //togglePopup(imagePopupWindow);
+  //});
 
-  return cardElement;
+    // Removes card
+  //elementDeleteButton.addEventListener('click', (e) => {
+    //e.target.parentElement.remove();
+  //});
+
+  // Click change heart color
+  //elementLikeButton.addEventListener ('click', (e) => {
+  //e.target.classList.toggle('card__like-button_active');
+  //});
+  
 }
+
+
+
+ 
+
+  
+
+// Loops initialCards array, renders a card for each item in array and add it to the DOM
+initialCards.forEach((item) => {
+  const card = new Card(item, '.template-card');
+  const cardElement = card.createCard();
+
+  document.querySelector('.cards__list').prepend(cardElement);
+});
+
 
 // Create New Place Form Submit Handler
 addForm.addEventListener('submit', (e) => {
@@ -164,11 +183,6 @@ editForm.addEventListener('submit', (e) => {
   nameNew.textContent = nameInput.value;
   jobNew.textContent = jobInput.value
   togglePopup(editPopupWindow);
-});
-
-// Loops initialCards array and renders a card for each item in array
-initialCards.forEach((card) => {
-  renderCard(card);
 });
 
 // Enables submit button active upon page load
