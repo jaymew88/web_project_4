@@ -35,13 +35,6 @@ const imagePopupWindow = document.querySelector('.popup_type_image');
 const addForm = addPlacePopupWindow.querySelector('.popup__form');
 const editForm = editPopupWindow.querySelector('.popup__form');
 
-// Buttons
-const profileEditButton = document.querySelector('.profile__button_role_edit');
-const profileAddButton = document.querySelector('.profile__button_role_add');
-const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close');
-const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
-const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
-
 //Form Fields
 const nameInput = editPopupWindow.querySelector('.popup__field_content_name');
 const jobInput = editPopupWindow.querySelector('.popup__field_content_job');
@@ -55,49 +48,6 @@ const imageTitlePopup = imagePopupWindow.querySelector('.popup__img-title');
 //Profile Fields
 const nameNew = document.querySelector('.profile__title');
 const jobNew = document.querySelector('.profile__job');
-
-// Function to open/close Popup Wimdows
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
- 
-  // Popup closes with Esc key
-  window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 27) {
-     togglePopup(popup);
-    }
-  });
-
-  // Popups close with overlay click
-  popup.addEventListener('click', (e) => {
-    if (e.target.classList.contains('popup')) {
-      togglePopup(e.target);
-      e.preventDefault();
-     }
-    });
-  }
-
-// Profile 
-profileEditButton.addEventListener('click', () => {
-  nameInput.value = nameNew.textContent;
-  jobInput.value = jobNew.textContent;
-  togglePopup(editPopupWindow);
-});
-// CLose Button
-editCloseButton.addEventListener('click', () => {
-  togglePopup(editPopupWindow);
-});
-// Add Place Open Popup
-profileAddButton.addEventListener('click', () => {
-  togglePopup(addPlacePopupWindow);
-});
-// Add Place Close Popup
-addPlaceCloseButton.addEventListener('click', () => {
-  togglePopup(addPlacePopupWindow);
-});
-// Image Popup
-imageCloseButton.addEventListener('click', () => {
-  togglePopup(imagePopupWindow);
-});
 
 
 class Card {
@@ -124,38 +74,44 @@ class Card {
     this._element.querySelector('.card__img').src = this._link;
     this._element.querySelector('.card__img').alt = this._name;
     this._element.querySelector('.card__name').textContent = this._name;
+    this._setImageEventListeners();
+    this._setRemoveCardEventListener();
+    this._setLikeEventListener();
    
     return this._element;
   }
-
+  
   // Event Listeners
-  
-
   // Opens Image
-  //elementImage.addEventListener ('click', () => {
-    //imagePopup.src = card.link;
-    //imageTitlePopup.textContent = card.name;
-    //imagePopup.alt = `${card.name}`;
-    //togglePopup(imagePopupWindow);
-  //});
-
-    // Removes card
-  //elementDeleteButton.addEventListener('click', (e) => {
-    //e.target.parentElement.remove();
-  //});
-
+  _setImageEventListeners() {
+    this._element.addEventListener ('click', (e) => {
+      e.preventDefault();
+      imagePopup.src = this._link;
+      imageTitlePopup.textContent = this._name;
+      imagePopup.alt = `${this._name}`;
+      imagePopupWindow.classList.toggle('popup_opened');
+      e.stopPropagation();
+   });
+  }
+  // Removes card
+  _setRemoveCardEventListener() {
+    const elementDeleteButton = this._element.querySelector('.card__delete-button');
+    elementDeleteButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.target.parentElement.remove();
+      e.stopPropagation();
+    });
+  }
   // Click change heart color
-  //elementLikeButton.addEventListener ('click', (e) => {
-  //e.target.classList.toggle('card__like-button_active');
-  //});
-  
+  _setLikeEventListener() {
+    const elementLikeButton = this._element.querySelector('.card__like-button');
+    elementLikeButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.target.classList.toggle('card__like-button_active');
+      e.stopPropagation();
+    });
+  }
 }
-
-
-
- 
-
-  
 
 // Loops initialCards array, renders a card for each item in array and add it to the DOM
 initialCards.forEach((item) => {
@@ -164,6 +120,7 @@ initialCards.forEach((item) => {
 
   document.querySelector('.cards__list').prepend(cardElement);
 });
+
 
 
 // Create New Place Form Submit Handler
@@ -188,3 +145,51 @@ editForm.addEventListener('submit', (e) => {
 // Enables submit button active upon page load
 nameInput.value = nameNew.textContent;
 jobInput.value = jobNew.textContent;
+
+// MOVE TO indes.js
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
+
+  // Popup closes with Esc key
+  window.addEventListener('keyup', (e) => {
+    if (e.keyCode == 27) {
+    togglePopup(popup);
+    }
+  });
+
+  // Popups close with overlay click
+  popup.addEventListener('click', (e) => {
+    if (e.target.classList.contains('popup')) {
+      togglePopup(e.target);
+      e.preventDefault();
+    }
+  });
+}
+
+// Buttons
+const profileEditButton = document.querySelector('.profile__button_role_edit');
+const profileAddButton = document.querySelector('.profile__button_role_add');
+const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close');
+const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
+const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
+
+// Profile 
+profileEditButton.addEventListener('click', () => {
+    togglePopup(editPopupWindow);
+}); 
+// Close Button
+editCloseButton.addEventListener('click', () => {
+  togglePopup(editPopupWindow);
+});
+// Add Place Open Popup
+profileAddButton.addEventListener('click', () => {
+  togglePopup(addPlacePopupWindow);
+});
+// Add Place Close Popup
+addPlaceCloseButton.addEventListener('click', () => {
+  togglePopup(addPlacePopupWindow);
+});
+// Image Popup
+imageCloseButton.addEventListener('click', () => {
+  togglePopup(imagePopupWindow);
+});
