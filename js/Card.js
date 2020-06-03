@@ -7,28 +7,31 @@ export class Card {
 
   // Clones Template Card
   _getTemplate() {
-    return document
+    const CardElement = document
       .querySelector(this._cardSelector)
       .content
       .querySelector('.card') 
       .cloneNode(true);
+
+      return CardElement;
   }
 
   // Creates a card from the template
   createCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.card__img').src = this._link;
-    this._element.querySelector('.card__img').alt = this._name;
-    this._element.querySelector('.card__name').textContent = this._name;
     this._setImageEventListeners();
     this._setRemoveCardEventListener();
     this._setLikeEventListener();
-   
+
+    this._element.querySelector('.card__img').src = this._link;
+    this._element.querySelector('.card__img').alt = this._name;
+    this._element.querySelector('.card__name').textContent = this._name;
+    
     return this._element;
   }
 
   // Event Listeners
-  // Opens Image
+  // Opens Image Popup
   _setImageEventListeners() {
     this._element.addEventListener ('click', (e) => {
       e.preventDefault();

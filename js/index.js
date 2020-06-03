@@ -134,10 +134,12 @@ imageCloseButton.addEventListener('click', () => {
   togglePopup(imagePopupWindow);
 });
 
-// Loops initialCards array, renders a card for each item in array and add it to the DOM
-initialCards.forEach((item) => {
-  const card = new Card(item, '.template-card');
-  const cardElement = card.createCard();
+function renderCard(element) {
+  const newElement = new Card(element, '.template-card').createCard();
+  const cardsList = document.querySelector('.cards__list');
 
-  document.querySelector('.cards__list').prepend(cardElement);
-});
+  cardsList.prepend(newElement);
+}
+
+// Loops initialCards array, renders a card for each item in array and add it to the DOM
+initialCards.forEach(element => renderCard(element));
