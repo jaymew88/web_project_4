@@ -1,5 +1,6 @@
 // Imports 
-import {Card} from './Card.js';
+import {Card} from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
 
 // Initial Cards to be loaded 
 const initialCards = [
@@ -29,6 +30,16 @@ const initialCards = [
   }
 ];
 
+// Validation settings
+const validationSettings = {
+  formSelector: ".popup__form", 
+  inputSelector: ".popup__field", 
+  submitButtonSelector: ".popup__button_role_save",
+  inactiveButtonClass: "popup__button_role_inactive",
+  inputErrorClass: "popup__field_type_error", 
+  errorClass: "popup__field-error_active" 
+};
+
 // Popups
 const editPopupWindow = document.querySelector('.popup_type_edit');
 const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
@@ -54,6 +65,10 @@ const profileAddButton = document.querySelector('.profile__button_role_add');
 const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close');
 const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
 const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
+
+// Enable FormValidator
+new FormValidator(editPopupWindow, validationSettings).enableValidation();
+new FormValidator(addPlacePopupWindow, validationSettings).enableValidation();
 
 // Create New Place Form Submit Handler
 addForm.addEventListener('submit', (e) => {
