@@ -70,37 +70,29 @@ const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_clo
 new FormValidator(editPopupWindow, validationSettings).enableValidation();
 new FormValidator(addPlacePopupWindow, validationSettings).enableValidation();
 
-// Create New Place Form Submit Handler
-addForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+// Takes createCard function and adds it to the list of cards in the HTML
+function renderCard(element) {
+  const newElement = new Card(element, '.template-card').createCard();
+  const cardsList = document.querySelector('.cards__list');
 
-  renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
+  cardsList.prepend(newElement);
+}
 
-  addForm.reset();
-  togglePopup(addPlacePopupWindow);
-});
+function initProfileForm() {
+  // Enables submit button active upon editPopup Open
+  nameInput.value = nameNew.textContent;
+  jobInput.value = jobNew.textContent;
+}
 
-// Form Submit Handler
-editForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  nameNew.textContent = nameInput.value;
-  jobNew.textContent = jobInput.value
-  togglePopup(editPopupWindow);
-});
-
-// Enables submit button active upon page load
-nameInput.value = nameNew.textContent;
-jobInput.value = jobNew.textContent;
-
-
+// Function to open/close popup windows
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
-  
+
   // Popup closes with Esc key
   window.addEventListener('keyup', (e) => {
     if (e.keyCode == 27) {
     togglePopup(popup);
+    e.preventDefault();
     }
   });
 
@@ -111,11 +103,28 @@ function togglePopup(popup) {
       e.preventDefault();
     }
   });
-}
+}   
+
+// Add Card Form Event Listener 
+addForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  renderCard({name: imageTitleInput.value, link: imageLinkInput.value});
+  addForm.reset();
+  togglePopup(addPlacePopupWindow);
+});
+
+// Edit Profile Form Event Listener
+editForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  nameNew.textContent = nameInput.value;
+  jobNew.textContent = jobInput.value
+  togglePopup(editPopupWindow);
+});
 
 // Profile 
 profileEditButton.addEventListener('click', () => {
-    togglePopup(editPopupWindow);
+  initProfileForm();  
+  togglePopup(editPopupWindow);
 }); 
 // Close Button
 editCloseButton.addEventListener('click', () => {
@@ -134,12 +143,8 @@ imageCloseButton.addEventListener('click', () => {
   togglePopup(imagePopupWindow);
 });
 
-function renderCard(element) {
-  const newElement = new Card(element, '.template-card').createCard();
-  const cardsList = document.querySelector('.cards__list');
-
-  cardsList.prepend(newElement);
-}
-
 // Loops initialCards array, renders a card for each item in array and add it to the DOM
 initialCards.forEach(element => renderCard(element));
+
+
+
