@@ -30,14 +30,14 @@ export class FormValidator {
   };
 
   // Checks for form field for validity
-  _hasInvalidInput = (inputList) => {
+  _hasInvalidInput(inputList) {
     return inputList.some((inputField) => {
       return !inputField.validity.valid;
     });
   };
 
   // Submit button inactive if form has validation errors
-  _toggleButtonState = (inputList, button) => {
+  _toggleButtonState(inputList, button) {
     if (this._hasInvalidInput(inputList)) {
       button.classList.add(this._settings.inactiveButtonClass); 
       button.disabled = true;
@@ -47,20 +47,23 @@ export class FormValidator {
     }
   };
 
-  // Function to enable validation
   _setEventListeners() {
     const inputList = Array.from(this._form.querySelectorAll(this._settings.inputSelector));  
     const submitButton = this._form.querySelector(this._settings.submitButtonSelector); 
 
-      inputList.forEach((inputField) => {
-        inputField.addEventListener("input", () => {
-          this._checkInputValidity(inputField);
-          this._toggleButtonState(inputList, submitButton);
-        });
+    this._toggleButtonState(inputList, submitButton);
+    inputList.forEach((inputField) => {
+      inputField.addEventListener("input", () => {
+        this._checkInputValidity(inputField);
+        this._toggleButtonState(inputList, submitButton);
       });
-    }; 
+    });
+  }; 
   
   enableValidation() {
+    this._form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
     this._setEventListeners();
   }
   

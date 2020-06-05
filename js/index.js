@@ -67,8 +67,8 @@ const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_ro
 const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
 
 // Enable FormValidator
-new FormValidator(editPopupWindow, validationSettings).enableValidation();
-new FormValidator(addPlacePopupWindow, validationSettings).enableValidation();
+new FormValidator(editForm, validationSettings).enableValidation();
+new FormValidator(addForm, validationSettings).enableValidation();
 
 // Takes createCard function and adds it to the list of cards in the HTML
 function renderCard(element) {
@@ -78,32 +78,30 @@ function renderCard(element) {
   cardsList.prepend(newElement);
 }
 
-function initProfileForm() {
-  // Enables submit button active upon editPopup Open
-  nameInput.value = nameNew.textContent;
-  jobInput.value = jobNew.textContent;
-}
 
 // Function to open/close popup windows
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
 
-  // Popup closes with Esc key
+// Popup closes with Esc key
   window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 27) {
-    togglePopup(popup);
-    e.preventDefault();
+    if (e.keyCode == 27 && document.querySelector('.popup_opened')) { 
+      togglePopup(popup);
     }
   });
+}
 
-  // Popups close with overlay click
-  popup.addEventListener('click', (e) => {
-    if (e.target.classList.contains('popup')) {
-      togglePopup(e.target);
-      e.preventDefault();
-    }
-  });
-}   
+// Enables submit button active upon Edit Popup Open
+function initProfileForm() {
+  nameInput.value = nameNew.textContent;
+  jobInput.value = jobNew.textContent;
+}
+
+// Disables submit for upon Add Place Form
+function initPlaceForm() {
+  imageTitleInput.value = null;
+  imageLinkInput.value = null;
+} 
 
 // Add Card Form Event Listener 
 addForm.addEventListener('submit', (e) => {
@@ -121,30 +119,40 @@ editForm.addEventListener('submit', (e) => {
   togglePopup(editPopupWindow);
 });
 
-// Profile 
+// Profile Popup Open Button
 profileEditButton.addEventListener('click', () => {
   initProfileForm();  
   togglePopup(editPopupWindow);
 }); 
-// Close Button
+// Edit Popup Close Button 
 editCloseButton.addEventListener('click', () => {
   togglePopup(editPopupWindow);
 });
-// Add Place Open Popup
+// Add Place Open Popup Button
 profileAddButton.addEventListener('click', () => {
+  initPlaceForm();
   togglePopup(addPlacePopupWindow);
 });
-// Add Place Close Popup
+// Add Place Close Popup Button
 addPlaceCloseButton.addEventListener('click', () => {
   togglePopup(addPlacePopupWindow);
 });
-// Image Popup
+// Image Popup Close Button
 imageCloseButton.addEventListener('click', () => {
   togglePopup(imagePopupWindow);
+});
+// Popups close with overlay click
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('popup')) {
+    togglePopup(e.target);
+    e.preventDefault();
+  }
 });
 
 // Loops initialCards array, renders a card for each item in array and add it to the DOM
 initialCards.forEach(element => renderCard(element));
+
+
 
 
 
