@@ -1,4 +1,4 @@
- export class FormValidator {
+export class FormValidator {
   constructor(form, settings) {
     this._form = form;
     this._settings = settings;
@@ -64,5 +64,4 @@
     this._setEventListeners();
   } 
 }
-
 
