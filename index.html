@@ -18,7 +18,7 @@
     <section class="profile">
       <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
       <div class="profile__info">
-        <h2 class="profile__title">Jacques Cousteau</h2>
+        <h1 class="profile__title">Jacques Cousteau</h1>
         <button class="button profile__button profile__button_role_edit"></button>
         <p class="profile__job">Explorer</p>
       </div> 
@@ -109,18 +109,19 @@
     <div class="popup__container">
       <img class="popup__img" src="" alt="">
       <p class="popup__img-title"></p>
-      <button class="button popup__button popup__button_role_close"></button>
+      <button class="button popup__button popup__button_role_close" aria-label="Close Image"></button>
     </div> 
   </div> 
 
   <!-- Cards Template -->
   <template class="template-card">
     <li class="card">
-      <button type="button" class="button card__delete-button"></button>
+      <button type="button" class="button card__delete-button" aria-label="Delete Button"></button>
       <img class="card__img">
       <div class="card__wrapper">
-      <h3 class="card__name"></h3>
-      <button type="button" class="button card__like-button"></button>
+        <h3 class="card__name"></h3>
+        <button type="button" class="button card__like-button" aria-label="Like Button"></button>
+      </div>
     </li>
   </template>
   

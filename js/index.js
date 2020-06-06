@@ -40,6 +40,9 @@ const validationSettings = {
   errorClass: "popup__field-error_active" 
 };
 
+// Cards List 
+const cardsList = document.querySelector('.cards__list');
+
 // Popups
 const editPopupWindow = document.querySelector('.popup_type_edit');
 const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
@@ -66,30 +69,6 @@ const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close
 const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
 const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
 
-// Profile Popup Open Button
-profileEditButton.addEventListener('click', () => {
-  initProfileForm();  
-  togglePopup(editPopupWindow);
-}); 
-
-// Add Place Open Popup Button
-profileAddButton.addEventListener('click', () => {
-  initPlaceForm();
-  togglePopup(addPlacePopupWindow);
-});
-
-// Takes createCard function and adds it to the list of cards in the HTML
-function renderCard(element) {
-  const newElement = new Card(element, '.template-card').createCard();
-  const cardsList = document.querySelector('.cards__list');
-
-  cardsList.prepend(newElement);
-}
-
-// Enable FormValidator
-new FormValidator(editForm, validationSettings).enableValidation();
-new FormValidator(addForm, validationSettings).enableValidation();
-
 // Enables submit button active upon Edit Popup Open
 function initProfileForm() {
   nameInput.value = nameNew.textContent;
@@ -108,11 +87,35 @@ function togglePopup(popup) {
 
 // Popup closes with Esc key
   window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 27 && document.querySelector('.popup_opened')) { 
+    if (e.keyCode === 27 && document.querySelector('.popup_opened')) { 
       togglePopup(popup);
     }
   });
 }
+
+// Takes createCard function and adds it to the list of cards in the HTML
+function renderCard(element) {
+  const newElement = new Card(element, '.template-card').createCard();
+
+  cardsList.prepend(newElement);
+}
+
+
+// Enable FormValidator
+new FormValidator(editForm, validationSettings).enableValidation();
+new FormValidator(addForm, validationSettings).enableValidation();
+
+// Profile Popup Open Button
+profileEditButton.addEventListener('click', () => {
+  initProfileForm();  
+  togglePopup(editPopupWindow);
+}); 
+
+// Add Place Open Popup Button
+profileAddButton.addEventListener('click', () => {
+  initPlaceForm();
+  togglePopup(addPlacePopupWindow);
+});
 
 // Add Card Form Event Listener 
 addForm.addEventListener('submit', (e) => {
@@ -126,7 +129,7 @@ addForm.addEventListener('submit', (e) => {
 editForm.addEventListener('submit', (e) => {
   e.preventDefault();
   nameNew.textContent = nameInput.value;
-  jobNew.textContent = jobInput.value
+  jobNew.textContent = jobInput.value;
   togglePopup(editPopupWindow);
 });
 

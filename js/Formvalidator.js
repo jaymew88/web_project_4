@@ -10,7 +10,7 @@
     inputField.classList.add(this._settings.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._settings.errorClass);
-  };
+  }
 
   // Hide Error Message
   _hideInputError(inputField) {
@@ -18,7 +18,7 @@
     inputField.classList.remove(this._settings.inputErrorClass);
     errorElement.classList.remove(this._settings.errorClass);
     errorElement.textContent = "";
-  };
+  }
 
   // Checks for validity in form
   _checkInputValidity(inputField) {
@@ -58,7 +58,7 @@
         this._toggleButtonState(inputList, button);
       });
     });
-  }; 
+  }
   
   enableValidation() {
     this._setEventListeners();
