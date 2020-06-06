@@ -32,5 +32,5 @@ This is a single page responsive website using CSS, HTML and JavaScript, followi
 
 ### Github Link
 
-https://jaymew88.github.io/web_project_4/index.html
+Check the project out [here](https://jaymew88.github.io/web_project_4/index.html)
 
