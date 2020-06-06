@@ -4,8 +4,8 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  color: black;
-  background: white;
+  color: #000;
+  background: #fff;
   opacity: 0.2; 
   pointer-events: none;
 }

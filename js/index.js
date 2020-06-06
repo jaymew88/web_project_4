@@ -1,6 +1,6 @@
 // Imports 
-import {Card} from "./Card.js";
-import {FormValidator} from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js";
 
 // Initial Cards to be loaded 
 const initialCards = [
