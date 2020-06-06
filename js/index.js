@@ -66,9 +66,17 @@ const editCloseButton = editPopupWindow.querySelector('.popup__button_role_close
 const addPlaceCloseButton = addPlacePopupWindow.querySelector('.popup__button_role_close');
 const imageCloseButton = imagePopupWindow.querySelector('.popup__button_role_close');
 
-// Enable FormValidator
-new FormValidator(editForm, validationSettings).enableValidation();
-new FormValidator(addForm, validationSettings).enableValidation();
+// Profile Popup Open Button
+profileEditButton.addEventListener('click', () => {
+  initProfileForm();  
+  togglePopup(editPopupWindow);
+}); 
+
+// Add Place Open Popup Button
+profileAddButton.addEventListener('click', () => {
+  initPlaceForm();
+  togglePopup(addPlacePopupWindow);
+});
 
 // Takes createCard function and adds it to the list of cards in the HTML
 function renderCard(element) {
@@ -78,18 +86,9 @@ function renderCard(element) {
   cardsList.prepend(newElement);
 }
 
-
-// Function to open/close popup windows
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
-
-// Popup closes with Esc key
-  window.addEventListener('keyup', (e) => {
-    if (e.keyCode == 27 && document.querySelector('.popup_opened')) { 
-      togglePopup(popup);
-    }
-  });
-}
+// Enable FormValidator
+new FormValidator(editForm, validationSettings).enableValidation();
+new FormValidator(addForm, validationSettings).enableValidation();
 
 // Enables submit button active upon Edit Popup Open
 function initProfileForm() {
@@ -102,6 +101,18 @@ function initPlaceForm() {
   imageTitleInput.value = null;
   imageLinkInput.value = null;
 } 
+
+// Function to open/close popup windows
+function togglePopup(popup) {
+  popup.classList.toggle('popup_opened');
+
+// Popup closes with Esc key
+  window.addEventListener('keyup', (e) => {
+    if (e.keyCode == 27 && document.querySelector('.popup_opened')) { 
+      togglePopup(popup);
+    }
+  });
+}
 
 // Add Card Form Event Listener 
 addForm.addEventListener('submit', (e) => {
@@ -119,19 +130,9 @@ editForm.addEventListener('submit', (e) => {
   togglePopup(editPopupWindow);
 });
 
-// Profile Popup Open Button
-profileEditButton.addEventListener('click', () => {
-  initProfileForm();  
-  togglePopup(editPopupWindow);
-}); 
 // Edit Popup Close Button 
 editCloseButton.addEventListener('click', () => {
   togglePopup(editPopupWindow);
-});
-// Add Place Open Popup Button
-profileAddButton.addEventListener('click', () => {
-  initPlaceForm();
-  togglePopup(addPlacePopupWindow);
 });
 // Add Place Close Popup Button
 addPlaceCloseButton.addEventListener('click', () => {
@@ -152,7 +153,6 @@ document.addEventListener('click', (e) => {
 // Loops initialCards array, renders a card for each item in array and add it to the DOM
 initialCards.forEach(element => renderCard(element));
 
-
-
-
-
+// Enables submit button active upon page load
+nameInput.value = nameNew.textContent;
+jobInput.value = jobNew.textContent;
