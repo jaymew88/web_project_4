@@ -34,6 +34,12 @@ export default class PopupWithForm extends Popup {
     this._nameInputField.value = null;
     this._jobInputField.value = null;
   }
+
+  open(name, job) {
+    this._nameInputField.value = name;
+    this._jobInputField.value = job;
+    super.open();
+  }
 }
 
 // 1. It takes a callback of the form submission into the constructor, as well as the popup selector.

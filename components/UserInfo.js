@@ -1,5 +1,22 @@
-// The UserInfo class is responsible for rendering information about the user on the page. 
-//This class should:
+// UserInfo class renders information about the user on the page. 
+export default class UserInfo {
+  constructor(nameSelector, jobSelector) {
+    this.name = document.querySelector(nameSelector);
+    this.job = document.querySelector(jobSelector);
+  }
+
+  getUserInfo() {
+    return {
+      name: this._name.textContent,
+      job: this._job.textContent
+    }
+  }
+
+  setUderInfo() {
+    this._name.textContent = name;
+    this._job.textContent = job;
+  }
+}
 
 
 // 1. Take an object with the selectors of two elements into the constructor: one containing the user's 
