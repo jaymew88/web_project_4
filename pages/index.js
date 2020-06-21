@@ -1,6 +1,8 @@
 // Imports 
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
+
+import "./index.css";
 //import { Section } from "../components/Section";
 
 // Initial Cards to be loaded 
