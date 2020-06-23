@@ -2,7 +2,7 @@
 
 export default class Popup {
   constructor(popupSelector) {
-      this._popup = document.querySelector('.popup');
+      this._popup = document.querySelector(popupSelector);
   }
 
   open() {
@@ -22,10 +22,10 @@ export default class Popup {
 
   setEventListeners () {
     const closeButton = this._popup.querySelector('.popup__button_role_close');
-    closeButton.addEventListener('click', (e) => ) {
+    closeButton.addEventListener('click', (e) => {
         this.close();
         e.stopPropagation();
-    }
+    });
   }
 }
 
