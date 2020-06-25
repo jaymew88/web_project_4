@@ -1,5 +1,3 @@
-// Popup class opens and closes the popup window
-
 export default class Popup {
   constructor(popupSelector) {
       this._popup = document.querySelector(popupSelector);
@@ -7,20 +5,30 @@ export default class Popup {
 
   open() {
      this._popup.classList.add('popup_opened'); 
+    // document.addEventListener('keydown', (e) => this._handleEscClose(e.key));
   }
 
   close() {
      this._popup.classList.remove('popup_opened');
+    // document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose (e) {
     if (e.key === 27) {
       this.close();
-      e.stopPropagation();
     }
   }
 
   setEventListeners () {
+    this._popup.addEventListener('click', (e) => {
+      this.close();
+      e.stopPropagation();
+    });
+
+    this._popup.addEventListener('keydown', (e) => {
+      this._handleEscClose(e);
+
+    })
     const closeButton = this._popup.querySelector('.popup__button_role_close');
     closeButton.addEventListener('click', (e) => {
         this.close();
@@ -29,7 +37,3 @@ export default class Popup {
   }
 }
 
-// 1. The constructor has a single parameter, which is the popup selector.
-// 2. It stores the public methods open() and close() that will open and close the popup.
-// 3. It stores a private method named _handleEscClose() that stores the logic for closing the popup by pressing the Esc key.
-// 4. It stores a public method named setEventListeners() that adds a click event listener to the close icon of the popup.
