@@ -18,19 +18,14 @@ import {
   profileAddButton
 } from "../utils/constants.js";
 
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title', 
+  jobSelector: '.profile__job'
+});
+
 // Image Popup 
 const popupWithImage = new PopupWithImage('.popup_type_image');
-
-// Calls the Card class and creates a new card
-//function renderCard(item) {
-  //const card = new Card({item, handleCardClick: ({name, link}) => {
-    //popupWithImage.open(name, link);
-  //}
-    //}, '.template-card');
-
-    //const cardElement = card.createCard();
-    //return cardElement;//
-//}
+popupWithImage.setEventListeners();
 
 // Calls the Section class, to create a list of cards and adds them to the DOM
 const cardsList = new Section({
@@ -47,11 +42,27 @@ const cardsList = new Section({
 
 // Enable FormValidator
 forms.forEach((form) => {
-  const newFormValidator = new FormValidator(form, validationSettings);
-  newFormValidator.enableValidation();
+  new FormValidator(form, validationSettings).enableValidation();
 });
 
+// Edit Profile Popup Form and Submit
+const profileSubmitHandler = (inputValues) => {
+  userInfo.setUserInfo(inputValues.title, inputValues.detail);
+}
+const editPopupForm = new PopupWithForm('.popup_type_edit', profileSubmitHandler);
+editPopupForm.setEventListeners();
 
+
+
+// Add Place Popup Form and Submit
+
+
+
+// Open Form Event Listeners
+profileEditButton.addEventListener('click', () => {
+  const {name, job} = userInfo.getUserInfo();
+  editPopupForm.open(name, job);
+});
 
 cardsList.renderItems();
 
