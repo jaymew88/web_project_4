@@ -54,7 +54,7 @@ function renderCard(element) {
     return card.createCard();
 }
 
-function editProfileSubmitHandler({ 'name-input': name, 'job-input':job }) {
+function editProfileSubmitHandler({ 'name-input': name, 'job-input': job }) {
   userInfo.setUserInfo({ name, job });
 }
 
@@ -66,11 +66,10 @@ function addPlaceSubmitHandler(e){
 popupWithImage.setEventListeners();
 
 profileEditPopupForm.setEventListeners();
-//profileEditButton.addEventListener('click', () => profileEditPopupForm.open());
 profileEditButton.addEventListener('click', () => {
   const inputs = userInfo.getUserInfo();
   nameInput.value = inputs.name;
-  jobInput.value = inputs.occ;
+  jobInput.value = inputs.job;
   profileEditPopupForm.open();
 });
 
