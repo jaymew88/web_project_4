@@ -10,12 +10,14 @@ import {
   initialCards,
   validationSettings,
   forms,
+  nameInput,
+  jobInput,
   profileEditButton,
   profileAddButton
 } from "../utils/constants.js";
 
 // Class Instances 
-const profileInfo = new UserInfo({ 
+const userInfo = new UserInfo({ 
   nameSelector: '.profile__title', 
   jobSelector: '.profile__job' 
 });
@@ -52,8 +54,8 @@ function renderCard(element) {
     return card.createCard();
 }
 
-function editProfileSubmitHandler(name, job) {
-  profileInfo.setUserInfo(name, job);
+function editProfileSubmitHandler({ 'name-input': name, 'job-input':job }) {
+  userInfo.setUserInfo({ name, job });
 }
 
 function addPlaceSubmitHandler(e){
@@ -64,8 +66,11 @@ function addPlaceSubmitHandler(e){
 popupWithImage.setEventListeners();
 
 profileEditPopupForm.setEventListeners();
+//profileEditButton.addEventListener('click', () => profileEditPopupForm.open());
 profileEditButton.addEventListener('click', () => {
-  profileInfo.getUserInfo();
+  const inputs = userInfo.getUserInfo();
+  nameInput.value = inputs.name;
+  jobInput.value = inputs.occ;
   profileEditPopupForm.open();
 });
 
