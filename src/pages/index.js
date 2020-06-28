@@ -66,7 +66,6 @@ function addPlaceSubmitHandler(e){
 popupWithImage.setEventListeners();
 
 profileEditPopupForm.setEventListeners();
-//profileEditButton.addEventListener('click', () => profileEditPopupForm.open());
 profileEditButton.addEventListener('click', () => {
   const inputs = userInfo.getUserInfo();
   nameInput.value = inputs.name;
