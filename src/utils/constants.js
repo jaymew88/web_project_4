@@ -38,22 +38,12 @@ export const validationSettings = {
   errorClass: "popup__field-error_active" 
 };
 
-export const forms = Array.from(document.querySelectorAll('.popup__form'));
+// Forms Array
+export const forms = Array.from(document.querySelectorAll(validationSettings.formSelector));
 
-// Popups
-//export const addPlacePopupWindow = document.querySelector('.popup_type_add-place');
-
-// Popup Forms
-//export const addForm = addPlacePopupWindow.querySelector('.popup__form');
-//export const editForm = editPopupWindow.querySelector('.popup__form');
-
-//Form Fields
-//export const imageTitleInput = addPlacePopupWindow.querySelector('.popup__field_place_name');
-//export const imageLinkInput = addPlacePopupWindow.querySelector('.popup__field_place_image');
-
-//Profile Fields
-//export const nameNew = document.querySelector('.profile__title');
-//export const jobNew = document.querySelector('.profile__job');
+// Form Fields 
+export const nameInput = document.querySelector('.popup__field_name');
+export const jobInput = document.querySelector('.popup__field_job');
 
 // Buttons
 export const profileEditButton = document.querySelector('.profile__button_role_edit');

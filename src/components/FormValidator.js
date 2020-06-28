@@ -23,7 +23,7 @@ export default class FormValidator {
   // Checks for validity in form
   _checkInputValidity(inputField) {
     if (!inputField.validity.valid) {
-      this._showInputError(inputField);
+      this._showInputError(inputField, inputField.validationMessage);
     } else {
       this._hideInputError(inputField);
     }

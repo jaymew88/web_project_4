@@ -1,7 +1,7 @@
 export default class Card {
-  constructor(cardName, cardLink, cardSelector, handleCardClick) {
-    this._cardName = cardName;
-    this._cardLink = cardLink;
+  constructor({ name, link, handleCardClick }, cardSelector) {
+    this._name = name;
+    this._link = link;
     this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
@@ -16,25 +16,24 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element.addEventListener ('click', (e) => {
-      this._handleCardClick(this._cardName, this._cardLink);
-      e.stopPropagation();
+    this._element.querySelector('.card__img')
+    .addEventListener ('click', () => {
+      this._handleCardClick({
+        name: this._name,
+        link: this._link
+      });
     });
     
   // Removes card
-    const elementDeleteButton = this._element.querySelector('.card__delete-button');
-    elementDeleteButton.addEventListener('click', (e) => {
-      e.preventDefault();
+    this._element.querySelector('.card__delete-button')
+    .addEventListener('click', (e) => {
       e.target.parentElement.remove();
-      e.stopPropagation();
     });
 
   // Click change heart color
-    const elementLikeButton = this._element.querySelector('.card__like-button');
-    elementLikeButton.addEventListener('click', (e) => {
-      e.preventDefault();
+    this._element.querySelector('.card__like-button')
+    .addEventListener('click', (e) => {
       e.target.classList.toggle('card__like-button_active');
-      e.stopPropagation();
     });
   }
 
@@ -43,9 +42,9 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector('.card__img').src = this._cardLink;
-    this._element.querySelector('.card__img').alt = this._cardName;
-    this._element.querySelector('.card__name').textContent = this._cardName;
+    this._element.querySelector('.card__img').src = this._link;
+    this._element.querySelector('.card__img').alt = this._name;
+    this._element.querySelector('.card__name').textContent = this._name;
     
     return this._element;
   }
