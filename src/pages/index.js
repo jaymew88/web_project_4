@@ -54,7 +54,7 @@ function renderCard(element) {
     return card.createCard();
 }
 
-function editProfileSubmitHandler({ 'name-input': name, 'job-input': job }) {
+function editProfileSubmitHandler({ 'name-input': name, 'job-input':job }) {
   userInfo.setUserInfo({ name, job });
 }
 
