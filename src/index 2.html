@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project through Practicum by Yandex for the Web Development course.">
+  <meta name="author" content="Jayme Waye">
+  <title>Around The USA</title>
+</head>
+
+<body class="page">
+  <header class="header">
+    <img class="logo" src="./images/logo.svg" alt="logo">
+  </header>
+
+  <main class="content">
+    <!-- Profile Section -->
+    <section class="profile">
+      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+      <div class="profile__info">
+        <h1 class="profile__title">Jacques Cousteau</h1>
+        <button class="button profile__button profile__button_role_edit"></button>
+        <p class="profile__job">Explorer</p>
+      </div> 
+      <button class="button profile__button profile__button_role_add"></button>
+    </section>
+
+    <!-- Cards Section with Template -->
+    <section class="cards">
+      <ul class="cards__list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Around The U.S.</p>
+  </footer>
+
+  <!-- Popup for Edit Profile Section -->
+  <div class="popup popup_type_edit">
+    <div class="popup__container popup__container_form">
+      <button class="button popup__button popup__button_role_close"></button>
+      <form class="popup__form" action="#" name="profile-edit" novalidate>
+        <h2 class="popup__title">Edit Profile</h2>
+        <label class="popup__label" for="name-input">
+          <input 
+            class="popup__field popup__field_name" 
+            name="name-input"
+            id="name-input" 
+            type="text" 
+            placeholder="Name" 
+            pattern="[A-Za-z -]+"  
+            minlength="2" 
+            maxlength="40" 
+            required
+          />
+          <span class="popup__field-error" id="name-input-error"></span>
+        </label>
+        <label class="popup__label" for="job-input">
+          <input 
+            class="popup__field popup__field_job" 
+            name="job-input"
+            id="job-input" 
+            type="text" 
+            placeholder="About Me" 
+            minlength="2" 
+            maxlength="200" 
+            required
+            />
+            <span class="popup__field-error" id="job-input-error"></span>
+        </label> 
+        <button class="button popup__button popup__button_role_save" type="submit">Save</button>
+      </form>
+    </div> 
+  </div>
+
+  <!-- Popup for Add Image Section -->
+  <div class="popup popup_type_add-place">
+    <div class="popup__container popup__container_form">
+      <button class="button popup__button popup__button_role_close"></button>
+      <form class="popup__form" action="#" name="add-place">
+        <h2 class="popup__title">New Place</h2>
+        <label class="popup__label">
+          <input 
+            class="popup__field popup__field_place_name" 
+            id="place-input" 
+            name="place-input"
+            type="text" 
+            placeholder="Title"
+            minlength="1" 
+            maxlength="30" 
+            required
+          />
+          <span class="popup__field-error" id="place-input-error"></span>
+        </label>
+        <label class="popup__label">
+          <input 
+            class="popup__field popup__field_place_image" 
+            name="image-input"
+            id="image-input" 
+            type="url" 
+            placeholder="Image Link"
+            required
+          />
+          <span class="popup__field-error" id="image-input-error"></span>
+        </label>
+        <button class="button popup__button popup__button_role_save" type="submit">Create</button>
+      </form>
+    </div> 
+  </div> 
+
+  <!-- Popup for Image -->
+  <div class="popup popup_type_image">
+    <div class="popup__container">
+      <img class="popup__img">
+      <p class="popup__img-title"></p>
+      <button class="button popup__button popup__button_role_close" aria-label="Close Image"></button>
+    </div> 
+  </div> 
+
+  <!-- Cards Template -->
+  <template class="template-card">
+    <li class="card">
+      <button type="button" class="button card__delete-button" aria-label="Delete Button"></button>
+      <img class="card__img">
+      <div class="card__wrapper">
+        <h3 class="card__name"></h3>
+        <button type="button" class="button card__like-button" aria-label="Like Button"></button>
+      </div>
+    </li>
+  </template>
+
+</body>
+</html>
