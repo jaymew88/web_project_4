@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({ name, link, handleCardClick }, cardSelector) {
+  constructor({ name, link, handleCardClick }, cardSelector, user) {
     this._name = name;
     this._link = link;
     this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
+    this._user = user;
   }
 
   // Clones Template Card

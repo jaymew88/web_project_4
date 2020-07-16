@@ -1,0 +1,17 @@
+.profile__button_role_edit-pic {
+  display: flex;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: none;
+  background: url('../../../../images/edit-btn.svg') no-repeat center rgba(0, 0, 0, .8);
+  cursor: pointer;
+  background-size: 26px 26px;
+  padding: 0;
+  opacity: 0;
+  transition: opacity .5s ease-in;
+}
+
+.profile__button_role_edit-pic:hover {
+  opacity: 1;
+}

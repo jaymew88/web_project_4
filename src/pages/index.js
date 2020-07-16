@@ -1,5 +1,7 @@
 // Import CSS files for Webpack
 import "./index.css";
+
+// Import Classes
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -7,6 +9,8 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+
+// Import Constants
 import {
   initialCards,
   validationSettings,
@@ -17,13 +21,14 @@ import {
   profileAddButton
 } from "../utils/constants.js";
 
-// const api = new Api({
-//   baseUrl: "https://around.nomoreparties.co/v1/group-1",
-//   headers: {
-//     authorization: "221729e2-57e6-4114-b977-8051f88d50cb",
-//     "Content-Type": "application/json"
-//   }
-// });
+// API Initialization
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-1",
+  headers: {
+    authorization: "221729e2-57e6-4114-b977-8051f88d50cb",
+    "Content-Type": "application/json"
+  }
+});
 
 // Class Instances 
 const userInfo = new UserInfo({ 

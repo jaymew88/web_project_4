@@ -1,97 +1,136 @@
 export default class Api {
   constructor(options) {
-    this.headers = options.headers;
-    this.baseUrl = options.baseUrl; 
+    this.headers = options.headers; 
   }
 
   getInitialCards() {
-    const cardsUri = this.baseUrl.concat("cards");
-    return this._getResource(cardsUri);
+    return fetch(`${this.options.baseUrl}/cards`, {
+      headers: this.options.headers,
+  })
+    .then(res => {
+      if (res.ok) {
+          return res.json();
+      } else {
+          return Promise.reject(`Error: ${res.status}`);
+      }
+    });
   }
 
-  newCard(name, link) {
-    const cardsUri = this.baseUrl.concat("cards");
-    const body = JSON.stringify({
-      name: name,
-      link: link
-    });
-    return this._sendRequestWithBody(cardsUri, body, "POST");
+  newCard({ name: newName, link: newLink }) {
+    return fetch(`${this.options.baseUrl}/cards`, {
+      method: "POST",
+      headers: this.options.headers,
+      body: JSON.stringify({
+        name: newName, 
+        link: newLink })
+    })
+      .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject(`Error: ${res.status}`);
+        }
+      });
   }
 
   deleteCard(cardId) {
-    const cardUri = this.baseUrl.concat('/cards/').concat(cardId);
-    return this._sendRequestWithoutBody(cardUri, "DELETE");
+    return fetch(`${this.options.baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this.options.headers,
+  })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      });
   }
 
-  addLike(cardId) {
-    const likeUri = this.baseUrl.concat("/cards/likes/").concat(cardId);
-    return this._sendRequestWithoutBody(likeUri, "PUT");
+  addLike(cardId, userId) {
+    if (cardId.likes.some((like) => {return (like._id === userId);})) {
+      return fetch(`${this.options.baseUrl}/cards/likes/${cardId._id}`, {
+          method: "DELETE",
+          headers: this.options.headers,
+      })
+          .then(res => {
+              if (res.ok) {
+                  return res.json();
+              } else {
+                  return Promise.reject(`Error: ${res.status}`);
+              }
+          });
+    } else {
+        return fetch(`${this.options.baseUrl}/cards/likes/${cardId._id}`, {
+            method: "PUT",
+            headers: this.options.headers,
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(`Error: ${res.status}`);
+                }
+            });
+    }
   }
 
   removeLike(cardId) {
-    const likeUri = this.baseUrl.concat("/cards/likes/").concat(cardId);
-    return this._sendRequestWithoutBody(likeUri, "DELETE");
+    return fetch(`${this.options.baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this.options.headers,
+  })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      });
   }
 
   getProfileInfo() {
-    const profileUri = this.baseUrl.concat("/users/me");
-    return this._getResource(profileUri);
+    return fetch(`${this.options.baseUrl}/users/me`, {
+      headers: this.options.headers,
+    })
+      .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject(`Error: ${res.status}`);
+        }
+      });
   }
 
-  updateProfileInfo(name, job) {
-    const profileUri = this.baseUrl.concat("/users/me");
-    const body = JSON.stringify({
-      name: name, 
-      job: job
-    });
-    return this._sendRequestWithoutBody(profileUri, body, "PATCH");
+  updateProfileInfo({ name: newName, job: newJob }) {
+    return fetch(`${this.options.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this.options.headers,
+      body: JSON.stringify({ 
+        name: newName, 
+        job: newJob })
+  })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      });
   }
 
   updateProfilePicture(avatarLink) {
-    const profileUri = this.baseUrl.concat("/users/me/avatar");
-    const body = JSON.stringify({
-      avatar: avatarLink
-    });
-    return this._sendRequestWithBody(profileUri, body, "PATCH");
-  }
-
-  // MOVE to function above?????
-  _getResource(uri) {
-    return fetch(uri, {
-      headers: this.headers
+    return fetch(`${this.options.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this.options.headers,
+      body: JSON.stringify(avatarLink)
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      });
   }
-
-  _sendRequestWithoutBody(uri, method) {
-    return fetch(uri, {
-      method: method,
-      headers: this.headers
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
-  }
-
-  _sendRequestWithBody(uri, body, method) {
-    return fetch(uri, {
-      method: method,
-      headers: this.headers,
-      body: body
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
-  }
-
 }
-
