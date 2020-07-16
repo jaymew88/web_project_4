@@ -17,7 +17,10 @@
   <main class="content">
     <!-- Profile Section -->
     <section class="profile">
-      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+      <button class="button profile__button_role_edit-pic">
+        <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+        <div class="profile__pic-edit"></div>
+      </button>
       <div class="profile__info">
         <h1 class="profile__title">Jacques Cousteau</h1>
         <button class="button profile__button profile__button_role_edit"></button>
@@ -73,6 +76,27 @@
       </form>
     </div> 
   </div>
+    <!-- Popup for Edit Profile Picture Section -->
+    <div class="popup popup_type_edit-pic">
+        <div class="popup__container popup__container_form">
+          <button class="button popup__button popup__button_role_close"></button>
+          <form class="popup__form" action="#" name="profile-edit-pic" novalidate>
+            <h2 class="popup__title">Change Userpic</h2>
+            <label class="popup__label" for="edit-pic">
+              <input 
+              class="popup__field popup__field_edit-pic" 
+              name="edit-pic"
+              id="edit-pic" 
+              type="url" 
+              placeholder="Edit User Pic"
+              required
+              />
+            <span class="popup__field-error" id="image-input-error"></span>
+            </label>
+            <button class="button popup__button popup__button_role_save" type="submit">Save</button>
+          </form>
+        </div> 
+      </div>
 
   <!-- Popup for Add Image Section -->
   <div class="popup popup_type_add-place">
@@ -118,6 +142,17 @@
     </div> 
   </div> 
 
+  <!-- Popup for Delete Card -->
+  <div class="popup popup_type_delete">
+    <div class="popup__container popup__container_form">
+        <button class="button popup__button popup__button_role_close"></button>
+        <form class="popup__form" action="#" novalidate>
+          <h2 class="popup__title">Are you sure?</h2>
+          <button class="button popup__button popup__button_role_save" type="submit">Yes</button>
+        </form>
+    </div>
+  </div>
+
   <!-- Cards Template -->
   <template class="template-card">
     <li class="card">
@@ -125,7 +160,10 @@
       <img class="card__img">
       <div class="card__wrapper">
         <h3 class="card__name"></h3>
-        <button type="button" class="button card__like-button" aria-label="Like Button"></button>
+        <div class="card__like">
+          <button type="button" class="button card__like-button" aria-label="Like Button"></button>
+          <p class="card__like-count">1</p>
+        </div>
       </div>
     </li>
   </template>

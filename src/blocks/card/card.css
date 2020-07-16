@@ -4,6 +4,8 @@
 @import url(../card/__name/card__name.css);
 @import url(../card/__like-button/card__like-button.css);
 @import url(../../blocks/card/__like-button/_active/card__like-button_active.css);
+@import url(../../blocks/card/__like-count/card__like-count.css);
+@import url(../../blocks/card/__like/card__like.css);
 
 .card {
   width: 282px;
