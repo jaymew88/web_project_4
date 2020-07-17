@@ -1,25 +1,25 @@
 export default class UserInfo {
-  constructor({ nameSelector, jobSelector, picSelector }) {
+  constructor({ nameSelector, jobSelector }) {
     this._name = document.querySelector(nameSelector);
-    this._job = document.querySelector(jobSelector);
-    this._pic = document.querySelector(picSelector);
+    this._about = document.querySelector(jobSelector);
+    //this._pic = document.querySelector(picSelector);
   }
 
   // Gets User info from Profile fields
   getUserInfo() {
     return {
       name: this._name.textContent,
-      job: this._job.textContent,
+      about: this._about.textContent,
     };
   } 
   
   // Set New User Info from Edit Form fields
-  setUserInfo({ name, job }) {
+  setUserInfo({ name, about }) {
     this._name.textContent = name;
-    this._job.textContent = job;
+    this._about.textContent = about;
   }
 
-  setUserPic ({ url }) {
-    this._pic.src = url;
-  }
+  // setUserPic ({ url }) {
+  //   this._pic.src = url;
+  // }
 }

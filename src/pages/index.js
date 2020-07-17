@@ -12,11 +12,10 @@ import UserInfo from "../components/UserInfo.js";
 
 // Import Constants
 import {
-  initialCards,
   validationSettings,
   forms,
   nameInput,
-  jobInput,
+  aboutInput,
   profileEditButton,
   profileAddButton
 } from "../utils/constants.js";
@@ -30,20 +29,37 @@ const api = new Api({
   }
 });
 
-// Class Instances 
 const userInfo = new UserInfo({ 
   nameSelector: '.profile__title', 
-  jobSelector: '.profile__job' 
+  jobSelector: '.profile__job',
+  //picSelector: '.profile__pic'
 });
 
-const cardsList = new Section({
-  items: initialCards,
-  renderer: (element)  => {
-    const card = renderCard(element);
-    cardsList.addItems(card);
-  }
-}, '.cards__list');
-cardsList.renderItems();
+api.getAppInfo() 
+  .then(([cardsList, userInfoData]) => {
+    api.getInitialCards()
+    .then((res) => {
+      console.log(res);
+ 
+     const cardList = new Section({
+       items: cardsList,
+       renderer: (element)  => {
+         const card = renderCard(element);
+         cardList.addItems(card);
+       }
+     }, '.cards__list');
+     cardList.renderItems();
+
+     userInfo.setUserInfo({ name: userInfoData.name, about: userInfoData.about })
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  });
+
+
+
+
 
 const profileEditPopupForm = new PopupWithForm('.popup_type_edit', editProfileSubmitHandler);
 
@@ -68,12 +84,14 @@ function renderCard(element) {
     return card.createCard();
 }
 
-function editProfileSubmitHandler({ 'name-input': name, 'job-input':job }) {
-  userInfo.setUserInfo({ name, job });
+function editProfileSubmitHandler({ 'name-input': name, 'job-input':about }) {
+  userInfo.setUserInfo({ name, about });
 }
 
-function addPlaceSubmitHandler(e){
-  cardsList.addItems(renderCard(e));
+function addPlaceSubmitHandler() {
+  return api.newCard({ name, link }).then ((cardData) => {
+    cardsList.addItems(renderCard({ cardData }))
+  });
 }
 
 // Event Listeners
@@ -83,7 +101,7 @@ profileEditPopupForm.setEventListeners();
 profileEditButton.addEventListener('click', () => {
   const inputs = userInfo.getUserInfo();
   nameInput.value = inputs.name;
-  jobInput.value = inputs.job;
+  aboutInput.value = inputs.about;
   profileEditPopupForm.open();
 });
 
