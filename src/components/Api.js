@@ -52,19 +52,19 @@ export default class Api {
       });
   }
 
-  // deleteCard(cardId) {
-  //   return fetch(`${this.baseUrl}/cards/${cardId}`, {
-  //     method: "DELETE",
-  //     headers: this.headers,
-  // })
-  //     .then(res => {
-  //         if (res.ok) {
-  //             return res.json();
-  //         } else {
-  //             return Promise.reject(`Error: ${res.status}`);
-  //         }
-  //     });
-  // }
+  deleteCard(cardId) {
+    return fetch(this.baseUrl + /cards/ + cardId, {
+      method: "DELETE",
+      headers: this.headers,
+  })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      });
+  }
 
   // addLike(cardId, userId) {
   //   if (cardId.likes.some((like) => {return (like._id === userId);})) {

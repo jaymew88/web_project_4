@@ -35,64 +35,66 @@ const userInfo = new UserInfo({
   //picSelector: '.profile__pic'
 });
 
-api.getAppInfo() 
-  .then(([cardsList, userInfoData]) => {
-    api.getInitialCards()
-    .then((res) => {
-      console.log(res);
- 
-     const cardList = new Section({
-       items: cardsList,
-       renderer: (element)  => {
-         const card = renderCard(element);
-         cardList.addItems(card);
-       }
-     }, '.cards__list');
-     cardList.renderItems();
-
-     userInfo.setUserInfo({ name: userInfoData.name, about: userInfoData.about })
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  });
-
-
-
-
 
 const profileEditPopupForm = new PopupWithForm('.popup_type_edit', editProfileSubmitHandler);
-
-const addPlacePopupForm = new PopupWithForm('.popup_type_add-place', addPlaceSubmitHandler);
-
 const popupWithImage = new PopupWithImage('.popup_type_image');
+  
+// Function that returns items after a Promise.all
+api.getAppInfo()
+  .then(([cardsList, userInfoData]) => {
+    const cardList = new Section({
+    items: cardsList,
+    renderer: (data)  => {
+      const card = renderCard({ data });
+      cardList.addItems(card);
+    }
+  }, '.cards__list');
+  cardList.renderItems();
 
-//Form Validators
-forms.forEach((form) => {
-  const formValidator = new FormValidator(form, validationSettings);
-  formValidator.enableValidation();
-});
+  function renderCard({ data }) {
+    const card = new Card({ 
+      data, 
+      popup: PopupWithImage, 
+      handleCardClick}, 
+      '.template-card');
+      return card.createCard();
+  }
+
+  userInfo.setUserInfo({ name: userInfoData.name, about: userInfoData.about })
+
+  // Add place popup
+  const addPlacePopupForm = new PopupWithForm('.popup_type_add-place', addPlaceSubmitHandler);
+  addPlacePopupForm.setEventListeners();
+  profileAddButton.addEventListener('click', () => addPlacePopupForm.open());
+
+  function addPlaceSubmitHandler({
+    'place-input': imageTitle,
+    'image-input': imageLink
+  }) {
+  return api.newCard({ name: imageTitle, link: imageLink }).then ((data) => {
+    cardsList.addItems(renderCard({ data }))
+  });
+  } 
+
+}); // End getAppInfo Function
+
 
 // Handlers
 function handleCardClick(data) {
   popupWithImage.open(data);
 }
 
-function renderCard(element) {
-  const card = new Card({ ...element, popup: PopupWithImage, handleCardClick}, 
-    '.template-card');
-    return card.createCard();
-}
+
 
 function editProfileSubmitHandler({ 'name-input': name, 'job-input':about }) {
   userInfo.setUserInfo({ name, about });
 }
 
-function addPlaceSubmitHandler() {
-  return api.newCard({ name, link }).then ((cardData) => {
-    cardsList.addItems(renderCard({ cardData }))
-  });
-}
+//Form Validators
+forms.forEach((form) => {
+  const formValidator = new FormValidator(form, validationSettings);
+  formValidator.enableValidation();
+});
 
 // Event Listeners
 popupWithImage.setEventListeners();
@@ -104,8 +106,3 @@ profileEditButton.addEventListener('click', () => {
   aboutInput.value = inputs.about;
   profileEditPopupForm.open();
 });
-
-addPlacePopupForm.setEventListeners();
-profileAddButton.addEventListener('click', () => addPlacePopupForm.open());
-
-

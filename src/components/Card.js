@@ -1,12 +1,15 @@
 export default class Card {
-  constructor({ name, link, handleCardClick }, cardSelector) {
-    this._name = name;
-    this._link = link;
-    // this._likes = likes;
+  constructor({ data, handleCardClick }, cardSelector, user) {
+    this._name = data.name;
+    this._link = data.link;
+    this._cardId = data._id;
+    this._owner = data.owner._id;
+    this._likes = data.likes;
     this._handleCardClick = handleCardClick;
+   // this._handleDeleteClick = handleDeleteClick;
     this._cardSelector = cardSelector;
-    // this._user = user;
-  
+    this._user = user;
+
   }
 
   // Clones Template Card
@@ -46,11 +49,11 @@ export default class Card {
     this._setEventListeners();
 
     // Delete card only if it belongs to User
-    // if(this._belongsToUser) {
-    //   this._element
-    //   .querySelector('.card__delete-button')
-    //   .classList.remove('.card__like-button_active');
-    // }
+    if(this._owner !== this._user) {
+      this._element
+      .querySelector('.card__delete-button')
+      .classList.remove('.card__like-button_active');
+    }
 
     // Add like counts
     // if(this.__likedCard) {
