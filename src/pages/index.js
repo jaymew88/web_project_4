@@ -14,13 +14,12 @@ import UserInfo from "../components/UserInfo.js";
 import {
   validationSettings,
   forms,
-  nameInput,
-  aboutInput,
-  profileEditButton,
-  profileAddButton
+  editUserButton,
+  editAvatarButton,
+  addCardButton
 } from "../utils/constants.js";
 
-// API Initialization
+// API 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-1",
   headers: {
@@ -29,66 +28,158 @@ const api = new Api({
   }
 });
 
-const userInfo = new UserInfo({ 
-  nameSelector: '.profile__title', 
-  jobSelector: '.profile__job',
-  //picSelector: '.profile__pic'
-});
-
-
-const profileEditPopupForm = new PopupWithForm('.popup_type_edit', editProfileSubmitHandler);
-const popupWithImage = new PopupWithImage('.popup_type_image');
-  
-// Function that returns items after a Promise.all
-api.getAppInfo()
-  .then(([cardsList, userInfoData]) => {
-    const cardList = new Section({
-    items: cardsList,
-    renderer: (data)  => {
-      const card = renderCard({ data });
-      cardList.addItems(card);
-    }
-  }, '.cards__list');
-  cardList.renderItems();
-
-  function renderCard({ data }) {
-    const card = new Card({ 
-      data, 
-      popup: PopupWithImage, 
-      handleCardClick}, 
-      '.template-card');
-      return card.createCard();
-  }
-
-  userInfo.setUserInfo({ name: userInfoData.name, about: userInfoData.about })
-
-  // Add place popup
-  const addPlacePopupForm = new PopupWithForm('.popup_type_add-place', addPlaceSubmitHandler);
-  addPlacePopupForm.setEventListeners();
-  profileAddButton.addEventListener('click', () => addPlacePopupForm.open());
-
-  function addPlaceSubmitHandler({
-    'place-input': imageTitle,
-    'image-input': imageLink
-  }) {
-  return api.newCard({ name: imageTitle, link: imageLink }).then ((data) => {
-    cardsList.addItems(renderCard({ data }))
-  });
-  } 
-
-}); // End getAppInfo Function
-
-
 // Handlers
 function handleCardClick(data) {
   popupWithImage.open(data);
 }
 
-
-
-function editProfileSubmitHandler({ 'name-input': name, 'job-input':about }) {
-  userInfo.setUserInfo({ name, about });
+function handleDeleteClick(card) {
+  deleteCardConfirmation.open([card])
 }
+
+function handleLikeButtonClick({cardLiked, cardId}) {
+  if (cardLiked) {
+    return api.addLike({cardId}).then((cardItem) => {
+      return cardItem.likes;
+    });
+  } else {
+    return api.removeLike({cardId}).then((cardItem) => {
+      return cardItem.likes;
+    });
+  }
+}
+
+function renderCard({ cardItem }, userId) {
+  const userLikedCard = cardItem.likes
+  .map((usersLiked) => usersLiked._id)
+  .includes(userId);
+  const card = new Card({ 
+    cardItem, 
+    popup: PopupWithImage, 
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeButtonClick,
+    userLikedCard,
+  }, 
+    '.template-card', userId);
+  
+   console.log(cardItem);
+
+  return card.createCard(cardItem);
+}
+
+// Overlay Profile Description
+function editProfileSubmitHandler({ 
+  'name-input': name, 
+  'job-input':about
+ }) {
+    return api.editUserInfo({ name: name, about: about })
+      .then(({ name: newName, about: newJob }) => {
+          userInfo.setUserInfo({ name: newName, about: newJob });
+          editUserPopupForm.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        editUserPopupForm.renderLoading(false);
+        editUserPopupForm._form.reset();
+      });
+  }
+
+// Overlay Add Place
+function addPlaceSubmitHandler({
+  'place-input': imageTitle,
+  'image-input': imageLink
+}) {
+    return api.newCard({ name: imageTitle, link: imageLink })
+      .then ((data) => {
+        cardsList.addItems(renderCard({ data }))
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        addCardPopupForm.renderLoading(false);
+        addCardPopupForm._form.reset();
+    });
+  } 
+
+// Overlay Edit Avatar 
+function editAvatarSubmitHandler({
+  'edit-pic': avatarLink,
+}) {
+    return api.setUserAvatar({ avatarLink })
+      .then(() => {
+        userInfo.setUserAvatar(avatarLink);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        editAvatarFormPopup.renderLoading(false);
+        editAvatarFormPopup._form.reset();
+      })
+    }
+
+// Overlay Confirm Delete
+const cardItemDelete = {};
+function deleteCardSubmitHandler({ cardId }) {
+  return api.deleteCard({ cardId }).then(() => { 
+    cardItemDelete[cardId].deleteCard();
+    delete cardItemDelete[cardId];
+  });
+}
+// function deleteCardSubmitHandler(cardItem) {
+//   return api.deleteCard({cardItem}).then(() => {
+//     cardItemDelete.remove();
+//   });
+// }
+
+
+
+// Class Instances
+const userInfo = new UserInfo({ 
+  nameSelector: '.profile__title', 
+  jobSelector: '.profile__job',
+  avatarSelector: '.profile__avatar-img'
+});
+
+const editUserPopupForm = new PopupWithForm(
+  editProfileSubmitHandler, 
+  "Saving...",
+  '.popup_type_edit');
+
+const addCardPopupForm = new PopupWithForm(
+  addPlaceSubmitHandler, 
+  "Saving...",
+  '.popup_type_add-place');
+
+const editAvatarFormPopup = new PopupWithForm(
+  editAvatarSubmitHandler,
+  "Saving..." ,
+  '.popup_type_edit-pic');
+
+const deleteCardConfirmation = new PopupWithForm(
+  deleteCardSubmitHandler,
+  "Deleting...",
+  '.popup_type_delete' );
+
+const popupWithImage = new PopupWithImage('.popup_type_image');
+
+const cardList = new Section({
+  items: [],
+  renderer: ()  => {
+  }
+}, '.cards__list');
+
+// Returns a Promise.all and loads initialCards and userInfoData 
+  api.getAppInfo().then(([initialCards, userInfoData]) => {
+    const userId = userInfoData._id;
+
+    // Load initial cards
+    initialCards.forEach((cardItem) => {
+      cardList.addItems(renderCard({ cardItem }, userId));
+    })
+
+    // Load user info
+    userInfo.setUserInfo({ name: userInfoData.name, about: userInfoData.about });
+    userInfo.setUserAvatar({ avatar: userInfoData.avatar });
+  })
 
 //Form Validators
 forms.forEach((form) => {
@@ -99,10 +190,16 @@ forms.forEach((form) => {
 // Event Listeners
 popupWithImage.setEventListeners();
 
-profileEditPopupForm.setEventListeners();
-profileEditButton.addEventListener('click', () => {
-  const inputs = userInfo.getUserInfo();
-  nameInput.value = inputs.name;
-  aboutInput.value = inputs.about;
-  profileEditPopupForm.open();
+deleteCardConfirmation.setEventListeners();
+
+addCardPopupForm.setEventListeners();
+addCardButton.addEventListener('click', () => addCardPopupForm.open([null, null]));
+
+editUserPopupForm.setEventListeners();
+editUserButton.addEventListener('click', () => {
+  userInfo.getUserInfo();
+  editUserPopupForm.open();
 });
+
+editAvatarFormPopup.setEventListeners();
+editAvatarButton.addEventListener('click', () => editAvatarFormPopup.open());

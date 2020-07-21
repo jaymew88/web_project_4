@@ -4,6 +4,10 @@ export default class Api {
     this.baseUrl = baseUrl;
   }
 
+  getAppInfo(){
+    return Promise.all([this.getInitialCards(), this.getUserInfo()])
+}
+
   getInitialCards() {
     return fetch(this.baseUrl + '/cards', {
       headers: this.headers,
@@ -30,10 +34,6 @@ export default class Api {
       });
   }
 
-  getAppInfo() {
-    return Promise.all([this.getInitialCards(), this.getUserInfo()])
-  }
-
   newCard({ name, link }) {
     return fetch(this.baseUrl + '/cards', {
       method: "POST",
@@ -51,9 +51,22 @@ export default class Api {
         }
       });
   }
-
-  deleteCard(cardId) {
-    return fetch(this.baseUrl + /cards/ + cardId, {
+  // newCard(cardInfo) {
+  //   return fetch(this.baseUrl + '/cards', {
+  //     method: "POST",
+  //     headers: this.headers,
+  //     body: JSON.stringify(cardInfo)
+  //   })
+  //     .then(res => {
+  //       if (res.ok) {
+  //           return res.json();
+  //       } else {
+  //           return Promise.reject(`Error: ${res.status}`);
+  //       }
+  //     });
+  // }
+  deleteCard({ cardId }) {
+    return fetch(this.baseUrl + '/cards/' + cardId, {
       method: "DELETE",
       headers: this.headers,
   })
@@ -66,78 +79,62 @@ export default class Api {
       });
   }
 
-  // addLike(cardId, userId) {
-  //   if (cardId.likes.some((like) => {return (like._id === userId);})) {
-  //     return fetch(`${this.baseUrl}/cards/likes/${cardId._id}`, {
-  //         method: "DELETE",
-  //         headers: this.headers,
-  //     })
-  //         .then(res => {
-  //             if (res.ok) {
-  //                 return res.json();
-  //             } else {
-  //                 return Promise.reject(`Error: ${res.status}`);
-  //             }
-  //         });
-  //   } else {
-  //       return fetch(`${this.baseUrl}/cards/likes/${cardId._id}`, {
-  //           method: "PUT",
-  //           headers: this.headers,
-  //       })
-  //           .then(res => {
-  //               if (res.ok) {
-  //                   return res.json();
-  //               } else {
-  //                   return Promise.reject(`Error: ${res.status}`);
-  //               }
-  //           });
-  //   }
-  // }
+  addLike({cardId}) {
+    return fetch(this.baseUrl + '/cards/likes/' + cardId, {
+      headers: this.headers,
+      method: "PUT"
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
-  // removeLike(cardId) {
-  //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-  //     method: "DELETE",
-  //     headers: this.headers,
-  // })
-  //     .then(res => {
-  //         if (res.ok) {
-  //             return res.json();
-  //         } else {
-  //             return Promise.reject(`Error: ${res.status}`);
-  //         }
-  //     });
-  // }
+  removeLike({cardId}) {
+    return fetch(this.baseUrl + '/cards/likes/' + cardId, {
+      method: "DELETE",
+      headers: this.headers,
+  })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      });
+  }
 
+  editUserInfo({ name: newName, about: newJob }) {
+    return fetch(this.baseUrl + '/users/me', {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({ 
+        name: newName, 
+        about: newJob })
+  })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      })
+      .catch((err) => console.log(err));
+  }
 
-  // setUserInfo({ name: newName, job: newJob }) {
-  //   return fetch(this.baseUrl + '/users/me', {
-  //     method: "PATCH",
-  //     headers: this.headers,
-  //     body: JSON.stringify({ 
-  //       name: newName, 
-  //       job: newJob })
-  // })
-  //     .then(res => {
-  //         if (res.ok) {
-  //             return res.json();
-  //         } else {
-  //             return Promise.reject(`Error: ${res.status}`);
-  //         }
-  //     });
-  // }
-
-  // setUserAvatar(avatarLink) {
-  //   return fetch(this.baseUrl + '/users/me/avatar', {
-  //     method: "PATCH",
-  //     headers: this.headers,
-  //     body: JSON.stringify(avatarLink)
-  //   })
-  //     .then(res => {
-  //         if (res.ok) {
-  //             return res.json();
-  //         } else {
-  //             return Promise.reject(`Error: ${res.status}`);
-  //         }
-  //     });
-  // }
+  setUserAvatar(avatarLink) {
+    return fetch(this.baseUrl + '/users/me/avatar', {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({ avatarLink })
+    })
+      .then(res => {
+          if (res.ok) {
+              return res.json();
+          } else {
+              return Promise.reject(`Error: ${res.status}`);
+          }
+      })
+      .catch((err) => console.log(err));
+  }
 }

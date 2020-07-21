@@ -17,8 +17,11 @@
   <main class="content">
     <!-- Profile Section -->
     <section class="profile">
-      <button class="button profile__button_role_edit-pic"></button>
-      <img class="profile__pic" src="./images/profile-pic.jpg" alt="profile picture">
+      <div class="profile__avatar">
+        <img class="profile__avatar-img" src="#" alt="profile picture">
+        <button class="button profile__button_role_edit-avatar">
+      </div>
+      </button>
       <div class="profile__info">
         <h1 class="profile__title">Jacques Cousteau</h1>
         <button class="button profile__button profile__button_role_edit"></button>
@@ -74,13 +77,14 @@
       </form>
     </div> 
   </div>
+
     <!-- Popup for Edit Profile Picture Section -->
     <div class="popup popup_type_edit-pic">
         <div class="popup__container popup__container_form">
           <button class="button popup__button popup__button_role_close"></button>
-          <form class="popup__form" action="#" name="profile-edit-pic" novalidate>
+          <form class="popup__form" action="#" name="profile-edit-pic">
             <h2 class="popup__title">Change Userpic</h2>
-            <label class="popup__label" for="edit-pic">
+            <label class="popup__label">
               <input 
               class="popup__field popup__field_edit-pic" 
               name="edit-pic"
@@ -89,14 +93,14 @@
               placeholder="Edit User Pic"
               required
               />
-            <span class="popup__field-error" id="image-input-error"></span>
+            <span class="popup__field-error" id="edit-pic-input-error"></span>
             </label>
             <button class="button popup__button popup__button_role_save" type="submit">Save</button>
           </form>
         </div> 
       </div>
 
-  <!-- Popup for Add Image Section -->
+  <!-- Popup for Add Place Section -->
   <div class="popup popup_type_add-place">
     <div class="popup__container popup__container_form">
       <button class="button popup__button popup__button_role_close"></button>

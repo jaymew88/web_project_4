@@ -13,10 +13,7 @@ export const validationSettings = {
 // Forms Array
 export const forms = Array.from(document.querySelectorAll(validationSettings.formSelector));
 
-// Form Fields 
-export const nameInput = document.querySelector('.popup__field_name');
-export const aboutInput = document.querySelector('.popup__field_job');
-
 // Buttons
-export const profileEditButton = document.querySelector('.profile__button_role_edit');
-export const profileAddButton = document.querySelector('.profile__button_role_add');
+export const editUserButton = document.querySelector('.profile__button_role_edit');
+export const addCardButton = document.querySelector('.profile__button_role_add');
+export const editAvatarButton = document.querySelector('.profile__button_role_edit-avatar');
