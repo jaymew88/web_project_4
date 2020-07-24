@@ -51,7 +51,8 @@ export default class Api {
         } else {
             return Promise.reject(`Error: ${res.status}`);
         }
-      });
+      })
+      .catch((err) => console.log(err));
   }
 
   deleteCard(cardId) {
