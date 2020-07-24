@@ -33,16 +33,11 @@ function handleCardClick(data) {
   popupWithImage.open(data);
 }
 
-function handleLikeButtonClick({cardLiked, cardId}) {
-  if (cardLiked) {
-    return api.addLike({cardId}).then((cardItem) => {
-      return cardItem.likes;
-    });
-  } else {
-    return api.removeLike({cardId}).then((cardItem) => {
-      return cardItem.likes;
-    });
-  }
+function handleLikeButtonClick({ cardLiked, cardId }) {
+  return api.updateLike({ cardLiked, cardId }) 
+  .then((cardItem) => {
+    return cardItem.likes;
+  });
 }
 
 function renderCard({ cardItem, userId }) {

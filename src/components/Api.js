@@ -18,7 +18,8 @@ export default class Api {
       } else {
           return Promise.reject('Error: ' + res.status);
       }
-    });
+    })
+    .catch((err) => console.log(err)); 
   }
 
   getUserInfo() {
@@ -31,7 +32,8 @@ export default class Api {
         } else {
             return Promise.reject(`Error: ${res.status}`);
         }
-      });
+      })
+      .catch((err) => console.log(err)); 
   }
 
   newCard({ name, link }) {
@@ -63,32 +65,23 @@ export default class Api {
           } else {
               return Promise.reject(`Error: ${res.status}`);
           }
-      });
+      })
+      .catch((err) => console.log(err)); 
   }
 
-  addLike({cardId}) {
+  updateLike({ cardLiked, cardId }) {
     return fetch(this.baseUrl + '/cards/likes/' + cardId, {
-      headers: this.headers,
-      method: "PUT"
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
-  removeLike({cardId}) {
-    return fetch(this.baseUrl + '/cards/likes/' + cardId, {
-      method: "DELETE",
+      method: cardLiked ? "PUT" : "DELETE",
       headers: this.headers,
   })
-      .then(res => {
-          if (res.ok) {
-              return res.json();
-          } else {
-              return Promise.reject(`Error: ${res.status}`);
-          }
-      });
+    .then(res => {
+        if (res.ok) {
+            return res.json();
+        } else {
+            return Promise.reject(`Error: ${res.status}`);
+        }
+    })
+    .catch((err) => console.log(err));
   }
 
   editUserInfo({ name: newName, about: newJob }) {
