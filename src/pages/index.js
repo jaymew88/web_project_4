@@ -33,9 +33,10 @@ function handleCardClick(data) {
   popupWithImage.open(data);
 }
 
-function handleDeleteClick(card) {
-  deleteCardConfirmation.open([card])
-}
+// function handleDeleteClick(card) {
+//   deleteCardConfirmation.open([card])
+//  console.log(card);
+// }
 
 function handleLikeButtonClick({cardLiked, cardId}) {
   if (cardLiked) {
@@ -49,24 +50,55 @@ function handleLikeButtonClick({cardLiked, cardId}) {
   }
 }
 
-function renderCard({ cardItem }, userId) {
+function renderCard({ cardItem, userId }) {
   const userLikedCard = cardItem.likes
   .map((usersLiked) => usersLiked._id)
   .includes(userId);
   const card = new Card({ 
     cardItem, 
     popup: PopupWithImage, 
+    userId,
     handleCardClick,
-    handleDeleteClick,
+    handleDeleteClick: (item) => { 
+      deleteCardConfirmation.open({ cardId: cardItem._id, element: item })
+    },
     handleLikeButtonClick,
     userLikedCard,
   }, 
-    '.template-card', userId);
-  
-   console.log(cardItem);
+    '.template-card');
 
-  return card.createCard(cardItem);
+    cardClass[cardItem._id] = card;
+    return card.createCard();
 }
+
+// Overlay Add Place
+function addPlaceSubmitHandler({
+  'place-input': imageTitle,
+  'image-input': imageLink
+}) {
+   api.newCard({ name: imageTitle, link: imageLink })
+    .then ((cardItem) => {
+      cardList.addItems(renderCard({ cardItem, likes: cardItem.likes, owner: cardItem.owner._id, handleDeleteClick: () =>
+        deleteCardConfirmation.open({ cardId: cardItem._id }) }));
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      addCardPopupForm.close();
+      addCardPopupForm.renderLoading(false);
+    });
+  } 
+  // function addPlaceSubmitHandler(item) {
+//   api.newCard({ name: item.name, link: item.link })
+//   .then((cardItem) => {
+//     cardList.addItems(renderCard({ cardItem }));
+//   })
+//   .catch((err) => console.log(err))
+//   .finally(() => {
+//     addCardPopupForm.close();
+//     addCardPopupForm.renderLoading(false);
+//   });
+  
+// }
 
 // Overlay Profile Description
 function editProfileSubmitHandler({ 
@@ -81,56 +113,32 @@ function editProfileSubmitHandler({
       .catch((err) => console.log(err))
       .finally(() => {
         editUserPopupForm.renderLoading(false);
-        editUserPopupForm._form.reset();
       });
   }
 
-// Overlay Add Place
-function addPlaceSubmitHandler({
-  'place-input': imageTitle,
-  'image-input': imageLink
-}) {
-    return api.newCard({ name: imageTitle, link: imageLink })
-      .then ((data) => {
-        cardsList.addItems(renderCard({ data }))
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        addCardPopupForm.renderLoading(false);
-        addCardPopupForm._form.reset();
-    });
-  } 
-
-// Overlay Edit Avatar 
+// // Overlay Edit Avatar 
 function editAvatarSubmitHandler({
-  'edit-pic': avatarLink,
+  'edit-pic': avatar,
 }) {
-    return api.setUserAvatar({ avatarLink })
+     api.setUserAvatar({avatar})
       .then(() => {
-        userInfo.setUserAvatar(avatarLink);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
+        userInfo.setUserAvatar({avatar});
+        editAvatarFormPopup.close();
         editAvatarFormPopup.renderLoading(false);
-        editAvatarFormPopup._form.reset();
       })
     }
 
 // Overlay Confirm Delete
-const cardItemDelete = {};
+const cardClass = {};
 function deleteCardSubmitHandler({ cardId }) {
-  return api.deleteCard({ cardId }).then(() => { 
-    cardItemDelete[cardId].deleteCard();
-    delete cardItemDelete[cardId];
+  api.deleteCard(cardId).then(() => { 
+   // cardItem.element.remove();
+    cardClass[cardId].removeCard();
+    delete cardClass[cardId];
+    deleteCardConfirmation.close();
+    deleteCardConfirmation.renderLoading(false);
   });
 }
-// function deleteCardSubmitHandler(cardItem) {
-//   return api.deleteCard({cardItem}).then(() => {
-//     cardItemDelete.remove();
-//   });
-// }
-
-
 
 // Class Instances
 const userInfo = new UserInfo({ 
@@ -173,7 +181,7 @@ const cardList = new Section({
 
     // Load initial cards
     initialCards.forEach((cardItem) => {
-      cardList.addItems(renderCard({ cardItem }, userId));
+      cardList.addItems(renderCard({ cardItem, userId }));
     })
 
     // Load user info

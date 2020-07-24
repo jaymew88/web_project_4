@@ -65,7 +65,8 @@ export default class Api {
   //       }
   //     });
   // }
-  deleteCard({ cardId }) {
+
+  deleteCard(cardId) {
     return fetch(this.baseUrl + '/cards/' + cardId, {
       method: "DELETE",
       headers: this.headers,
@@ -122,11 +123,11 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  setUserAvatar(avatarLink) {
+  setUserAvatar(avatar) {
     return fetch(this.baseUrl + '/users/me/avatar', {
       method: "PATCH",
       headers: this.headers,
-      body: JSON.stringify({ avatarLink })
+      body: JSON.stringify({ avatar })
     })
       .then(res => {
           if (res.ok) {

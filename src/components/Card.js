@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ cardItem, handleCardClick, handleDeleteClick, handleLikeButtonClick, userLikedCard }, cardSelector, userId) 
+  constructor({ cardItem, userId, handleCardClick, handleDeleteClick, handleLikeButtonClick, userLikedCard }, cardSelector) 
     {
     this._name = cardItem.name;
     this._link = cardItem.link;
@@ -39,11 +39,6 @@ export default class Card {
       });
   }
 
-  deleteCard() {
-    this._element.remove();
-    this._element = null;
-  }
-
   _setEventListeners() {
     // Image Popup
     this._element.querySelector('.card__img')
@@ -69,14 +64,11 @@ export default class Card {
         this._handleLikeClick(likeButton),
       );
     }
-    //  this._element.querySelector('.card__like-button')
-    //   .addEventListener('click', (e) => {
-    //     const hasLikes = this._element.querySelector('.card__like-button')
-    //       .classList.contains('card__like-button_active');
-    //     this._handleLikeClick(hasLikes);
-    //     e.target.classList.toggle('card__like-button_active');
-    //  });
-    // }
+
+    removeCard() {
+      this._element.remove();
+      this._element = null;
+    }
   
   // Creates a card from the template
   createCard() {
@@ -99,14 +91,3 @@ export default class Card {
     return this._element;
   }
 }
-
-// IN CREATE CARD
- //Delete card only if it belongs to User
-//  if (this._owner !== this._user) {
-//   this._element
-//   .querySelector('.card__delete-button')
-//   .style.display = "none";
-// } else {
-//   this._element.querySelector('.card__delete-button').name = this._id;
-//   this._element.querySelector('.card__like-button').name = this._id;
-// }
