@@ -33,11 +33,6 @@ function handleCardClick(data) {
   popupWithImage.open(data);
 }
 
-// function handleDeleteClick(card) {
-//   deleteCardConfirmation.open([card])
-//  console.log(card);
-// }
-
 function handleLikeButtonClick({cardLiked, cardId}) {
   if (cardLiked) {
     return api.addLike({cardId}).then((cardItem) => {
@@ -59,8 +54,8 @@ function renderCard({ cardItem, userId }) {
     popup: PopupWithImage, 
     userId,
     handleCardClick,
-    handleDeleteClick: (item) => { 
-      deleteCardConfirmation.open({ cardId: cardItem._id, element: item })
+    handleDeleteClick: () => { 
+      deleteCardConfirmation.open({ cardId: cardItem._id })
     },
     handleLikeButtonClick,
     userLikedCard,
@@ -71,36 +66,21 @@ function renderCard({ cardItem, userId }) {
     return card.createCard();
 }
 
-// Overlay Add Place
+// Add Place
 function addPlaceSubmitHandler({
   'place-input': imageTitle,
   'image-input': imageLink
 }) {
    api.newCard({ name: imageTitle, link: imageLink })
-    .then ((cardItem) => {
-      cardList.addItems(renderCard({ cardItem, likes: cardItem.likes, owner: cardItem.owner._id, handleDeleteClick: () =>
+    .then((cardItem) => {
+      cardList.addItems(renderCard({ cardItem, likes: cardItem.likes, cardId: cardItem._id, owner: cardItem.owner._id, handleDeleteClick: () =>
         deleteCardConfirmation.open({ cardId: cardItem._id }) }));
-    })
-    .catch((err) => console.log(err))
-    .finally(() => {
       addCardPopupForm.close();
       addCardPopupForm.renderLoading(false);
-    });
+    })
   } 
-  // function addPlaceSubmitHandler(item) {
-//   api.newCard({ name: item.name, link: item.link })
-//   .then((cardItem) => {
-//     cardList.addItems(renderCard({ cardItem }));
-//   })
-//   .catch((err) => console.log(err))
-//   .finally(() => {
-//     addCardPopupForm.close();
-//     addCardPopupForm.renderLoading(false);
-//   });
-  
-// }
 
-// Overlay Profile Description
+// Profile Description
 function editProfileSubmitHandler({ 
   'name-input': name, 
   'job-input':about
@@ -109,14 +89,11 @@ function editProfileSubmitHandler({
       .then(({ name: newName, about: newJob }) => {
           userInfo.setUserInfo({ name: newName, about: newJob });
           editUserPopupForm.close();
+          editUserPopupForm.renderLoading(false);
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        editUserPopupForm.renderLoading(false);
-      });
   }
 
-// // Overlay Edit Avatar 
+// Edit Avatar 
 function editAvatarSubmitHandler({
   'edit-pic': avatar,
 }) {
@@ -128,11 +105,10 @@ function editAvatarSubmitHandler({
       })
     }
 
-// Overlay Confirm Delete
+// Confirm Delete
 const cardClass = {};
 function deleteCardSubmitHandler({ cardId }) {
   api.deleteCard(cardId).then(() => { 
-   // cardItem.element.remove();
     cardClass[cardId].removeCard();
     delete cardClass[cardId];
     deleteCardConfirmation.close();

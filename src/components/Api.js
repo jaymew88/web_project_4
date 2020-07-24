@@ -51,20 +51,6 @@ export default class Api {
         }
       });
   }
-  // newCard(cardInfo) {
-  //   return fetch(this.baseUrl + '/cards', {
-  //     method: "POST",
-  //     headers: this.headers,
-  //     body: JSON.stringify(cardInfo)
-  //   })
-  //     .then(res => {
-  //       if (res.ok) {
-  //           return res.json();
-  //       } else {
-  //           return Promise.reject(`Error: ${res.status}`);
-  //       }
-  //     });
-  // }
 
   deleteCard(cardId) {
     return fetch(this.baseUrl + '/cards/' + cardId, {
