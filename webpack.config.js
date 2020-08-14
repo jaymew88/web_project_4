@@ -1,12 +1,15 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ghpages = require('gh-pages');
+ghpages.publish('dist', function(err) {});
 
 module.exports = {
   entry: { main: "./src/pages/index.js" },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js"
+    filename: "main.js",
+    publicPath: "/web_project_4/"
   },
   module: {
     rules: [
