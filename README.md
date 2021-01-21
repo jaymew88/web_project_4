@@ -11,13 +11,6 @@
 
 This is a project called "Around The U.S.". It is an interactive page where users can add, remove, or like photos.
 
-### Figma
-
-* [Link to the project on Figma](https://www.figma.com/file/lNsn9aE1Be6bvg9FeAzRXT/Sprint-3-From-Portland-to-Portland-desktop-mobile?node-id=0%3A1)
-
-* [Link to second part Figma Design](https://www.figma.com/file/avLHzpJw2dmU2NaDATZ6CX/Sprint-5%3A-Around-The-U.S.-%2F-desktop-%2B-mobile?node-id=0%3A1)
-
-* [Link to third part Figma Design](https://www.figma.com/file/KUbYgXnYElfzxCbcrlsOCE/Sprint-6%3A-Around-The-U.S.?node-id=0%3A1)
 
 ### Description
 
