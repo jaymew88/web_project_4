@@ -2,7 +2,6 @@
 
 ## Overview
 * Intro
-* Figma
 * Description
 * Technologies
 * Github Link
@@ -14,7 +13,7 @@ This is a project called "Around The U.S.". It is an interactive page where user
 
 ### Description
 
-This is a single page responsive website using CSS, HTML and JavaScript, following the BEM methodology. This was a project from a series of briefs, and uses a BEM CSS nested file structure.
+This is a single page responsive website using CSS, HTML and JavaScript, following the BEM methodology. This was a project from a series of Figma briefs, and uses a BEM CSS nested file structure. 
 
 ### Technologies
 
