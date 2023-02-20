@@ -17,8 +17,7 @@ This is a project called "Around The U.S.". It is an interactive page where user
 This is a single page responsive website using CSS, HTML and JavaScript, following the BEM methodology. This was a project from a series of Figma briefs, and uses a BEM CSS nested file structure. 
 
 ### Figma
-
-https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1
+[Link to Figma design](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4%3A-Around-The-U.S.-%2F-desktop-%2B-mobile?node-id=0%3A1&t=8N3jnjbk6UBfTmxN-0)
 
 ### Technologies
 
